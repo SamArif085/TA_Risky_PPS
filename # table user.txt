@@ -1,0 +1,130 @@
+# table user
+username
+role
+pw
+
+# table sertifikasi
+id
+nama
+file
+
+# table akreditas
+id
+nama
+keterangan
+file
+
+# table kurikulum
+id
+judul
+keterangan
+
+# table semester
+id
+semester
+
+# table matakuliah
+id 
+id semester
+kode
+mata kuliah
+teori
+praktek
+total
+
+# table angkatan
+id
+Angkatan
+tahun
+
+# table kalender akademik
+id 
+id angkatan
+kegiatan
+tgl jadwal awal
+tgl jadwal akhir
+catatan
+
+# table jenis dosen
+id
+nama jenis
+
+# table dosen 
+id 
+id jenis dosen
+nama dosen
+foto dosen
+jabatan
+fb
+twitter
+ig
+
+# table lab
+id
+nama
+gambar lab
+lokasi
+
+# table kelas
+kosong
+
+
+# table taruna
+id
+id angkatan
+nama
+gambar
+
+# table master akademik
+id
+nama
+
+# table perstasi
+id
+id master akademik
+kegiatan
+Waktu perolehan
+lokal
+nasional
+internasional
+prestasi yg dicapai
+
+
+# table himpunan
+kosong
+
+# table penelitian
+id
+id dosen
+judul
+jumlah
+
+# table tahun kegiatan
+id
+tahun
+
+# table list kegiatan
+id
+id tahun kegiatan
+nama
+rincian kegiatan
+
+
+# table gambar kegiatan
+id
+id list kegiatan
+gambar
+
+# table jenis jurnal
+id
+nama
+
+# table jurnal
+id
+id jenis jurnal
+id dosen
+judul jurnal
+link jurnal
+
+
+
