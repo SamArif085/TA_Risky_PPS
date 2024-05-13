@@ -12,17 +12,17 @@
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                <small>123 Street, New York, USA</small>
+                <small>Jl. Raya PLP Curug, P.O.BOX 509, Tangerang 15820</small>
             </div>
             <div class="h-100 d-inline-flex align-items-center">
-                <small class="far fa-clock text-primary me-2"></small>
-                <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                <small class="far fa-envelope text-primary me-2"></small>
+                <small>ppi@ppicurug.ac.id</small>
             </div>
         </div>
         <div class="col-lg-5 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <small class="fa fa-phone-alt text-primary me-2"></small>
-                <small>+012 345 6789</small>
+                <small>(021) 5982205</small>
             </div>
             <div class="h-100 d-inline-flex align-items-center mx-n2">
                 <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
@@ -42,7 +42,8 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Drivin</h2>
+        <h2 class="m-0"><img class="me-2" src="{{ asset('file/logo/Politeknik_Penerbangan_Surabaya.webp') }}"
+                alt="" width="100"></h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -50,19 +51,50 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="courses.html" class="nav-item nav-link">Courses</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                 <div class="dropdown-menu bg-light m-0">
-                    <a href="feature.html" class="dropdown-item">Features</a>
-                    <a href="appointment.html" class="dropdown-item">Appointment</a>
-                    <a href="team.html" class="dropdown-item">Our Team</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="404.html" class="dropdown-item">404 Page</a>
+                    <a href="#" class="dropdown-item">Sejarah</a>
+                    <a href="#" class="dropdown-item">Visi Misi</a>
+                    <a href="#" class="dropdown-item">Profile Lulusan</a>
+                    <a href="#" class="dropdown-item">Video Profile</a>
+                    <a href="#" class="dropdown-item">Akreditasi</a>
+                    <a href="#" class="dropdown-item">Serifikasi</a>
                 </div>
             </div>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Akademik</a>
+                <div class="dropdown-menu bg-light m-0">
+                    <a href="#" class="dropdown-item">Kurikulum</a>
+                    <a href="#" class="dropdown-item">Kalender</a>
+                    <a href="#" class="dropdown-item">Staff Pengajar</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Fasilitas</a>
+                <div class="dropdown-menu bg-light m-0">
+                    <a href="#" class="dropdown-item">Laboratorium</a>
+                    <a href="#" class="dropdown-item">Kelas</a>
+                    <a href="#" class="dropdown-item">Fasilitas Penunjang</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Keturunan</a>
+                <div class="dropdown-menu bg-light m-0">
+                    <a href="#" class="dropdown-item">Data Taruna</a>
+                    <a href="#" class="dropdown-item">Prestasi</a>
+                    <a href="#" class="dropdown-item">Himpunan Taruna</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
+                <div class="dropdown-menu bg-light m-0">
+                    <a href="#" class="dropdown-item">Penelitian</a>
+                    <a href="#" class="dropdown-item">Pengabdian Kepada Masyarakat</a>
+                    <a href="#" class="dropdown-item">Publikasi Ilmiah</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item nav-link"><i class="fas fa-download"></i> Unduh</a>
         </div>
         <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get Started<i
                 class="fa fa-arrow-right ms-3"></i></a>

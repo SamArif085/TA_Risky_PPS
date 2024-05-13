@@ -3,30 +3,27 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Get In Touch</h4>
-                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Drivin</h2>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                <h4 class="text-white mb-4">Contact</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Raya PLP Curug, P.O.BOX 509, Tangerang 15820</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(021) 5982205</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>ppi@ppicurug.ac.id</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Quick Links</h4>
-                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Profile</a>
                 <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
+                <a class="btn btn-link" href="">Prifacy Policy</a>
                 <a class="btn btn-link" href="">Terms & Condition</a>
-                <a class="btn btn-link" href="">Support</a>
+                <a class="btn btn-link" href="">FAQs & Help</a>
+
             </div>
             <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Popular Links</h4>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
-                <a class="btn btn-link" href="">Support</a>
+                <h4 class="text-light mb-4">Gallery</h4>
+
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Newsletter</h4>
+                <p>Dapatkan info terbaru mengenai prodi TNU</p>
                 <form action="">
                     <div class="input-group">
                         <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
@@ -54,12 +51,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                &copy; Prodi TNU, All Right Reserved. Designed By IT TNU
             </div>
         </div>
     </div>
