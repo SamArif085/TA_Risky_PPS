@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\web\DashboardController;
+use App\Http\Controllers\web\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// ??LANDING PAGE
+Route::get('/', [LandingPageController::class, 'home'])->name('/')->middleware('guest');
+
+// ?ADMIN
+// DASHBOARD
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('guest');
