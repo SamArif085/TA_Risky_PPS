@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('master_akademik_models', function (Blueprint $table) {
+        Schema::create('master_akademik', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('master_akademik_models');
+        Schema::dropIfExists('master_akademik');
     }
 };

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penelitian_models', function (Blueprint $table) {
+        Schema::create('penelitian', function (Blueprint $table) {
             $table->id();
             $table->integer('id_dosen')->nullable();
             $table->string('judul')->nullable();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penelitian_models');
+        Schema::dropIfExists('penelitian');
     }
 };

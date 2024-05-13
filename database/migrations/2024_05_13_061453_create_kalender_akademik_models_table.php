@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kalender_akademik_models', function (Blueprint $table) {
+        Schema::create('kalender_akademik', function (Blueprint $table) {
             $table->id();
             $table->integer('id_angkatan')->nullable();
             $table->string('kegiatan')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kalender_akademik_models');
+        Schema::dropIfExists('kalender_akademik');
     }
 };

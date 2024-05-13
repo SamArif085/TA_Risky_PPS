@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jurnal_models', function (Blueprint $table) {
+        Schema::create('jurnal', function (Blueprint $table) {
             $table->id();
             $table->integer('id_jenis_jurnal')->nullable();
             $table->integer('id_dosen')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurnal_models');
+        Schema::dropIfExists('jurnal');
     }
 };
