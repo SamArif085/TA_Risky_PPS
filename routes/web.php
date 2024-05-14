@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ??LANDING PAGE
-Route::get('/', [LandingPageController::class, 'home'])->name('/');
+Route::get('/', [LandingPageController::class, 'home'])->name('/')->middleware('guest');
 Route::get('sejarah', [LandingPageController::class, 'sejarah'])->name('sejarah');
 Route::get('visimisi', [LandingPageController::class, 'visimisi'])->name('visimisi');
 Route::get('profile-lulusan', [LandingPageController::class, 'profileLulusan'])->name('profile-lulusan');
@@ -44,8 +44,8 @@ Route::get('jurnal', [LandingPageController::class, 'jurnal'])->name('jurnal');
 // DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 // Authrntication
-Route::get('login', [LoginController::class, 'index'])->name('login');
-Route::get('home', [LoginController::class, 'index'])->name('home');
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('home', [LoginController::class, 'index'])->name('home')->middleware('guest');
 Route::post('login-up', [LoginController::class, 'authentication']);
 Route::get('registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasiStore', [LoginController::class, 'registrasiStore']);
@@ -56,7 +56,7 @@ Route::get('video-profile', [VideoProfileController::class, 'index'])->name('vid
 Route::get('video-profile/add', [VideoProfileController::class, 'create'])->name('video-profile.add');
 Route::get('video-profile/edit/{id}', [VideoProfileController::class, 'edit'])->name('video-profile.edit');
 Route::post('video-profile/submit', [VideoProfileController::class, 'store'])->name('video-profile.submit');
-Route::post('video-profile/delete/{$id}', [VideoProfileController::class, 'destroy'])->name('video-profile.delete');
+
 
 // SERTIFIKAT
 Route::get('sertifikasi', [SertifikasiController::class, 'index'])->name('sertifikasi');

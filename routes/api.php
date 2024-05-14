@@ -18,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// SERTIFIKASI
 Route::post('sertifikasi.delete', [SertifikasiController::class, 'destroy'])->name('sertifikasi.delete');
+// VIDEO PROFILE
+Route::post('video-profile.delete', [SertifikasiController::class, 'destroy'])->name('video-profile.delete');
