@@ -3,40 +3,39 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sertifikasi;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
-class SertifikasiController extends Controller
+class SemesterController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Sertifikasi';
+        return 'Halaman Semester';
     }
     public function subtitle()
     {
-        return 'Add Sertifikasi';
+        return 'Add Semester';
     }
     public function js()
     {
-        return asset('controller_js/admin/sertifikasi.js');
+        return asset('controller_js/admin/Semester.js');
     }
     public function routeName()
     {
-        return 'sertifikasi';
+        return 'semester';
     }
 
     public function index()
     {
-        $data['data'] = Sertifikasi::get()->toArray();
+        $data['data'] = Semester::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.sertifikasi.index', $data);
+        $konten = view('admin.page.master_menu.semester.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = $this->title();
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -47,49 +46,27 @@ class SertifikasiController extends Controller
     {
         $data = [];
         $data['subtitle'] = $this->subtitle();
-        $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.sertifikasi.form', $data);
+        $data['judulForm'] = 'Tambah';
+        $konten = view('admin.page.master_menu.semester.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = $this->title();
         $put['konten'] = $konten;
         $put['js'] = $js;
 
         return view('admin.template.main', $put);
     }
 
-
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        if (isset($data['file']) && $data['file'] != null) {
-            // Validasi request
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar JPEG, PNG, JPG maksimum 2MB
-            ]);
-
-            // Jika validasi gagal, kembalikan respon dengan pesan error
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $dokumen = $request->file('file');
-            $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-sertifikat/', $nama_file);
-        }
-
         DB::beginTransaction();
         try {
-            $pelanggan = $data['id'] == '' ? new Sertifikasi() : Sertifikasi::find($data['id']);
-            $pelanggan->nama = $data['nama'];
+            $insert = $data['id'] == '' ? new Semester() : Semester::find($data['id']);
+            $insert->semester = $data['semester'];
 
-            if (isset($data['file']) && $data['file'] != null) {
-                $pelanggan->file = 'file-sertifikat/' . $nama_file;
-            }
-
-            $pelanggan->save();
+            $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {
@@ -98,37 +75,30 @@ class SertifikasiController extends Controller
         }
     }
 
-    public function show(string $id)
-    {
-    }
-
     public function edit(string $id)
     {
-        $data['data'] = Sertifikasi::find($id);
+        $data['data'] = Semester::find($id);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.sertifikasi.form', $data);
+        $konten = view('admin.page.master_menu.Semester.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Semester';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
         return view('admin.template.main', $put);
     }
 
-    public function destroy(Request $request)
+    function destroy(Request $request)
     {
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Sertifikasi::find($id);
+            $data = Semester::find($id);
             $data->delete();
-            // jika $data->file itu ada isinya maka unlink();
-            if (isset($data->file) && $data->file != null) {
-                unlink($data->file);
-            }
+
             DB::commit();
             return response()->json([
                 'code' => 200,

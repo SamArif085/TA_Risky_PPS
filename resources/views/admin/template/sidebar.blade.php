@@ -1,13 +1,13 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item">
+        <li class="nav-item mb-3">
             <a class="nav-link" href="{{ url('dashboard') }}">
                 <i class="ti-shield menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <p class="mx-2">Master</p>
-        <li class="nav-item">
+        <li class="nav-item mb-3">
             <a class="nav-link" data-toggle="collapse" href="#menu-master" aria-expanded="false"
                 aria-controls="menu-master">
                 <i class="ti-palette menu-icon"></i>
@@ -22,47 +22,47 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="akreditas.html">
-                            <span class="menu-title">Akreditas</span>
+                        <a class="nav-link" href="{{ route('akreditasi') }}">
+                            <span class="menu-title">Akreditasi</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="kurikulum.html">
+                        <a class="nav-link" href="{{ route('kurikulum') }}">
                             <span class="menu-title">Kurikulum</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="semester.html">
+                        <a class="nav-link" href="{{ route ('semester') }}">
                             <span class="menu-title">Semester</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="angkatan.html">
+                        <a class="nav-link" href="{{ route ('angkatan') }}">
                             <span class="menu-title">Angkatan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="jenis-dosen.html">
+                        <a class="nav-link" href="{{ route('jenisDosen') }}">
                             <span class="menu-title">Jenis Dosen</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="lab.html">
+                        <a class="nav-link" href="{{ route('lab') }}">
                             <span class="menu-title">Lab</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="master-akademik.html">
+                        <a class="nav-link" href="{{ route('masterAkademik') }}">
                             <span class="menu-title">Master Akademik</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tahun-kegiatan.html">
+                        <a class="nav-link" href="{{ route('tahunKegiatan') }}">
                             <span class="menu-title">Tahun Kegiatan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="jenis-jurnal.html">
+                        <a class="nav-link" href="{{ route('jenisJurnal') }}">
                             <span class="menu-title">Jenis Jurnal</span>
                         </a>
                     </li>

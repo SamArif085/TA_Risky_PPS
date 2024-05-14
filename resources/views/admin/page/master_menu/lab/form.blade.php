@@ -24,16 +24,16 @@
                             value="{{ $judulForm == 'Tambah' ? '' : $data->nama }}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nama">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" placeholder="keterangan" name="keterangan"
-                            value="{{ $judulForm == 'Tambah' ? '' : $data->keterangan }}">
+                        <label for="lokasi">Lokasi</label>
+                        <input type="text" class="form-control" id="lokasi" placeholder="lokasi" name="lokasi"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->lokasi }}">
                     </div>
                     <div class="form-group mb-3">
                         <label>File upload</label>
                         <input type="file" id="file" name="file" class="form-control-file">
                         {{-- isset page_name == edit, tampilkan gambarnya --}}
                         @if (isset($judulForm) && $judulForm == 'Edit')
-                            <img src="{{ isset($data->file) ? asset($data->file) : '' }}" class="img-thumbnail mt-2"
+                            <img src="{{ isset($data->gambar_lab) ? asset($data->gambar_lab) : '' }}" class="img-thumbnail mt-2"
                                 width="50%">
                         @endif
                     </div>
