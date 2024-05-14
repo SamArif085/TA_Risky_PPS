@@ -1,0 +1,11 @@
+#List Master Menu
+- sertifikasi
+- akreditas
+- kurikulum
+- semester
+- angkatan
+- jenis dosen
+- lab
+- master akademik
+- tahun kegiatan
+- jenis jurnal

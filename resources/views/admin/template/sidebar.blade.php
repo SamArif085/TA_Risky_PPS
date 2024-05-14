@@ -6,88 +6,170 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        <p class="mx-2">Master</p>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#menu-master" aria-expanded="false"
+                aria-controls="menu-master">
                 <i class="ti-palette menu-icon"></i>
-                <span class="menu-title">UI Elements</span>
+                <span class="menu-title">Master Menu</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="menu-master">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-                <i class="ti-layout-list-post menu-icon"></i>
-                <span class="menu-title">Form elements</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="ti-pie-chart menu-icon"></i>
-                <span class="menu-title">Charts</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-                <i class="ti-view-list-alt menu-icon"></i>
-                <span class="menu-title">Tables</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/icons/themify.html">
-                <i class="ti-star menu-icon"></i>
-                <span class="menu-title">Icons</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="ti-user menu-icon"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html">
-                            Login
+                        <a class="nav-link" href="{{ route('sertifikasi') }}">
+                            <span class="menu-title">Sertifikasi</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login-2.html">
-                            Login 2
+                        <a class="nav-link" href="akreditas.html">
+                            <span class="menu-title">Akreditas</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register.html">
-                            Register
+                        <a class="nav-link" href="kurikulum.html">
+                            <span class="menu-title">Kurikulum</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register-2.html">
-                            Register 2
+                        <a class="nav-link" href="semester.html">
+                            <span class="menu-title">Semester</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/lock-screen.html">
-                            Lockscreen
+                        <a class="nav-link" href="angkatan.html">
+                            <span class="menu-title">Angkatan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jenis-dosen.html">
+                            <span class="menu-title">Jenis Dosen</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lab.html">
+                            <span class="menu-title">Lab</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="master-akademik.html">
+                            <span class="menu-title">Master Akademik</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tahun-kegiatan.html">
+                            <span class="menu-title">Tahun Kegiatan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jenis-jurnal.html">
+                            <span class="menu-title">Jenis Jurnal</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
+        <p class="mx-2">Landing Page</p>
         <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
-                <i class="ti-write menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+            <a class="nav-link" data-toggle="collapse" href="#menu1" aria-expanded="false" aria-controls="menu1">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Profile</span>
+                <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="menu1">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('video-profile') }}">Video Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Akreditasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Sertifikasi</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu2" aria-expanded="false" aria-controls="menu2">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Akademik</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu2">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/buttons.html">Kurikulum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Kalender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Staff Pengajar</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu3" aria-expanded="false" aria-controls="menu3">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Fasilitas</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu3">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/buttons.html">Laboratorium</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Kelas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Fasilitas Penunjang</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu4" aria-expanded="false" aria-controls="menu4">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Ketarunaan</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu4">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/buttons.html">Data Taruna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Prestasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Himpunan Taruna</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu5" aria-expanded="false" aria-controls="menu5">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Research</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu5">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/buttons.html">Penelitian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Pengabdian Kepada <br>
+                            Masyarakat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/typography.html">Publikasi Ilmiah</a>
+                    </li>
+                </ul>
+            </div>
         </li>
     </ul>
 </nav>

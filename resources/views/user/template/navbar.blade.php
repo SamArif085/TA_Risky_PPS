@@ -96,7 +96,7 @@
             </div>
             <a href="#" class="nav-item nav-link"><i class="fas fa-download"></i> Unduh</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get Started<i
+        <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get Started<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>

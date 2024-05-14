@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ isset($title) ? $title : '' }}</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- plugins: template css -->
     <link rel="stylesheet" href="{{ asset('template-admin/vendors/ti-icons/css/themify-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('template-admin/vendors/base/vendor.bundle.base.css') }}" />
     <link rel="stylesheet" href="{{ asset('template-admin/css/style.css') }}" />
     <link rel="shortcut icon" href="{{ asset('template-admin/images/favicon.png') }}" />
+
+
 
     @include('utils.head')
 </head>
@@ -42,7 +44,9 @@
 <script src="{{ asset('template-admin/js/template.js') }}"></script>
 <script src="{{ asset('template-admin/js/todolist.js') }}"></script>
 <script src="{{ asset('template-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('boostrap/bootstrap.js') }}"></script>
 
-<script>
-    {{ isset($js) ? $js : '' }}
-</script>
+<script src="{{ isset($js) ? $js : '' }}"></script>
+<script src="{{ asset('utils/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('utils/datatable/dataTables.bootstrap4.min.js') }}"></script>
+@yield('script')
