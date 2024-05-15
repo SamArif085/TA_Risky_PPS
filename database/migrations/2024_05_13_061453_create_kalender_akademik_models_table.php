@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('id_angkatan')->nullable();
             $table->string('kegiatan')->nullable();
-            $table->string('tgl_jadwal_awal')->nullable();
-            $table->string('tgl_jadwal_akhir')->nullable();
+            $table->integer('tgl_jadwal_awal')->nullable();
+            $table->integer('tgl_jadwal_akhir')->nullable();
             $table->string('catatan')->nullable();
             $table->timestamps();
         });

@@ -142,7 +142,7 @@
                         <a class="nav-link" href="pages/ui-features/buttons.html">Data Taruna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Prestasi</a>
+                        <a class="nav-link" href="{{ route('ketarunaan/prestasi') }}">Prestasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Himpunan Taruna</a>

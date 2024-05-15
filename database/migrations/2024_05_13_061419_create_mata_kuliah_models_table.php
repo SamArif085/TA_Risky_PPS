@@ -16,9 +16,9 @@ return new class extends Migration
             $table->integer('id_semester')->nullable();
             $table->string('kode')->nullable();
             $table->string('mata_kuliah')->nullable();
-            $table->string('teori')->nullable();
-            $table->string('praktek')->nullable();
-            $table->string('total')->nullable();
+            $table->integer('teori')->nullable();
+            $table->integer('praktek')->nullable();
+            $table->integer('total')->nullable();
             $table->timestamps();
         });
     }

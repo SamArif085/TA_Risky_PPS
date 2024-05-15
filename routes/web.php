@@ -11,6 +11,7 @@ use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LabController;
 use App\Http\Controllers\web\MasterAkademikController;
@@ -156,3 +157,9 @@ Route::get('akademik/staff-pengajar', [AkademikStaffPengajarController::class, '
 Route::get('akademik/staff-pengajar/add', [AkademikStaffPengajarController::class, 'create'])->name('akademik/staff-pengajar.add');
 Route::get('akademik/staff-pengajar/edit/{id}', [AkademikStaffPengajarController::class, 'edit'])->name('akademik/staff-pengajar.edit');
 Route::post('akademik/staff-pengajar/submit', [AkademikStaffPengajarController::class, 'store'])->name('akademik/staff-pengajar.submit');
+
+// KETARUNAAN PRESTASI
+Route::get('ketarunaan/prestasi', [KetarunaanPrestasiController::class, 'index'])->name('ketarunaan/prestasi');
+Route::get('ketarunaan/prestasi/add', [KetarunaanPrestasiController::class, 'create'])->name('ketarunaan/prestasi.add');
+Route::get('ketarunaan/prestasi/edit/{id}', [KetarunaanPrestasiController::class, 'edit'])->name('ketarunaan/prestasi.edit');
+Route::post('ketarunaan/prestasi/submit', [KetarunaanPrestasiController::class, 'store'])->name('ketarunaan/prestasi.submit');

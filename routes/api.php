@@ -7,6 +7,7 @@ use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LabController;
 use App\Http\Controllers\web\MasterAkademikController;
@@ -59,3 +60,5 @@ Route::post('akademik/kurikulum.delete', [AkademikKurikulumController::class, 'd
 Route::post('akademik/kalender.delete', [AkademikKalenderController::class, 'destroy'])->name('akademik/kalender.delete');
 // AKADEMIK STAFF DOSEN
 Route::post('akademik/staff-pengajar.delete', [AkademikStaffPengajarController::class, 'destroy'])->name('akademik/staff-pengajar.delete');
+// KETARUNAAN PRESTASI
+Route::post('ketarunaan/prestasi.delete', [KetarunaanPrestasiController::class, 'destroy'])->name('ketarunaan/prestasi.delete');
