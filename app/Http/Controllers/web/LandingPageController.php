@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\DosenModel;
+use App\Models\KalenderAkademik;
 use App\Models\KalenderAkademikModel;
 use App\Models\KurikulumModel;
 use App\Models\KurikuluModel;
@@ -88,7 +89,7 @@ class LandingPageController extends Controller
     public function kalender()
     {
         $data = [];
-        $data['data'] = KalenderAkademikModel::get();
+        $data['data'] = KalenderAkademik::get();
         $data['title'] = 'Kalender';
 
         $konten = view('user.page.kalender', $data);

@@ -10,4 +10,10 @@ class Dosen extends Model
     use HasFactory;
 
     protected $table = 'dosen';
+
+    protected $guarded = 'id';
+    public function JenisDosen()
+    {
+        return $this->belongsTo(JenisDosen::class, 'id_jenis_dosen', 'id');
+    }
 }

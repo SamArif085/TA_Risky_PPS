@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\web\AkademikKalenderController;
 use App\Http\Controllers\web\AkademikKurikulumController;
+use App\Http\Controllers\web\AkademikStaffPengajarController;
 use App\Http\Controllers\web\DashboardController;
 use App\Http\Controllers\web\LandingPageController;
 use App\Http\Controllers\web\SertifikasiController;
@@ -145,7 +147,12 @@ Route::get('akademik/kurikulum/add', [AkademikKurikulumController::class, 'creat
 Route::get('akademik/kurikulum/edit/{id}', [AkademikKurikulumController::class, 'edit'])->name('akademik/kurikulum.edit');
 Route::post('akademik/kurikulum/submit', [AkademikKurikulumController::class, 'store'])->name('akademik/kurikulum.submit');
 // AKADEMIK KALENDER
-Route::get('akademik/kalender', [AkademikKurikulumController::class, 'index'])->name('akademik/kalender');
-Route::get('akademik/kalender/add', [AkademikKurikulumController::class, 'create'])->name('akademik/kalender.add');
-Route::get('akademik/kalender/edit/{id}', [AkademikKurikulumController::class, 'edit'])->name('akademik/kalender.edit');
-Route::post('akademik/kalender/submit', [AkademikKurikulumController::class, 'store'])->name('akademik/kalender.submit');
+Route::get('akademik/kalender', [AkademikKalenderController::class, 'index'])->name('akademik/kalender');
+Route::get('akademik/kalender/add', [AkademikKalenderController::class, 'create'])->name('akademik/kalender.add');
+Route::get('akademik/kalender/edit/{id}', [AkademikKalenderController::class, 'edit'])->name('akademik/kalender.edit');
+Route::post('akademik/kalender/submit', [AkademikKalenderController::class, 'store'])->name('akademik/kalender.submit');
+// AKADEMIK STAFF PENGAJAR
+Route::get('akademik/staff-pengajar', [AkademikStaffPengajarController::class, 'index'])->name('akademik/staff-pengajar');
+Route::get('akademik/staff-pengajar/add', [AkademikStaffPengajarController::class, 'create'])->name('akademik/staff-pengajar.add');
+Route::get('akademik/staff-pengajar/edit/{id}', [AkademikStaffPengajarController::class, 'edit'])->name('akademik/staff-pengajar.edit');
+Route::post('akademik/staff-pengajar/submit', [AkademikStaffPengajarController::class, 'store'])->name('akademik/staff-pengajar.submit');

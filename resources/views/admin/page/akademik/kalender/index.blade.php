@@ -17,19 +17,18 @@
             <div class="card-body">
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered" id="data-table">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
                                 <th scope="col" rowspan="2">No</th>
-                                <th scope="col" rowspan="2">Semester</th>
-                                <th scope="col" rowspan="2">Kode</th>
-                                <th scope="col" rowspan="2">Mata Kuliah</th>
-                                <th class="text-center" scope="col" colspan="3">SKS</th>
+                                <th scope="col" rowspan="2">Angkatan</th>
+                                <th scope="col" rowspan="2">Kegiatan</th>
+                                <th scope="col" colspan="2">jadwal Pelaksanaan</th>
+                                <th scope="col" rowspan="2">Catatan</th>
                                 <th scope="col" rowspan="2">Action</th>
                             </tr>
                             <tr>
-                                <th scope="col">Teori</th>
-                                <th scope="col">Praktek</th>
-                                <th scope="col">Total</th>
+                                <th scope="col">Awal</th>
+                                <th scope="col">Akhir</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,12 +36,11 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item['semester']['semester']}}</td>
-                                <td>{{ $item['kode']}}</td>
-                                <td>{{ $item['mata_kuliah']}}</td>
-                                <td>{{ $item['teori']}}</td>
-                                <td>{{ $item['praktek']}}</td>
-                                <td>{{ $item['total']}}</td>
+                                <td>{{ $item['angkatan']['angkatan']}}</td>
+                                <td>{{ $item['kegiatan']}}</td>
+                                <td>{{ $item['tgl_jadwal_awal']}}</td>
+                                <td>{{ $item['tgl_jadwal_akhir']}}</td>
+                                <td>{{ $item['catatan']}}</td>
                                 <td>
                                     <a href="{{ route($routeName. '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>

@@ -19,14 +19,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <label for="semester">Semester</label>
-                                <select name="semester" id="semester" class="select2 form-control"
+                                <label for="angkatan">Angkatan</label>
+                                <select name="angkatan" id="angkatan" class="select2 form-control"
                                     data-allow-clear="true">
-                                    <option value="">Pilih Semester</option>
-                                    @foreach ($dataSemester as $item)
+                                    <option value="">Pilih Angkatan</option>
+                                    @foreach ($dataAngkatan as $item)
                                     <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' :
-                                        ($data['semester']['semester']==$item['semester'] ? 'selected' : '' ) }}>
-                                        {{ $item['semester'] }}
+                                        ($data['angkatan']['angkatan']==$item['angkatan'] ? 'selected' : '' ) }}>
+                                        {{ $item['angkatan'] }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -36,39 +36,32 @@
                             <input type="hidden" name="id" id="id"
                                 value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                             <div class="form-group mb-3">
-                                <label for="kode">Kode</label>
-                                <input type="text" class="form-control" id="kode" placeholder="Kode" name="kode"
-                                    value="{{ $judulForm == 'Tambah' ? '' : $data->kode }}">
+                                <label for="kegiatan">Kegiatan</label>
+                                <input type="text" class="form-control" id="kegiatan" placeholder="Kegiatan"
+                                    name="kegiatan" value="{{ $judulForm == 'Tambah' ? '' : $data->kegiatan }}">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <label for="mata_kuliah">Mata Kuliah</label>
-                                <input type="text" class="form-control" id="mata_kuliah" placeholder="Mata Kuliah"
-                                    name="mata_kuliah" value="{{ $judulForm == 'Tambah' ? '' : $data->mata_kuliah }}">
+                                <label for="tgl_jadwal_awal">Tanggal Awal</label>
+                                <input type="date" class="form-control" id="tgl_jadwal_awal" placeholder="Tanggal Awal"
+                                    name="tgl_jadwal_awal"
+                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_awal }}">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <label for="teori">Teori</label>
-                                <input type="number" class="form-control" id="teori" placeholder="Teori" name="teori"
-                                    value="{{ $judulForm == 'Tambah' ? 0 : $data->teori }}"
-                                    onchange="AddKurikulum.total()">
+                                <label for="tgl_jadwal_akhir">Tanggal Akhir</label>
+                                <input type="date" class="form-control" id="tgl_jadwal_akhir"
+                                    placeholder="Tanggal Akhir" name="tgl_jadwal_akhir"
+                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_akhir }}">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <label for="praktik">Praktik</label>
-                                <input type="number" class="form-control" id="praktik" placeholder="Praktik"
-                                    name="praktik" value="{{ $judulForm == 'Tambah' ? 0 : $data->praktek }}"
-                                    onchange="AddKurikulum.total()">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group mb-3">
-                                <label for="total">Total</label>
-                                <input type="text" class="form-control" id="total" placeholder="Total" name="total"
-                                    value="{{ $judulForm == 'Tambah' ? 0 : $data->total }}" readonly>
+                                <label for="catatan">Catatan</label>
+                                <textarea name="catatan" id="catatan" cols="30" rows="10"
+                                    class="form-control">{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -82,15 +75,4 @@
 </div>
 
 @section('script')
-<script>
-    let AddKurikulum = {
-        // buatkan total dari input teori dan praktik
-        total: () => {
-            let teori = $('#teori').val();
-            let praktik = $('#praktik').val();
-            let total = parseInt(teori) + parseInt(praktik);
-            $('#total').val(total);
-        }
-    }
-</script>
 @endsection

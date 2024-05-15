@@ -48,7 +48,7 @@
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
                                     </a>
                                     <button class="btn btn-sm btn-danger"
-                                        onclick="AddKurikulum.delete({{ $item['id'] }})"><i class="ti-trash"></i>
+                                        onclick="AddKalender.delete({{ $item['id'] }})"><i class="ti-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -63,7 +63,7 @@
 
 @section('script')
 <script>
-    let AddKurikulum = {
+    let AddKalender = {
             delete: (id) => {
                 let url = '{{ route($routeName . '.delete') }}';
                 Swal.fire({

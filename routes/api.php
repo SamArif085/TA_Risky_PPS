@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\web\AkademikKalenderController;
 use App\Http\Controllers\web\AkademikKurikulumController;
+use App\Http\Controllers\web\AkademikStaffPengajarController;
 use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
 use App\Http\Controllers\web\JenisDosenController;
@@ -51,5 +53,9 @@ Route::post('tahunKegiatan.delete', [TahunKegiatanController::class, 'destroy'])
 Route::post('jenisJurnal.delete', [JenisJurnalController::class, 'destroy'])->name('jenisJurnal.delete');
 // VIDEO PROFILE
 Route::post('video-profile.delete', [VideoProfileController::class, 'destroy'])->name('video-profile.delete');
-// VIDEO PROFILE
+// AKADEMIK KURIKULUM
 Route::post('akademik/kurikulum.delete', [AkademikKurikulumController::class, 'destroy'])->name('akademik/kurikulum.delete');
+// AKADEMIK KALENDER
+Route::post('akademik/kalender.delete', [AkademikKalenderController::class, 'destroy'])->name('akademik/kalender.delete');
+// AKADEMIK STAFF DOSEN
+Route::post('akademik/staff-pengajar.delete', [AkademikStaffPengajarController::class, 'destroy'])->name('akademik/staff-pengajar.delete');

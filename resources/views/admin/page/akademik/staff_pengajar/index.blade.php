@@ -9,41 +9,75 @@
 </div>
 <div class="row">
     <div class="col-12 mb-4">
-        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
+        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
+            Tambah</a>
     </div>
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered" id="data-table">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
-                                <th>No</th>
-                                <th>Judul Video</th>
-                                <th>Link URL</th>
-                                <th>Action</th>
+                                <th scope="col" rowspan="2">No</th>
+                                <th scope="col" rowspan="2">Jenis Dosen</th>
+                                <th scope="col" rowspan="2">Nama</th>
+                                <th scope="col" rowspan="2">Foto Dosen</th>
+                                <th scope="col" rowspan="2">Jabatan</th>
+                                <th scope="col" colspan="3">Media Sosial</th>
+                                <th scope="col" rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">FB</th>
+                                <th scope="col">Twitter</th>
+                                <th scope="col">IG</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item['judul_video'] }}</td>
-                                    <td>
-                                        <a href="{{ $item['link_video'] }}"
-                                            target="_blank">{{ $item['link_video'] }}</a>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route($routeName . '.edit', $item['id']) }}"
-                                            class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
-                                        </a>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item['jenis_dosen']['nama_jenis']}}</td>
+                                <td>{{ $item['nama_dosen']}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $item['id'] }}">
+                                        Lihat Detail Gambar
+                                    </button>
 
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="VideoProfile.delete({{ $item['id'] }})"><i
-                                                class="ti-trash"></i></button>
-
-                                </tr>
+                                </td>
+                                <td>{{ $item['jabatan']}}</td>
+                                <td>{{ $item['fb']}}</td>
+                                <td>{{ $item['twitter']}}</td>
+                                <td>{{ $item['ig']}}</td>
+                                <td>
+                                    <a href="{{ route($routeName. '.edit', $item['id']) }}"
+                                        class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="AddKurikulum.delete({{ $item['id'] }})"><i class="ti-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Gambar</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="img-fluid" src="{{ asset($item['foto_dosen']) }}" alt=""
+                                                width="100%">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -54,8 +88,8 @@
 </div>
 
 @section('script')
-    <script>
-        let VideoProfile = {
+<script>
+    let AddKurikulum = {
             delete: (id) => {
                 let url = '{{ route($routeName . '.delete') }}';
                 Swal.fire({
@@ -105,5 +139,5 @@
         $(document).ready(function() {
             $('#data-table').DataTable();
         });
-    </script>
+</script>
 @endsection

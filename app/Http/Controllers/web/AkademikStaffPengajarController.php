@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Angkatan;
-use App\Models\KalenderAkademik;
-use Illuminate\Http\Request;
+use App\Models\JenisDosen;
+use App\Models\Dosen;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class AkademikKalenderController extends Controller
+class AkademikStaffPengajarController extends Controller
 {
 
     public function title()
     {
-        return 'Kalender Akademik';
+        return 'Staff Pengajar';
     }
     public function subtitle()
     {
-        return 'Add Kalender Akademik';
+        return 'Add Staff Pengajar';
     }
     public function js()
     {
@@ -25,15 +26,15 @@ class AkademikKalenderController extends Controller
     }
     public function routeName()
     {
-        return 'akademik/kalender';
+        return 'akademik/staff-pengajar';
     }
 
     public function index()
     {
-        $data['data'] = KalenderAkademik::with(['Angkatan'])->get()->toArray();
+        $data['data'] = Dosen::with(['JenisDosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.akademik.kalender.index', $data);
+        $konten = view('admin.page.akademik.staff_pengajar.index', $data);
         $js = $this->js();
 
         $put['title'] = $this->title();
@@ -45,11 +46,11 @@ class AkademikKalenderController extends Controller
 
     public function create()
     {
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['dataJenisDosen'] = JenisDosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $data['judulForm'] = 'Tambah';
-        $konten = view('admin.page.akademik.kalender.form', $data);
+        $konten = view('admin.page.akademik.staff_pengajar.form', $data);
         $js = $this->js();
 
         $put['title'] = $this->title();
@@ -62,15 +63,34 @@ class AkademikKalenderController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
+        if (isset($data['file']) && $data['file'] != null) {
+            // Validasi request
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar JPEG, PNG, JPG maksimum 2MB
+            ]);
 
+            // Jika validasi gagal, kembalikan respon dengan pesan error
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $dokumen = $request->file('file');
+            $nama_file = $dokumen->getClientOriginalName();
+            $dokumen->move('foto_dosen/', $nama_file);
+        }
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new KalenderAkademik() : KalenderAkademik::find($data['id']);
-            $insert->id_angkatan = $data['angkatan'];
-            $insert->kegiatan = $data['kegiatan'];
-            $insert->tgl_jadwal_awal = $data['tgl_jadwal_awal'];
-            $insert->tgl_jadwal_akhir = $data['tgl_jadwal_akhir'];
-            $insert->catatan = $data['catatan'];
+            $insert = $data['id'] == '' ? new Dosen() : Dosen::find($data['id']);
+            $insert->id_jenis_dosen = $data['id_jenis_dosen'];
+            $insert->nama_dosen = $data['nama_dosen'];
+            $insert->jabatan = $data['jabatan'];
+            if (isset($data['file']) && $data['file'] != null) {
+                $insert->foto_dosen = 'foto_dosen/' . $nama_file;
+            }
+            $insert->fb = $data['fb'];
+            $insert->twitter = $data['twitter'];
+            $insert->ig = $data['ig'];
             $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
@@ -82,12 +102,12 @@ class AkademikKalenderController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = KalenderAkademik::with(['Angkatan'])->find($id);
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['data'] = Dosen::with(['JenisDosen'])->find($id);
+        $data['dataJenisDosen'] = JenisDosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.akademik.kalender.form', $data);
+        $konten = view('admin.page.akademik.staff_pengajar.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Kurikulum';
@@ -102,9 +122,12 @@ class AkademikKalenderController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = KalenderAkademik::find($id);
+            $data = Dosen::find($id);
             $data->delete();
-
+            // jika $data->file itu ada isinya maka unlink();
+            if (isset($data->foto_dosen) && $data->foto_dosen != null) {
+                unlink($data->foto_dosen);
+            }
             DB::commit();
             return response()->json([
                 'code' => 200,

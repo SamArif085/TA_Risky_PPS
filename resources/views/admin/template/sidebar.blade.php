@@ -105,7 +105,7 @@
                         <a class="nav-link" href="{{ route('akademik/kalender') }}">Kalender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Staff Pengajar</a>
+                        <a class="nav-link" href="{{ route('akademik/staff-pengajar') }}">Staff Pengajar</a>
                     </li>
                 </ul>
             </div>
