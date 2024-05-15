@@ -32,12 +32,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('semester') }}">
+                        <a class="nav-link" href="{{ route('semester') }}">
                             <span class="menu-title">Semester</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('angkatan') }}">
+                        <a class="nav-link" href="{{ route('angkatan') }}">
                             <span class="menu-title">Angkatan</span>
                         </a>
                     </li>
@@ -99,10 +99,10 @@
             <div class="collapse" id="menu2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Kurikulum</a>
+                        <a class="nav-link" href="{{ route('akademik/kurikulum') }}">Kurikulum</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Kalender</a>
+                        <a class="nav-link" href="{{ route('akademik/kalender') }}">Kalender</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Staff Pengajar</a>

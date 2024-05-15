@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\web\AkademikKurikulumController;
 use App\Http\Controllers\web\DashboardController;
 use App\Http\Controllers\web\LandingPageController;
 use App\Http\Controllers\web\SertifikasiController;
@@ -59,13 +60,6 @@ Route::post('login-up', [LoginController::class, 'authentication']);
 Route::get('registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasiStore', [LoginController::class, 'registrasiStore']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-
-// VIDEO PROFILE
-Route::get('video-profile', [VideoProfileController::class, 'index'])->name('video-profile');
-Route::get('video-profile/add', [VideoProfileController::class, 'create'])->name('video-profile.add');
-Route::get('video-profile/edit/{id}', [VideoProfileController::class, 'edit'])->name('video-profile.edit');
-Route::post('video-profile/submit', [VideoProfileController::class, 'store'])->name('video-profile.submit');
-
 
 // SERTIFIKAT
 Route::get('sertifikasi', [SertifikasiController::class, 'index'])->name('sertifikasi');
@@ -136,3 +130,22 @@ Route::get('jenisJurnal/add', [JenisJurnalController::class, 'create'])->name('j
 Route::get('jenisJurnal/edit/{id}', [JenisJurnalController::class, 'edit'])->name('jenisJurnal.edit');
 Route::post('jenisJurnal/submit', [JenisJurnalController::class, 'store'])->name('jenisJurnal.submit');
 // Route::post('sertifikasi.delete', [JenisJurnalController::class, 'destroy'])->name('sertifikasi.delete');
+
+
+// ? KEBUTUHAN LANDING PAGES
+// VIDEO PROFILE
+Route::get('video-profile', [VideoProfileController::class, 'index'])->name('video-profile');
+Route::get('video-profile/add', [VideoProfileController::class, 'create'])->name('video-profile.add');
+Route::get('video-profile/edit/{id}', [VideoProfileController::class, 'edit'])->name('video-profile.edit');
+Route::post('video-profile/submit', [VideoProfileController::class, 'store'])->name('video-profile.submit');
+
+// AKADEMIK KURIKULUM
+Route::get('akademik/kurikulum', [AkademikKurikulumController::class, 'index'])->name('akademik/kurikulum');
+Route::get('akademik/kurikulum/add', [AkademikKurikulumController::class, 'create'])->name('akademik/kurikulum.add');
+Route::get('akademik/kurikulum/edit/{id}', [AkademikKurikulumController::class, 'edit'])->name('akademik/kurikulum.edit');
+Route::post('akademik/kurikulum/submit', [AkademikKurikulumController::class, 'store'])->name('akademik/kurikulum.submit');
+// AKADEMIK KALENDER
+Route::get('akademik/kalender', [AkademikKurikulumController::class, 'index'])->name('akademik/kalender');
+Route::get('akademik/kalender/add', [AkademikKurikulumController::class, 'create'])->name('akademik/kalender.add');
+Route::get('akademik/kalender/edit/{id}', [AkademikKurikulumController::class, 'edit'])->name('akademik/kalender.edit');
+Route::post('akademik/kalender/submit', [AkademikKurikulumController::class, 'store'])->name('akademik/kalender.submit');

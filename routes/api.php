@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\web\AkademikKurikulumController;
 use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
 use App\Http\Controllers\web\JenisDosenController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\TahunKegiatanController;
+use App\Http\Controllers\web\VideoProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,4 +50,6 @@ Route::post('tahunKegiatan.delete', [TahunKegiatanController::class, 'destroy'])
 // JENIS JURNAL
 Route::post('jenisJurnal.delete', [JenisJurnalController::class, 'destroy'])->name('jenisJurnal.delete');
 // VIDEO PROFILE
-Route::post('video-profile.delete', [SertifikasiController::class, 'destroy'])->name('video-profile.delete');
+Route::post('video-profile.delete', [VideoProfileController::class, 'destroy'])->name('video-profile.delete');
+// VIDEO PROFILE
+Route::post('akademik/kurikulum.delete', [AkademikKurikulumController::class, 'destroy'])->name('akademik/kurikulum.delete');
