@@ -17,16 +17,6 @@
             <div class="collapse" id="menu-master">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('sertifikasi') }}">
-                            <span class="menu-title">Sertifikasi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('akreditasi') }}">
-                            <span class="menu-title">Akreditasi</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('kurikulum') }}">
                             <span class="menu-title">Kurikulum</span>
                         </a>
@@ -42,13 +32,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jenisDosen') }}">
-                            <span class="menu-title">Jenis Dosen</span>
+                        <a class="nav-link" href="{{ route('dosen') }}">
+                            <span class="menu-title">Dosen</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lab') }}">
-                            <span class="menu-title">Lab</span>
+                        <a class="nav-link" href="{{ route('jenisDosen') }}">
+                            <span class="menu-title">Jenis Dosen</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -79,13 +69,17 @@
             <div class="collapse" id="menu1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('akreditasi') }}">
+                            <span class="menu-title">Akreditasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('sertifikasi') }}">
+                            <span class="menu-title">Sertifikasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('video-profile') }}">Video Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Akreditasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Sertifikasi</a>
                     </li>
                 </ul>
             </div>
@@ -119,13 +113,13 @@
             <div class="collapse" id="menu3">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Laboratorium</a>
+                        <a class="nav-link" href="{{ route('laboratorium') }}">Laboratorium</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Kelas</a>
+                        <a class="nav-link" href="{{ route('kelas') }}">Kelas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Fasilitas Penunjang</a>
+                        <a class="nav-link" href="{{ route('penunjang') }}">Fasilitas Penunjang</a>
                     </li>
                 </ul>
             </div>

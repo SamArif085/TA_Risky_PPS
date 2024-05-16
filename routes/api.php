@@ -5,11 +5,12 @@ use App\Http\Controllers\web\AkademikKurikulumController;
 use App\Http\Controllers\web\AkademikStaffPengajarController;
 use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
+use App\Http\Controllers\web\DosenController;
+use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
-use App\Http\Controllers\web\LabController;
 use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
@@ -42,10 +43,16 @@ Route::post('kurikulum.delete', [KurikulumController::class, 'destroy'])->name('
 Route::post('semester.delete', [SemesterController::class, 'destroy'])->name('semester.delete');
 // ANGKATAN
 Route::post('angkatan.delete', [AngkatanController::class, 'destroy'])->name('angkatan.delete');
+// DOSEN
+Route::post('dosen.delete', [DosenController::class, 'destroy'])->name('dosen.delete');
 // JENIS DOSEN
 Route::post('jenisDosen.delete', [JenisDosenController::class, 'destroy'])->name('jenisDosen.delete');
-// LAB
-Route::post('lab.delete', [LabController::class, 'destroy'])->name('lab.delete');
+// FASILITAS LABORATORIUM
+Route::post('laboratorium.delete', [FasilitasController::class, 'destroy'])->name('laboratorium.delete');
+// FASILITAS KELAS
+Route::post('kelas.delete', [FasilitasController::class, 'destroy'])->name('kelas.delete');
+// FASILITAS PENUNJANG
+Route::post('penunjang.delete', [FasilitasController::class, 'destroy'])->name('penunjang.delete');
 // MASTER AKADEMIK
 Route::post('masterAkademik.delete', [MasterAkademikController::class, 'destroy'])->name('masterAkademik.delete');
 // TAHUN KEGIATAN

@@ -33,7 +33,7 @@ class AkreditasiController extends Controller
         $data['data'] = Akreditasi::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.akreditasi.index', $data);
+        $konten = view('admin.page.profile.akreditasi.index', $data);
         $js = $this->js();
 
         $put['title'] = $this->title();
@@ -49,7 +49,7 @@ class AkreditasiController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $data['judulForm'] = 'Tambah';
-        $konten = view('admin.page.master_menu.akreditasi.form', $data);
+        $konten = view('admin.page.profile.akreditasi.form', $data);
         $js = $this->js();
 
         $put['title'] = $this->title();
@@ -104,7 +104,7 @@ class AkreditasiController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.akreditasi.form', $data);
+        $konten = view('admin.page.profile.akreditasi.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Akreditasi';

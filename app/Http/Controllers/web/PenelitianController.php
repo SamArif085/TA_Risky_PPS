@@ -3,40 +3,40 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sertifikasi;
+use App\Models\Penelitian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SertifikasiController extends Controller
+class PenelitianController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Sertifikasi';
+        return 'Halaman Penelitian';
     }
     public function subtitle()
     {
-        return 'Add Sertifikasi';
+        return 'Add Penelitian';
     }
     public function js()
     {
-        return asset('controller_js/admin/sertifikasi.js');
+        return asset('controller_js/admin/Penelitian.js');
     }
     public function routeName()
     {
-        return 'sertifikasi';
+        return 'penelitian';
     }
 
     public function index()
     {
-        $data['data'] = Sertifikasi::get()->toArray();
+        $data['data'] = Penelitian::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.index', $data);
+        $konten = view('admin.page.profile.Penelitian.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -49,10 +49,10 @@ class SertifikasiController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.form', $data);
+        $konten = view('admin.page.profile.Penelitian.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -82,7 +82,7 @@ class SertifikasiController extends Controller
 
         DB::beginTransaction();
         try {
-            $pelanggan = $data['id'] == '' ? new Sertifikasi() : Sertifikasi::find($data['id']);
+            $pelanggan = $data['id'] == '' ? new Penelitian() : Penelitian::find($data['id']);
             $pelanggan->nama = $data['nama'];
 
             if (isset($data['file']) && $data['file'] != null) {
@@ -104,14 +104,14 @@ class SertifikasiController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = Sertifikasi::find($id);
+        $data['data'] = Penelitian::find($id);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.form', $data);
+        $konten = view('admin.page.profile.Penelitian.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -123,7 +123,7 @@ class SertifikasiController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Sertifikasi::find($id);
+            $data = Penelitian::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {

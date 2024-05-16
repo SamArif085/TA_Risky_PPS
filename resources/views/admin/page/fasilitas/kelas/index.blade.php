@@ -7,6 +7,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12 mb-4">
         <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
@@ -37,16 +38,14 @@
                                             Lihat Detail Gambar
                                         </button>
                                     </td>
-                                    </td>
                                     <td>
                                         <a href="{{ route($routeName . '.edit', $item['id']) }}"
                                             class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
                                         </a>
-
                                         <button class="btn btn-sm btn-danger"
                                             onclick="Sertifikasi.delete({{ $item['id'] }})"><i
                                                 class="ti-trash"></i></button>
-
+                                    </td>
                                 </tr>
                                 <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,6 +94,7 @@
                             url: url,
                             data: {
                                 id: id,
+                                _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
                                 if (response.code == 200) {
@@ -124,6 +124,7 @@
                 });
             },
         };
+
         $(document).ready(function() {
             $('#data-table').DataTable();
         });

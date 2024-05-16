@@ -9,11 +9,12 @@ use App\Http\Controllers\web\LandingPageController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\AkreditasiController;
 use App\Http\Controllers\web\AngkatanController;
+use App\Http\Controllers\web\DosenController;
+use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
-use App\Http\Controllers\web\LabController;
 use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -69,71 +70,78 @@ Route::get('sertifikasi', [SertifikasiController::class, 'index'])->name('sertif
 Route::get('sertifikasi/add', [SertifikasiController::class, 'create'])->name('sertifikasi.add');
 Route::get('sertifikasi/edit/{id}', [SertifikasiController::class, 'edit'])->name('sertifikasi.edit');
 Route::post('sertifikasi/submit', [SertifikasiController::class, 'store'])->name('sertifikasi.submit');
-// Route::post('sertifikasi.delete', [SertifikasiController::class, 'destroy'])->name('sertifikasi.delete');
 
 // AKREDITAS
 Route::get('akreditasi', [AkreditasiController::class, 'index'])->name('akreditasi');
 Route::get('akreditasi/add', [AkreditasiController::class, 'create'])->name('akreditasi.add');
 Route::get('akreditasi/edit/{id}', [AkreditasiController::class, 'edit'])->name('akreditasi.edit');
 Route::post('akreditasi/submit', [AkreditasiController::class, 'store'])->name('akreditasi.submit');
-// Route::post('sertifikasi.delete', [AkreditasiController::class, 'destroy'])->name('sertifikasi.delete');
 
 // KURIKULUM
 Route::get('kurikulum', [KurikulumController::class, 'index'])->name('kurikulum');
 Route::get('kurikulum/add', [KurikulumController::class, 'create'])->name('kurikulum.add');
 Route::get('kurikulum/edit/{id}', [KurikulumController::class, 'edit'])->name('kurikulum.edit');
 Route::post('kurikulum/submit', [KurikulumController::class, 'store'])->name('kurikulum.submit');
-// Route::post('sertifikasi.delete', [KurikulumController::class, 'destroy'])->name('sertifikasi.delete');
 
 // SEMESTER
 Route::get('semester', [SemesterController::class, 'index'])->name('semester');
 Route::get('semester/add', [SemesterController::class, 'create'])->name('semester.add');
 Route::get('semester/edit/{id}', [SemesterController::class, 'edit'])->name('semester.edit');
 Route::post('semester/submit', [SemesterController::class, 'store'])->name('semester.submit');
-// Route::post('sertifikasi.delete', [SemesterController::class, 'destroy'])->name('sertifikasi.delete');
 
 // ANGKATAN
 Route::get('angkatan', [AngkatanController::class, 'index'])->name('angkatan');
 Route::get('angkatan/add', [AngkatanController::class, 'create'])->name('angkatan.add');
 Route::get('angkatan/edit/{id}', [AngkatanController::class, 'edit'])->name('angkatan.edit');
 Route::post('angkatan/submit', [AngkatanController::class, 'store'])->name('angkatan.submit');
-// Route::post('sertifikasi.delete', [AngkatanController::class, 'destroy'])->name('sertifikasi.delete');
+
+// DOSEN
+Route::get('dosen', [DosenController::class, 'index'])->name('dosen');
+Route::get('dosen/add', [DosenController::class, 'create'])->name('dosen.add');
+Route::get('dosen/edit/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
+Route::post('dosen/submit', [DosenController::class, 'store'])->name('dosen.submit');
 
 // JENIS DOSEN
 Route::get('jenisDosen', [JenisDosenController::class, 'index'])->name('jenisDosen');
 Route::get('jenisDosen/add', [JenisDosenController::class, 'create'])->name('jenisDosen.add');
 Route::get('jenisDosen/edit/{id}', [JenisDosenController::class, 'edit'])->name('jenisDosen.edit');
 Route::post('jenisDosen/submit', [JenisDosenController::class, 'store'])->name('jenisDosen.submit');
-// Route::post('sertifikasi.delete', [JenisDosenController::class, 'destroy'])->name('sertifikasi.delete');
 
-// LAB
-Route::get('lab', [LabController::class, 'index'])->name('lab');
-Route::get('lab/add', [LabController::class, 'create'])->name('lab.add');
-Route::get('lab/edit/{id}', [LabController::class, 'edit'])->name('lab.edit');
-Route::post('lab/submit', [LabController::class, 'store'])->name('lab.submit');
-// Route::post('sertifikasi.delete', [LabController::class, 'destroy'])->name('sertifikasi.delete');
+// FASILITAS LABORATORIUM
+Route::get('laboratorium', [FasilitasController::class, 'laboratorium'])->name('laboratorium');
+Route::get('laboratorium/add', [FasilitasController::class, 'create'])->name('laboratorium.add');
+Route::get('laboratorium/edit/{id}', [FasilitasController::class, 'edit'])->name('laboratorium.edit');
+Route::post('laboratorium/submit', [FasilitasController::class, 'store'])->name('laboratorium.submit');
+
+// FASILITAS KELAS
+Route::get('kelas', [FasilitasController::class, 'kelas'])->name('kelas');
+Route::get('kelas/add', [FasilitasController::class, 'create'])->name('kelas.add');
+Route::get('kelas/edit/{id}', [FasilitasController::class, 'edit'])->name('kelas.edit');
+Route::post('kelas/submit', [FasilitasController::class, 'store'])->name('kelas.submit');
+
+// FASILITAS PENUNJANG
+Route::get('penunjang', [FasilitasController::class, 'penunjang'])->name('penunjang');
+Route::get('penunjang/add', [FasilitasController::class, 'create'])->name('penunjang.add');
+Route::get('penunjang/edit/{id}', [FasilitasController::class, 'edit'])->name('penunjang.edit');
+Route::post('penunjang/submit', [FasilitasController::class, 'store'])->name('penunjang.submit');
 
 // MASTER AKADEMIK
 Route::get('masterAkademik', [MasterAkademikController::class, 'index'])->name('masterAkademik');
 Route::get('masterAkademik/add', [MasterAkademikController::class, 'create'])->name('masterAkademik.add');
 Route::get('masterAkademik/edit/{id}', [MasterAkademikController::class, 'edit'])->name('masterAkademik.edit');
 Route::post('masterAkademik/submit', [MasterAkademikController::class, 'store'])->name('masterAkademik.submit');
-// Route::post('sertifikasi.delete', [MasterAkademikController::class, 'destroy'])->name('sertifikasi.delete');
 
 // TAHUN KEGIATAN
 Route::get('tahunKegiatan', [TahunKegiatanController::class, 'index'])->name('tahunKegiatan');
 Route::get('tahunKegiatan/add', [TahunKegiatanController::class, 'create'])->name('tahunKegiatan.add');
 Route::get('tahunKegiatan/edit/{id}', [TahunKegiatanController::class, 'edit'])->name('tahunKegiatan.edit');
 Route::post('tahunKegiatan/submit', [TahunKegiatanController::class, 'store'])->name('tahunKegiatan.submit');
-// Route::post('sertifikasi.delete', [TahunKegiatanController::class, 'destroy'])->name('sertifikasi.delete');
 
 // JENIS JURNAL
 Route::get('jenisJurnal', [JenisJurnalController::class, 'index'])->name('jenisJurnal');
 Route::get('jenisJurnal/add', [JenisJurnalController::class, 'create'])->name('jenisJurnal.add');
 Route::get('jenisJurnal/edit/{id}', [JenisJurnalController::class, 'edit'])->name('jenisJurnal.edit');
 Route::post('jenisJurnal/submit', [JenisJurnalController::class, 'store'])->name('jenisJurnal.submit');
-// Route::post('sertifikasi.delete', [JenisJurnalController::class, 'destroy'])->name('sertifikasi.delete');
-
 
 // ? KEBUTUHAN LANDING PAGES
 // VIDEO PROFILE

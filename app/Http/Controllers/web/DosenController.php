@@ -3,40 +3,41 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sertifikasi;
+use App\Models\Dosen;
+use App\Models\JenisDosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SertifikasiController extends Controller
+class DosenController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Sertifikasi';
+        return 'Halaman Dosen';
     }
     public function subtitle()
     {
-        return 'Add Sertifikasi';
+        return 'Add Dosen';
     }
     public function js()
     {
-        return asset('controller_js/admin/sertifikasi.js');
+        return asset('controller_js/admin/Dosen.js');
     }
     public function routeName()
     {
-        return 'sertifikasi';
+        return 'dosen';
     }
 
     public function index()
     {
-        $data['data'] = Sertifikasi::get()->toArray();
+        $data['data'] = Dosen::with(['JenisDosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.index', $data);
+        $konten = view('admin.page.master_menu.dosen.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Dosen';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -45,14 +46,14 @@ class SertifikasiController extends Controller
 
     public function create()
     {
-        $data = [];
+        $data['jenisDosen'] = JenisDosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.form', $data);
+        $konten = view('admin.page.master_menu.dosen.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Dosen';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -77,19 +78,24 @@ class SertifikasiController extends Controller
 
             $dokumen = $request->file('file');
             $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-sertifikat/', $nama_file);
+            $dokumen->move('file-dosen/', $nama_file);
         }
 
         DB::beginTransaction();
         try {
-            $pelanggan = $data['id'] == '' ? new Sertifikasi() : Sertifikasi::find($data['id']);
-            $pelanggan->nama = $data['nama'];
+            $insert = $data['id'] == '' ? new Dosen() : Dosen::find($data['id']);
+            $insert->nama_dosen = $data['nama_dosen'];
+            $insert->id_jenis_dosen = $data['jenis_dosen'];
+            $insert->jabatan = $data['jabatan'];
+            $insert->fb = $data['fb'];
+            $insert->twitter = $data['twitter'];
+            $insert->ig = $data['ig'];
 
             if (isset($data['file']) && $data['file'] != null) {
-                $pelanggan->file = 'file-sertifikat/' . $nama_file;
+                $insert->foto_dosen = 'file-dosen/' . $nama_file;
             }
 
-            $pelanggan->save();
+            $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {
@@ -104,14 +110,14 @@ class SertifikasiController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = Sertifikasi::find($id);
+        $data['data'] = Dosen::find($id);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.sertifikasi.form', $data);
+        $konten = view('admin.page.master_menu.dosen.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Sertifikasi';
+        $put['title'] = 'Halaman Dosen';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -123,7 +129,7 @@ class SertifikasiController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Sertifikasi::find($id);
+            $data = Dosen::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {

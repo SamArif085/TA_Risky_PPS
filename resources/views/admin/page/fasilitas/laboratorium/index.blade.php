@@ -7,9 +7,10 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12 mb-4">
-        <a href="{{ route($routeName.'.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
+        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
     </div>
     <div class="col-12">
         <div class="card">
@@ -20,51 +21,50 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Keterangan</th>
+                                <th>Lokasi</th>
                                 <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item['nama'] }}</td>
-                                <td>{{ $item['keterangan'] }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal{{ $item['id'] }}">
-                                        Lihat Detail Gambar
-                                    </button>
-                                </td>
-                                </td>
-                                <td>
-                                    <a href="{{ route($routeName . '.edit', $item['id']) }}"
-                                        class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
-                                    </a>
-
-                                    <button class="btn btn-sm btn-danger"
-                                        onclick="Sertifikasi.delete({{ $item['id'] }})"><i
-                                            class="ti-trash"></i></button>
-
-                            </tr>
-                            <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Gambar</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <img class="img-fluid" src="{{ asset($item['file']) }}" alt="" width="100%">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item['nama'] }}</td>
+                                    <td>{{ $item['lokasi'] }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $item['id'] }}">
+                                            Lihat Detail Gambar
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route($routeName . '.edit', $item['id']) }}"
+                                            class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="Sertifikasi.delete({{ $item['id'] }})"><i
+                                                class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Gambar</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="img-fluid" src="{{ asset($item['gambar_lab']) }}" alt=""
+                                                    width="100%">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -75,8 +75,8 @@
 </div>
 
 @section('script')
-<script>
-    let Sertifikasi = {
+    <script>
+        let Sertifikasi = {
             delete: (id) => {
                 let url = '{{ route($routeName . '.delete') }}';
                 Swal.fire({
@@ -94,6 +94,7 @@
                             url: url,
                             data: {
                                 id: id,
+                                _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
                                 if (response.code == 200) {
@@ -123,8 +124,9 @@
                 });
             },
         };
+
         $(document).ready(function() {
             $('#data-table').DataTable();
         });
-</script>
+    </script>
 @endsection
