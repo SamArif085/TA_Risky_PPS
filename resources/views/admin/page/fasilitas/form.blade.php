@@ -31,7 +31,7 @@
                         <label>File upload</label>
                         <input type="file" id="file" name="file" class="form-control-file">
                         @if (isset($judulForm) && $judulForm == 'Edit')
-                        <img src="{{ isset($data->gambar_Fasilitas) ? asset($data->gambar_Fasilitas) : '' }}"
+                        <img src="{{ isset($data->foto) ? asset($data->foto) : '' }}"
                             class="img-thumbnail mt-2" width="50%">
                         @endif
                     </div>
