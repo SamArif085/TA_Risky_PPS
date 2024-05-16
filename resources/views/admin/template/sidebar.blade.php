@@ -133,7 +133,7 @@
             <div class="collapse" id="menu4">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Data Taruna</a>
+                        <a class="nav-link" href="{{ route('ketarunaan/data-taruna') }}">Data Taruna</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('ketarunaan/prestasi') }}">Prestasi</a>

@@ -13,6 +13,7 @@ use App\Http\Controllers\web\DosenController;
 use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\MasterAkademikController;
@@ -171,3 +172,8 @@ Route::get('ketarunaan/prestasi', [KetarunaanPrestasiController::class, 'index']
 Route::get('ketarunaan/prestasi/add', [KetarunaanPrestasiController::class, 'create'])->name('ketarunaan/prestasi.add');
 Route::get('ketarunaan/prestasi/edit/{id}', [KetarunaanPrestasiController::class, 'edit'])->name('ketarunaan/prestasi.edit');
 Route::post('ketarunaan/prestasi/submit', [KetarunaanPrestasiController::class, 'store'])->name('ketarunaan/prestasi.submit');
+// KETARUNAAN DATA TARUNA
+Route::get('ketarunaan/data-taruna', [KetarunaanDataTarunaController::class, 'index'])->name('ketarunaan/data-taruna');
+Route::get('ketarunaan/data-taruna/add', [KetarunaanDataTarunaController::class, 'create'])->name('ketarunaan/data-taruna.add');
+Route::get('ketarunaan/data-taruna/edit/{id}', [KetarunaanDataTarunaController::class, 'edit'])->name('ketarunaan/data-taruna.edit');
+Route::post('ketarunaan/data-taruna/submit', [KetarunaanDataTarunaController::class, 'store'])->name('ketarunaan/data-taruna.submit');

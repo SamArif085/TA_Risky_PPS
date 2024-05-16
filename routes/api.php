@@ -9,6 +9,7 @@ use App\Http\Controllers\web\DosenController;
 use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\MasterAkademikController;
@@ -69,3 +70,5 @@ Route::post('akademik/kalender.delete', [AkademikKalenderController::class, 'des
 Route::post('akademik/staff-pengajar.delete', [AkademikStaffPengajarController::class, 'destroy'])->name('akademik/staff-pengajar.delete');
 // KETARUNAAN PRESTASI
 Route::post('ketarunaan/prestasi.delete', [KetarunaanPrestasiController::class, 'destroy'])->name('ketarunaan/prestasi.delete');
+// KETARUNAAN PRESTASI
+Route::post('ketarunaan/data-taruna.delete', [KetarunaanDataTarunaController::class, 'destroy'])->name('ketarunaan/data-taruna.delete');
