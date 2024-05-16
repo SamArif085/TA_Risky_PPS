@@ -77,7 +77,7 @@ class FasilitasController extends Controller
         $data['subtitle'] = $this->subtitle($type);
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName($type);
-        $konten = view('admin.page.fasilitas.' . $type . '.index', $data);
+        $konten = view('admin.page.fasilitas.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Fasilitas';
@@ -113,7 +113,7 @@ class FasilitasController extends Controller
             $insert->lokasi = $data['lokasi'];
 
             if (isset($data['file']) && $data['file'] != null) {
-                $insert->gambar_lab = 'file-fasilitas/' . $nama_file;
+                $insert->foto = 'file-fasilitas/' . $nama_file;
             }
 
             $insert->save();
@@ -132,7 +132,7 @@ class FasilitasController extends Controller
         $data['subtitle'] = $this->subtitle($type);
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName($type);
-        $konten = view('admin.page.fasilitas.' . $type . '.index', $data);
+        $konten = view('admin.page.fasilitas.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Fasilitas';

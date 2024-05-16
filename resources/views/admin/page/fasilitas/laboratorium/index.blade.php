@@ -55,7 +55,7 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Gambar</h5>
                                             </div>
                                             <div class="modal-body">
-                                                <img class="img-fluid" src="{{ asset($item['gambar_lab']) }}" alt=""
+                                                <img class="img-fluid" src="{{ asset($item['foto']) }}" alt=""
                                                     width="100%">
                                             </div>
                                             <div class="modal-footer">
