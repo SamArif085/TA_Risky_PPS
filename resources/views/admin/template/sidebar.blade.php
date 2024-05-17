@@ -153,14 +153,14 @@
             <div class="collapse" id="menu5">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Penelitian</a>
+                        <a class="nav-link" href="{{ route('penelitian') }}">Penelitian</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Pengabdian Kepada <br>
+                        <a class="nav-link" href="{{ route('pengabdian/masyarakat') }}">Pengabdian Kepada <br>
                             Masyarakat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Publikasi Ilmiah</a>
+                        <a class="nav-link" href="{{ route('publikasi/ilmiah') }}">Publikasi Ilmiah</a>
                     </li>
                 </ul>
             </div>

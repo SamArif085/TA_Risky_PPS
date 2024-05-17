@@ -7,6 +7,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12 mb-4">
         <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
@@ -20,9 +21,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Dosen</th>
-                                <th>Judul Artikel yang Disitasi (Jurnal/Buku, Volume, Tahun, Nomor, Halaman)</th>
-                                <th>Jumlah Sitasi</th>
+                                <th>Tahun Kegiatan</th>
+                                <th>Nama</th>
+                                <th>Rincian Kegiatan</th>
+                                <th>Foto Kegiatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,17 +32,46 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item['dosen']['nama_dosen'] }}</td>
-                                <td class="truncated-text" title="{{ $item['judul'] }}">{{ $item['judul'] }}</td>
-                                <td>{{ $item['jumlah'] }}</td>
+                                <td>{{ $item['tahun']['tahun'] }}</td>
+                                <td>{{ $item['nama'] }}</td>
+                                <td>{{ $item['rincian_kegiatan'] }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $item['id'] }}">
+                                        Lihat Detail Gambar
+                                    </button>
+                                </td>
                                 <td>
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
                                     </a>
                                     <button class="btn btn-sm btn-danger"
-                                        onclick="Sertifikasi.delete({{ $item['id'] }})"><i class="ti-trash"></i>
-                                    </button>
+                                        onclick="Sertifikasi.delete({{ $item['id'] }})"><i
+                                            class="ti-trash"></i></button>
+                                </td>
                             </tr>
+                            <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Gambar</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if(isset($item['foto']))
+                                            @foreach ($item['foto'] as $foto)
+                                            <img class="img-fluid" src="{{ asset($foto['gambar']) }}" alt=""
+                                                width="100%">
+                                            @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -70,6 +101,7 @@
                             url: url,
                             data: {
                                 id: id,
+                                _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
                                 if (response.code == 200) {
@@ -99,6 +131,7 @@
                 });
             },
         };
+
         $(document).ready(function() {
             $('#data-table').DataTable();
         });

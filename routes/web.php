@@ -13,10 +13,13 @@ use App\Http\Controllers\web\DosenController;
 use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\JurnalController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\PenelitianController;
+use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\TahunKegiatanController;
 use App\Http\Controllers\web\VideoProfileController;
@@ -143,6 +146,24 @@ Route::get('jenisJurnal', [JenisJurnalController::class, 'index'])->name('jenisJ
 Route::get('jenisJurnal/add', [JenisJurnalController::class, 'create'])->name('jenisJurnal.add');
 Route::get('jenisJurnal/edit/{id}', [JenisJurnalController::class, 'edit'])->name('jenisJurnal.edit');
 Route::post('jenisJurnal/submit', [JenisJurnalController::class, 'store'])->name('jenisJurnal.submit');
+
+// PENELITIAN
+Route::get('penelitian', [PenelitianController::class, 'index'])->name('penelitian');
+Route::get('penelitian/add', [PenelitianController::class, 'create'])->name('penelitian.add');
+Route::get('penelitian/edit/{id}', [PenelitianController::class, 'edit'])->name('penelitian.edit');
+Route::post('penelitian/submit', [PenelitianController::class, 'store'])->name('penelitian.submit');
+
+// PENGABDIAN MASYARAKAT
+Route::get('pengabdian/masyarakat', [PengabdianMasyarakatController::class, 'index'])->name('pengabdian/masyarakat');
+Route::get('pengabdian/masyarakat/add', [PengabdianMasyarakatController::class, 'create'])->name('pengabdian/masyarakat.add');
+Route::get('pengabdian/masyarakat/edit/{id}', [PengabdianMasyarakatController::class, 'edit'])->name('pengabdian/masyarakat.edit');
+Route::post('pengabdian/masyarakat/submit', [PengabdianMasyarakatController::class, 'store'])->name('pengabdian/masyarakat.submit');
+
+// PUBLIKASI ILMIAH
+Route::get('publikasi/ilmiah', [JurnalController::class, 'index'])->name('publikasi/ilmiah');
+Route::get('publikasi/ilmiah/add', [JurnalController::class, 'create'])->name('publikasi/ilmiah.add');
+Route::get('publikasi/ilmiah/edit/{id}', [JurnalController::class, 'edit'])->name('publikasi/ilmiah.edit');
+Route::post('publikasi/ilmiah/submit', [JurnalController::class, 'store'])->name('publikasi/ilmiah.submit');
 
 // ? KEBUTUHAN LANDING PAGES
 // VIDEO PROFILE

@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['nama_dosen'] }}</td>
-                                <td>{{ $item['id_jenis_dosen'] }}</td>
+                                <td>{{ $item['jenis_dosen']['nama_jenis'] }}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{ $item['id'] }}">

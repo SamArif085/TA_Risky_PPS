@@ -16,22 +16,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
 
 @if (session()->has('success'))
-    <script>
-        toastr.success(`{{ session('success') }}`);
-    </script>
+<script>
+    toastr.success(`{{ session('success') }}`);
+</script>
 @endif
 @if (session()->has('error'))
-    <script>
-        toastr.error(`{{ session('error') }}`);
+<script>
+    toastr.error(`{{ session('error') }}`);
         console.log(`{{ session('error') }}`);
-    </script>
+</script>
 @endif
 @if (count($errors) > 0)
-    <script>
-        toastr.error(`{{ $errors->first() }}`);
-    </script>
+<script>
+    toastr.error(`{{ $errors->first() }}`);
+</script>
 @endif

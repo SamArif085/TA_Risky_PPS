@@ -18,6 +18,19 @@
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                     <div class="form-group mb-3">
+                        <label for="Kategori">Kategori</label>
+                        <select name="kategori" id="kategori" class="select2 form-control" data-allow-clear="true">
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($jenisJurnal as $item)
+                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->id_jenis_jurnal ==
+                                $item['id'] ? 'selected' : '') }}>
+                                {{ $item['nama'] }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
                         <label for="Nama Dosen">Nama Dosen</label>
                         <select name="id_dosen" id="id_dosen" class="select2 form-control" data-allow-clear="true">
                             <option value="">Pilih Dosen</option>
@@ -33,12 +46,12 @@
                         <label for="judul">Judul Artikel yang Disitasi (Jurnal/Buku, Volume, Tahun, Nomor,
                             Halaman)</label>
                         <textarea class="form-control" id="judul" name="judul" rows="5" placeholder="Judul Artikel"
-                            required>{{ $judulForm == 'Tambah' ? '' : $data->judul }}</textarea>
+                            required>{{ $judulForm == 'Tambah' ? '' : $data->judul_jurnal }}</textarea>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="Jumlah Sitasi">Jumlah Sitasi</label>
-                        <input type="text" class="form-control" id="jumlah" placeholder="Jumlah Sitasi" name="jumlah"
-                            value="{{ $judulForm == 'Tambah' ? '' : $data->jumlah }}">
+                        <label for="Link Jurnal">Link Jurnal</label>
+                        <input type="text" class="form-control" id="link" placeholder="Link Jurnal" name="link"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->link_jurnal }}">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <a href="{{ route($routeName . '') }}" class="btn btn-light">Cancel</a>

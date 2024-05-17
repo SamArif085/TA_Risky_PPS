@@ -9,10 +9,13 @@ use App\Http\Controllers\web\DosenController;
 use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
+use App\Http\Controllers\web\JurnalController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\PenelitianController;
+use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -72,3 +75,9 @@ Route::post('akademik/staff-pengajar.delete', [AkademikStaffPengajarController::
 Route::post('ketarunaan/prestasi.delete', [KetarunaanPrestasiController::class, 'destroy'])->name('ketarunaan/prestasi.delete');
 // KETARUNAAN PRESTASI
 Route::post('ketarunaan/data-taruna.delete', [KetarunaanDataTarunaController::class, 'destroy'])->name('ketarunaan/data-taruna.delete');
+// PENELITIAN
+Route::post('penelitian.delete', [PenelitianController::class, 'destroy'])->name('penelitian.delete');
+// PENGABDIAN MASYARAKAT
+Route::post('pengabdian/masyarakat.delete', [PengabdianMasyarakatController::class, 'destroy'])->name('pengabdian/masyarakat.delete');
+// PUBLIKASI ILMIAH
+Route::post('publikasi/ilmiah.delete', [JurnalController::class, 'destroy'])->name('publikasi/ilmiah.delete');
