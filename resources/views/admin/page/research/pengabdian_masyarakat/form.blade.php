@@ -48,16 +48,21 @@
                         </div>
                         @if (isset($judulForm) && $judulForm == 'Edit')
                         @if (isset($data->Foto) && count($data->Foto) > 0)
-                        @foreach ($data->Foto as $image)
-                        <div class="mt-2 d-flex">
-                            <img src="{{ asset($image->gambar) }}" class="img-thumbnail" width="50%">
-                            <div>
-                                <input class="form-check-input" type="checkbox" name="delete_images[]"
-                                    value="{{ $image->id }}">
-                                <label class="form-check-label">Delete</label>
+
+                        <div class="row">
+                            @foreach ($data->Foto as $image)
+                            <div class="col-6 mt-2 d-flex">
+                                <img src="{{ asset($image->gambar) }}" class="img-thumbnail" width="50%">
+                                <div class="form-check form-check-danger">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="delete_images[]"
+                                            value="{{ $image->id }}">
+                                        Delete
+                                    </label>
+                                </div>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
                         @endif
                         @endif
                     </div>

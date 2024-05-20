@@ -9,7 +9,8 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <h1 class="display-2 text-light mb-5 animated slideInDown">
-                                    Welcome To Aviation Polytehnic Of Surabaya
+                                    Welcome to air navigation enginering polytehnic of
+                                    surabaya
                                 </h1>
                                 <a href="" class="btn btn-primary py-sm-3 px-sm-5">Learn More</a>
                                 <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Our Courses</a>
@@ -20,8 +21,7 @@
             </div>
             <div class="carousel-item">
                 <img class="w-100"
-                    src="{{ asset('file/images/1670981478-WhatsApp Image 2022-12-13 at 19.29.30.jpeg') }}"
-                    alt="Image">
+                    src="{{ asset('file/images/1670981478-WhatsApp Image 2022-12-13 at 19.29.30.jpeg') }}" alt="Image">
                 <div class="carousel-caption">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -55,11 +55,10 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="{{ asset('file/images/sertifikat.jpg') }}"
-                        alt="" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="{{ asset('file/images/sertifikat.jpg') }}" alt=""
+                        style="object-fit: cover;">
                     <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3"
-                        src="{{ asset('file/images/sertifikat.jpg') }}" alt=""
-                        style="width: 200px; height: 200px;">
+                        src="{{ asset('file/images/sertifikat.jpg') }}" alt="" style="width: 200px; height: 200px;">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -102,8 +101,8 @@
         <div class="row g-4 justify-content-center">
             <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
-                    <img class="img-fluid" src="{{ asset('file/logo/Politeknik_Penerbangan_Surabaya.webp') }}"
-                        alt="" width="100">
+                    <img class="img-fluid" src="{{ asset('file/logo/Politeknik_Penerbangan_Surabaya.webp') }}" alt=""
+                        width="100">
                     <div class="p-4">
                         <h5 class="mb-3">Teknik Navigasi Udara</h5>
                         <p class="mb-4">Program Studi Teknik Navigasi Udara adalah program studi yang berada di bawah
@@ -208,15 +207,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -229,15 +227,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -250,15 +247,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -271,15 +267,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -298,15 +293,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -319,15 +313,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -340,15 +333,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -361,15 +353,14 @@
                                     <div class="team-item position-relative">
                                         <div class="position-relative">
                                             <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}"
-                                                alt="">
+                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
                                             <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1"
-                                                    href=""><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                                                        class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
                                         <div class="bg-light text-center p-4">
@@ -403,8 +394,7 @@
                 <div class="owl-carousel testimonial-carousel">
                     <div class="testimonial-item text-center">
                         <div class="position-relative mb-5">
-                            <img class="img-fluid  mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}"
-                                alt="">
+                            <img class="img-fluid  mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                 style="width: 60px; height: 60px;">
 
@@ -416,8 +406,7 @@
                     </div>
                     <div class="testimonial-item text-center">
                         <div class="position-relative mb-5">
-                            <img class="img-fluid mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}"
-                                alt="">
+                            <img class="img-fluid mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                 style="width: 60px; height: 60px;">
                                 <i class="fa fa-quote-left fa-2x text-primary"></i>
