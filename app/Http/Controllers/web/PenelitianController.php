@@ -33,7 +33,7 @@ class PenelitianController extends Controller
         $data['data'] = Penelitian::with(['dosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Penelitian.index', $data);
+        $konten = view('admin.page.research.penelitian.index', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';
@@ -49,7 +49,7 @@ class PenelitianController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Penelitian.form', $data);
+        $konten = view('admin.page.research.penelitian.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';
@@ -87,7 +87,7 @@ class PenelitianController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Penelitian.form', $data);
+        $konten = view('admin.page.research.penelitian.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';

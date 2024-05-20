@@ -4,40 +4,39 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
-use App\Models\JenisJurnal;
-use App\Models\Jurnal;
+use App\Models\Penelitian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class JurnalController extends Controller
+class PenelitianController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Publikasi Ilmiah';
+        return 'Halaman Penelitian';
     }
     public function subtitle()
     {
-        return 'Add Publikasi Ilmiah';
+        return 'Add Penelitian';
     }
     public function js()
     {
-        return asset('controller_js/admin/jurnal.js');
+        return asset('controller_js/admin/Penelitian.js');
     }
     public function routeName()
     {
-        return 'publikasi/ilmiah';
+        return 'penelitian';
     }
 
     public function index()
     {
-        $data['data'] = Jurnal::with(['nama', 'jenis'])->get()->toArray();
+        $data['data'] = Penelitian::with(['dosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Jurnal.index', $data);
+        $konten = view('admin.page.research.penelitian.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Publikasi Ilmiah';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -46,15 +45,14 @@ class JurnalController extends Controller
 
     public function create()
     {
-        $data['dosen'] = dosen::where('id_jenis_dosen', 1)->get()->toArray();
-        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
+        $data['dosen'] = Dosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Jurnal.form', $data);
+        $konten = view('admin.page.research.penelitian.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Publikasi Ilmiah';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -68,11 +66,10 @@ class JurnalController extends Controller
 
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new Jurnal() : Jurnal::find($data['id']);
-            $insert->id_jenis_jurnal = $data['kategori'];
+            $insert = $data['id'] == '' ? new Penelitian() : Penelitian::find($data['id']);
             $insert->id_dosen = $data['id_dosen'];
-            $insert->judul_jurnal = $data['judul'];
-            $insert->link_jurnal = $data['link'];
+            $insert->judul = $data['judul'];
+            $insert->jumlah = $data['jumlah'];
 
             $insert->save();
             DB::commit();
@@ -85,16 +82,15 @@ class JurnalController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = Jurnal::find($id);
-        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
-        $data['dosen'] = dosen::where('id_jenis_dosen', 1)->get()->toArray();
+        $data['data'] = Penelitian::find($id);
+        $data['dosen'] = Dosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.Jurnal.form', $data);
+        $konten = view('admin.page.research.penelitian.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Publikasi Ilmiah';
+        $put['title'] = 'Halaman Penelitian';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -106,7 +102,7 @@ class JurnalController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Jurnal::find($id);
+            $data = Penelitian::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {
