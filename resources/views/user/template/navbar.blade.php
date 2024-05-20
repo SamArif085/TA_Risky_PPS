@@ -89,7 +89,7 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
                 <div class="dropdown-menu bg-light m-0">
-                    <a href="{{ route('penelitian') }}" class="dropdown-item">Penelitian</a>
+                    <a href="{{ route('landing-penelitian') }}" class="dropdown-item">Penelitian</a>
                     <a href="{{ route('pkm') }}" class="dropdown-item">Pengabdian Kepada Masyarakat</a>
                     <a href="{{ route('jurnal') }}" class="dropdown-item">Publikasi Ilmiah</a>
                 </div>

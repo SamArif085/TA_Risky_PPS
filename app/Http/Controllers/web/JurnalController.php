@@ -8,7 +8,7 @@ use App\Models\Penelitian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PenelitianController extends Controller
+class JurnalController extends Controller
 {
 
     public function title()
