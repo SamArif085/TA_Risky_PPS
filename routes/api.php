@@ -39,7 +39,7 @@ Route::post('sertifikasi.delete', [SertifikasiController::class, 'destroy'])->na
 // AKREDITASI
 Route::post('akreditasi.delete', [AkreditasiController::class, 'destroy'])->name('akreditasi.delete');
 // KURIKULUM
-Route::post('kurikulum.delete', [KurikulumController::class, 'destroy'])->name('kurikulum.delete');
+Route::post('kurikulum.delete', [KurikulumController::class, 'destroy'])->name('master.kurikulum.delete');
 // SEMESTER
 Route::post('semester.delete', [SemesterController::class, 'destroy'])->name('semester.delete');
 // ANGKATAN

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dosen;
 use App\Models\DosenModel;
 use App\Models\KalenderAkademik;
 use App\Models\KalenderAkademikModel;
+use App\Models\Kurikulum;
 use App\Models\KurikulumModel;
 use App\Models\KurikuluModel;
 use Illuminate\Http\Request;
@@ -77,7 +79,7 @@ class LandingPageController extends Controller
     public function kurikulum()
     {
         $data = [];
-        $data['data'] = KurikulumModel::get();
+        $data['data'] = Kurikulum::get();
         $data['title'] = 'Kurikulum';
 
         $konten = view('user.page.kurikulum', $data);
@@ -101,7 +103,7 @@ class LandingPageController extends Controller
     public function staffPengajar()
     {
         $data = [];
-        $data['data'] = DosenModel::get();
+        $data['data'] = Dosen::get();
         $data['title'] = 'Staff Pengajar';
 
         $konten = view('user.page.staff_pengajar', $data);

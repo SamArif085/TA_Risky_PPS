@@ -17,7 +17,7 @@
             <div class="collapse" id="menu-master">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('kurikulum') }}">
+                        <a class="nav-link" href="{{ route('master.kurikulum') }}">
                             <span class="menu-title">Kurikulum</span>
                         </a>
                     </li>
@@ -93,7 +93,7 @@
             <div class="collapse" id="menu2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('akademik/kurikulum') }}">Kurikulum</a>
+                        <a class="nav-link" href="{{ route('akademik/master.') }}">Kurikulum</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('akademik/kalender') }}">Kalender</a>

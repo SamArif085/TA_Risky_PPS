@@ -24,7 +24,7 @@ class KurikulumController extends Controller
     }
     public function routeName()
     {
-        return 'kurikulum';
+        return 'master.kurikulum';
     }
 
     public function index()

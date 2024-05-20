@@ -43,12 +43,12 @@ Route::get('sejarah', [LandingPageController::class, 'sejarah'])->name('sejarah'
 Route::get('visimisi', [LandingPageController::class, 'visimisi'])->name('visimisi');
 Route::get('profile-lulusan', [LandingPageController::class, 'profileLulusan'])->name('profile-lulusan');
 Route::get('video-profile-lulusan', [LandingPageController::class, 'videoProfileLulusan'])->name('video-profile-lulusan');
-Route::get('kurikulum', [LandingPageController::class, 'kurikulum'])->name('kurikulum');
+Route::get('landing-kurikulum', [LandingPageController::class, 'kurikulum'])->name('landing-kurikulum');
 Route::get('kalender', [LandingPageController::class, 'kalender'])->name('kalender');
 Route::get('staff-pengajar', [LandingPageController::class, 'staffPengajar'])->name('staff-pengajar');
-Route::get('laboratorium', [LandingPageController::class, 'laboratorium'])->name('laboratorium');
-Route::get('kelas', [LandingPageController::class, 'kelas'])->name('kelas');
-Route::get('penunjang', [LandingPageController::class, 'penunjang'])->name('penunjang');
+Route::get('landing-laboratorium', [LandingPageController::class, 'laboratorium'])->name('landing-laboratorium');
+Route::get('landing-kelas', [LandingPageController::class, 'kelas'])->name('landing-kelas');
+Route::get('landing-penunjang', [LandingPageController::class, 'penunjang'])->name('landing-penunjang');
 Route::get('taruna', [LandingPageController::class, 'taruna'])->name('taruna');
 Route::get('himpunan-taruna', [LandingPageController::class, 'himpunanTaruna'])->name('himpunan-taruna');
 Route::get('penelitian', [LandingPageController::class, 'penelitian'])->name('penelitian');
@@ -79,10 +79,11 @@ Route::get('akreditasi/edit/{id}', [AkreditasiController::class, 'edit'])->name(
 Route::post('akreditasi/submit', [AkreditasiController::class, 'store'])->name('akreditasi.submit');
 
 // KURIKULUM
-Route::get('kurikulum', [KurikulumController::class, 'index'])->name('kurikulum');
-Route::get('kurikulum/add', [KurikulumController::class, 'create'])->name('kurikulum.add');
-Route::get('kurikulum/edit/{id}', [KurikulumController::class, 'edit'])->name('kurikulum.edit');
-Route::post('kurikulum/submit', [KurikulumController::class, 'store'])->name('kurikulum.submit');
+
+Route::get('kurikulum', [KurikulumController::class, 'index'])->name('master.kurikulum');
+Route::get('kurikulum/add', [KurikulumController::class, 'create'])->name('master.kurikulum.add');
+Route::get('kurikulum/edit/{id}', [KurikulumController::class, 'edit'])->name('master.kurikulum.edit');
+Route::post('kurikulum/submit', [KurikulumController::class, 'store'])->name('master.kurikulum.submit');
 
 // SEMESTER
 Route::get('semester', [SemesterController::class, 'index'])->name('semester');

@@ -42,8 +42,8 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><img class="me-2" src="{{ asset('file/logo/Politeknik_Penerbangan_Surabaya.webp') }}"
-                alt="" width="100"></h2>
+        <h2 class="m-0"><img class="me-2" src="{{ asset('file/logo/Politeknik_Penerbangan_Surabaya.webp') }}" alt=""
+                width="100"></h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Akademik</a>
                 <div class="dropdown-menu bg-light m-0">
-                    <a href="{{ route('kurikulum') }}" class="dropdown-item">Kurikulum</a>
+                    <a href="{{ url('landing-kurikulum') }}" class="dropdown-item">Kurikulum</a>
                     <a href="{{ route('kalender') }}" class="dropdown-item">Kalender</a>
                     <a href="{{ route('staff-pengajar') }}" class="dropdown-item">Staff Pengajar</a>
                 </div>
@@ -73,9 +73,9 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Fasilitas</a>
                 <div class="dropdown-menu bg-light m-0">
-                    <a href="{{ route('laboratorium') }}" class="dropdown-item">Laboratorium</a>
-                    <a href="{{ route('kelas') }}" class="dropdown-item">Kelas</a>
-                    <a href="{{ route('penunjang') }}" class="dropdown-item">Fasilitas Penunjang</a>
+                    <a href="{{ url('landing-laboratorium') }}" class="dropdown-item">Laboratorium</a>
+                    <a href="{{ url('landing-kelas') }}" class="dropdown-item">Kelas</a>
+                    <a href="{{ url('landing-penunjang') }}" class="dropdown-item">Fasilitas Penunjang</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
