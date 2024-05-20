@@ -68,8 +68,9 @@ class KurikulumController extends Controller
             $insert->keterangan = $data['keterangan'];
 
             $insert->save();
+
             DB::commit();
-            return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
+            return redirect(route($this->routeName()))->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
