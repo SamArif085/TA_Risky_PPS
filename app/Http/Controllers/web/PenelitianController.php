@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dosen;
 use App\Models\Penelitian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class PenelitianController extends Controller
 {
@@ -30,10 +30,10 @@ class PenelitianController extends Controller
 
     public function index()
     {
-        $data['data'] = Penelitian::get()->toArray();
+        $data['data'] = Penelitian::with(['dosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.Penelitian.index', $data);
+        $konten = view('admin.page.research.Penelitian.index', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';
@@ -45,11 +45,11 @@ class PenelitianController extends Controller
 
     public function create()
     {
-        $data = [];
+        $data['dosen'] = Dosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.Penelitian.form', $data);
+        $konten = view('admin.page.research.Penelitian.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';
@@ -63,33 +63,15 @@ class PenelitianController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        if (isset($data['file']) && $data['file'] != null) {
-            // Validasi request
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar JPEG, PNG, JPG maksimum 2MB
-            ]);
-
-            // Jika validasi gagal, kembalikan respon dengan pesan error
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $dokumen = $request->file('file');
-            $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-sertifikat/', $nama_file);
-        }
 
         DB::beginTransaction();
         try {
-            $pelanggan = $data['id'] == '' ? new Penelitian() : Penelitian::find($data['id']);
-            $pelanggan->nama = $data['nama'];
+            $insert = $data['id'] == '' ? new Penelitian() : Penelitian::find($data['id']);
+            $insert->id_dosen = $data['id_dosen'];
+            $insert->judul = $data['judul'];
+            $insert->jumlah = $data['jumlah'];
 
-            if (isset($data['file']) && $data['file'] != null) {
-                $pelanggan->file = 'file-sertifikat/' . $nama_file;
-            }
-
-            $pelanggan->save();
+            $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {
@@ -98,17 +80,14 @@ class PenelitianController extends Controller
         }
     }
 
-    public function show(string $id)
-    {
-    }
-
     public function edit(string $id)
     {
         $data['data'] = Penelitian::find($id);
+        $data['dosen'] = Dosen::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.profile.Penelitian.form', $data);
+        $konten = view('admin.page.research.Penelitian.form', $data);
         $js = $this->js();
 
         $put['title'] = 'Halaman Penelitian';

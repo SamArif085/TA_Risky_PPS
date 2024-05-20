@@ -4,40 +4,40 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
-use App\Models\JenisDosen;
+use App\Models\JenisJurnal;
+use App\Models\Jurnal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
-class DosenController extends Controller
+class JurnalController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Dosen';
+        return 'Halaman Publikasi Ilmiah';
     }
     public function subtitle()
     {
-        return 'Add Dosen';
+        return 'Add Publikasi Ilmiah';
     }
     public function js()
     {
-        return asset('controller_js/admin/Dosen.js');
+        return asset('controller_js/admin/jurnal.js');
     }
     public function routeName()
     {
-        return 'dosen';
+        return 'publikasi/ilmiah';
     }
 
     public function index()
     {
-        $data['data'] = Dosen::with(['JenisDosen'])->get()->toArray();
+        $data['data'] = Jurnal::with(['nama', 'jenis'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.index', $data);
+        $konten = view('admin.page.research.Jurnal.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Publikasi Ilmiah';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -46,14 +46,15 @@ class DosenController extends Controller
 
     public function create()
     {
-        $data['jenisDosen'] = JenisDosen::get()->toArray();
+        $data['dosen'] = dosen::where('id_jenis_dosen', 1)->get()->toArray();
+        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.form', $data);
+        $konten = view('admin.page.research.Jurnal.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Publikasi Ilmiah';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -64,36 +65,14 @@ class DosenController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        if (isset($data['file']) && $data['file'] != null) {
-            // Validasi request
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar JPEG, PNG, JPG maksimum 2MB
-            ]);
-
-            // Jika validasi gagal, kembalikan respon dengan pesan error
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $dokumen = $request->file('file');
-            $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-dosen/', $nama_file);
-        }
 
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new Dosen() : Dosen::find($data['id']);
-            $insert->nama_dosen = $data['nama_dosen'];
-            $insert->id_jenis_dosen = $data['jenis_dosen'];
-            $insert->jabatan = $data['jabatan'];
-            $insert->fb = $data['fb'];
-            $insert->twitter = $data['twitter'];
-            $insert->ig = $data['ig'];
-
-            if (isset($data['file']) && $data['file'] != null) {
-                $insert->foto_dosen = 'file-dosen/' . $nama_file;
-            }
+            $insert = $data['id'] == '' ? new Jurnal() : Jurnal::find($data['id']);
+            $insert->id_jenis_jurnal = $data['kategori'];
+            $insert->id_dosen = $data['id_dosen'];
+            $insert->judul_jurnal = $data['judul'];
+            $insert->link_jurnal = $data['link'];
 
             $insert->save();
             DB::commit();
@@ -104,21 +83,18 @@ class DosenController extends Controller
         }
     }
 
-    public function show(string $id)
-    {
-    }
-
     public function edit(string $id)
     {
-        $data['data'] = Dosen::find($id);
-        $data['jenisDosen'] = JenisDosen::get()->toArray();
+        $data['data'] = Jurnal::find($id);
+        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
+        $data['dosen'] = dosen::where('id_jenis_dosen', 1)->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.form', $data);
+        $konten = view('admin.page.research.Jurnal.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Publikasi Ilmiah';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -130,7 +106,7 @@ class DosenController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Dosen::find($id);
+            $data = Jurnal::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {

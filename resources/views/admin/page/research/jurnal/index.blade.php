@@ -20,9 +20,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Dosen</th>
-                                <th>Judul Artikel yang Disitasi (Jurnal/Buku, Volume, Tahun, Nomor, Halaman)</th>
-                                <th>Jumlah Sitasi</th>
+                                <th>Kategori Jurnal</th>
+                                <th>Nama</th>
+                                <th>Judul Artikel (Jurnal/Buku, Volume, Tahun, Nomor, Halaman)</th>
+                                <th>Link Jurnal</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,9 +31,10 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item['dosen']['nama_dosen'] }}</td>
-                                <td class="truncated-text" title="{{ $item['judul'] }}">{{ $item['judul'] }}</td>
-                                <td>{{ $item['jumlah'] }}</td>
+                                <td>{{ $item['jenis']['nama'] }}</td>
+                                <td>{{ $item['nama']['nama_dosen'] }}</td>
+                                <td class="truncated-text" title="{{ $item['judul_jurnal'] }}">{{ $item['judul_jurnal'] }}</td>
+                                <td>{{ $item['link_jurnal'] }}</td>
                                 <td>
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
