@@ -9,7 +9,8 @@
 </div>
 <div class="row">
     <div class="col-12 mb-4">
-        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
+        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
+            Tambah</a>
     </div>
     <div class="col-12">
         <div class="card">
@@ -26,24 +27,21 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item['judul_video'] }}</td>
-                                    <td>
-                                        <a href="{{ $item['link_video'] }}"
-                                            target="_blank">{{ $item['link_video'] }}</a>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route($routeName . '.edit', $item['id']) }}"
-                                            class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
-                                        </a>
-
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="VideoProfile.delete({{ $item['id'] }})"><i
-                                                class="ti-trash"></i></button>
-
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item['judul_video'] }}</td>
+                                <td>
+                                    <a href="{{ $item['link_video'] }}" target="_blank">{{ $item['link_video'] }}</a>
+                                </td>
+                                </td>
+                                <td>
+                                    <a href="{{ route($routeName . '.edit', $item['id']) }}"
+                                        class="btn btn-sm btn-primary"><i class="ti-pencil"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="VideoProfile.delete({{ $item['id'] }})"><i class="ti-trash"></i>
+                                    </button>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -54,8 +52,8 @@
 </div>
 
 @section('script')
-    <script>
-        let VideoProfile = {
+<script>
+    let VideoProfile = {
             delete: (id) => {
                 let url = '{{ route($routeName . '.delete') }}';
                 Swal.fire({
@@ -105,5 +103,5 @@
         $(document).ready(function() {
             $('#data-table').DataTable();
         });
-    </script>
+</script>
 @endsection

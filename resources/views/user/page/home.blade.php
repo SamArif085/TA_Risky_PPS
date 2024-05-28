@@ -7,13 +7,12 @@
                 <div class="carousel-caption">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-7">
+                            <div class="col-lg-7 text-center">
                                 <h1 class="display-2 text-light mb-5 animated slideInDown">
-                                    Welcome to air navigation enginering polytehnic of
-                                    surabaya
+                                    Welcome to Air Navigation Engineering Polytechnic of Surabaya
                                 </h1>
-                                <a href="" class="btn btn-primary py-sm-3 px-sm-5">Learn More</a>
-                                <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Our Courses</a>
+                                <a href="#" class="btn btn-primary py-sm-3 px-sm-5 me-3">Learn More</a>
+                                <a href="#" class="btn btn-light py-sm-3 px-sm-5">Our Courses</a>
                             </div>
                         </div>
                     </div>

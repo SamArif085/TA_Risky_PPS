@@ -46,6 +46,8 @@ Route::get('sejarah', [LandingPageController::class, 'sejarah'])->name('sejarah'
 Route::get('visimisi', [LandingPageController::class, 'visimisi'])->name('visimisi');
 Route::get('profile-lulusan', [LandingPageController::class, 'profileLulusan'])->name('profile-lulusan');
 Route::get('video-profile-lulusan', [LandingPageController::class, 'videoProfileLulusan'])->name('video-profile-lulusan');
+Route::get('landing-akreditasi', [LandingPageController::class, 'akreditasi'])->name('landing-akreditasi');
+Route::get('landing-sertifikasi', [LandingPageController::class, 'sertifikasi'])->name('landing-sertifikasi');
 Route::get('landing-kurikulum', [LandingPageController::class, 'kurikulum'])->name('landing-kurikulum');
 Route::get('kalender', [LandingPageController::class, 'kalender'])->name('kalender');
 Route::get('staff-pengajar', [LandingPageController::class, 'staffPengajar'])->name('staff-pengajar');

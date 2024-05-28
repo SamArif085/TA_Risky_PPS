@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Akreditasi;
 use App\Models\Dosen;
-use App\Models\DosenModel;
 use App\Models\KalenderAkademik;
-use App\Models\KalenderAkademikModel;
-use App\Models\Kurikulum;
-use App\Models\KurikulumModel;
-use App\Models\KurikuluModel;
-use Illuminate\Http\Request;
+use App\Models\VideoProfile;
+use App\Models\MataKuliah;
+use App\Models\Sertifikasi;
+
 
 class LandingPageController extends Controller
 {
@@ -67,7 +66,13 @@ class LandingPageController extends Controller
     public function videoProfileLulusan()
     {
         $data = [];
-        $data['data'] = [];
+        $videos = VideoProfile::get();
+
+        foreach ($videos as $video) {
+            $video->video_id = $this->extractVideoId($video->link_video);
+        }
+
+        $data['link'] = $videos;
         $data['title'] = 'Video Profile';
 
         $konten = view('user.page.video_profile', $data);
@@ -76,10 +81,45 @@ class LandingPageController extends Controller
 
         return view('user.template.main', $put);
     }
+    private function extractVideoId($url)
+    {
+        if (preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return $matches[1];
+        }
+        return null;
+    }
+    public function akreditasi()
+    {
+        $data = [];
+        $get = Akreditasi::get();
+
+        $data['link'] = $get;
+        $data['title'] = 'Akreditasi';
+
+        $konten = view('user.page.akreditasi', $data);
+        $put['title'] = 'Akreditasi';
+        $put['konten'] = $konten;
+
+        return view('user.template.main', $put);
+    }
+    public function sertifikasi()
+    {
+        $data = [];
+        $get = Sertifikasi::get();
+
+        $data['link'] = $get;
+        $data['title'] = 'Sertifikasi';
+
+        $konten = view('user.page.sertifikasi', $data);
+        $put['title'] = 'Sertifikasi';
+        $put['konten'] = $konten;
+
+        return view('user.template.main', $put);
+    }
     public function kurikulum()
     {
         $data = [];
-        $data['data'] = Kurikulum::get();
+        $data['link'] = MataKuliah::get();
         $data['title'] = 'Kurikulum';
 
         $konten = view('user.page.kurikulum', $data);

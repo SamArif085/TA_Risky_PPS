@@ -18,19 +18,33 @@
             <center>
                 <h4>Kurikulum Program Studi TNU</h4>
             </center>
-            <p>
-                Di dalam Kurikulum, untuk menyelesaikan pendidikan tingkat sarjana terapan di Prodi DIV Teknik Navigasi
-                Udara, taruna perlu lulus minimum 145 SKS. Total SKS tersebut tersusun dari 38 Mata Kuliah Wajib, 4 Mata
-                Kuliah Umum & 30 SKS kegiatan OJT
-            </p>
+            <?php
+            $mataKuliahPerSemester = [];
+            foreach ($link as $mataKuliah) {
+                $idSemester = $mataKuliah['id_semester'];
+                if (!isset($mataKuliahPerSemester[$idSemester])) {
+                    $mataKuliahPerSemester[$idSemester] = [];
+                }
+                $mataKuliahPerSemester[$idSemester][] = $mataKuliah;
+            }
+            ?>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <?php foreach ($mataKuliahPerSemester as $semester => $mataKuliah) : ?>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                        type="button" role="tab" aria-controls="home" aria-selected="true">Semester 1</button>
+                    <button class="nav-link<?= $semester === 1 ? ' active' : '' ?>" id="tab-<?= $semester ?>"
+                        data-bs-toggle="tab" data-bs-target="#semester-<?= $semester ?>" type="button" role="tab"
+                        aria-controls="semester-<?= $semester ?>"
+                        aria-selected="<?= $semester === 1 ? 'true' : 'false' ?>">Semester
+                        <?= $semester ?>
+                    </button>
                 </li>
+                <?php endforeach; ?>
             </ul>
+
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <?php foreach ($mataKuliahPerSemester as $semester => $mataKuliah) : ?>
+                <div class="tab-pane fade<?= $semester === 1 ? ' show active' : '' ?>" id="semester-<?= $semester ?>"
+                    role="tabpanel" aria-labelledby="tab-<?= $semester ?>">
                     <table class="table table-bordered">
                         <thead class="text-center">
                             <tr>
@@ -46,12 +60,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($mataKuliah as $index => $mk) : ?>
+                            <tr>
+                                <td class="text-center">
+                                    <?= $index + 1 ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $mk['kode'] ?>
+                                </td>
+                                <td>
+                                    <?= $mk['mata_kuliah'] ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $mk['teori'] ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $mk['praktek'] ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $mk['total'] ?>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
-
                 </div>
+                <?php endforeach; ?>
             </div>
-
         </div>
     </div>
 </div>

@@ -12,26 +12,24 @@
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                <small>Jl. Raya PLP Curug, P.O.BOX 509, Tangerang 15820</small>
+                <small>Jl. Jemur Andayani I No.73, Siwalankerto, Kec. Wonocolo, Surabaya, Jawa Timur 60236</small>
             </div>
             <div class="h-100 d-inline-flex align-items-center">
                 <small class="far fa-envelope text-primary me-2"></small>
-                <small>ppi@ppicurug.ac.id</small>
+                <small>mail@poltekbangsby.ac.id</small>
             </div>
         </div>
         <div class="col-lg-5 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <small class="fa fa-phone-alt text-primary me-2"></small>
-                <small>(021) 5982205</small>
+                <small>+62318410871</small>
             </div>
             <div class="h-100 d-inline-flex align-items-center mx-n2">
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary"
+                    href="https://x.com/poltekbangsby"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-square btn-link rounded-0"
+                    href="https://www.instagram.com/poltekbangsby?igsh=dzl2a3dveWw3a25q"><i
+                        class="fab fa-instagram"></i></a>
             </div>
         </div>
     </div>
@@ -58,8 +56,8 @@
                     <a href="{{ route('visimisi') }}" class="dropdown-item">Visi Misi</a>
                     <a href="{{ route('profile-lulusan') }}" class="dropdown-item">Profile Lulusan</a>
                     <a href="{{ route('video-profile-lulusan') }}" class="dropdown-item">Video Profile</a>
-                    <a href="#" class="dropdown-item">Akreditasi</a>
-                    <a href="#" class="dropdown-item">Serifikasi</a>
+                    <a href="{{ route('landing-akreditasi') }}" class="dropdown-item">Akreditasi</a>
+                    <a href="{{ route('landing-sertifikasi') }}" class="dropdown-item">Serifikasi</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
@@ -79,11 +77,10 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Keturunan</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Ketarunaan</a>
                 <div class="dropdown-menu bg-light m-0">
                     <a href="#" class="dropdown-item">Data Taruna</a>
                     <a href="{{ route('taruna') }}" class="dropdown-item">Prestasi</a>
-                    <a href="{{ route('himpunan-taruna') }}" class="dropdown-item">Himpunan Taruna</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

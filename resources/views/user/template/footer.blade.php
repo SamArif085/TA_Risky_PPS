@@ -4,9 +4,12 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4">Contact</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Raya PLP Curug, P.O.BOX 509, Tangerang 15820</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(021) 5982205</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>ppi@ppicurug.ac.id</p>
+                <a href="https://maps.app.goo.gl/o4qy5Ch4wzwKHPkx7">
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Jemur Andayani I No.73, Siwalankerto,
+                        Kec. Wonocolo, Surabaya, Jawa Timur 60236</p>
+                </a>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62318410871</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>mail@poltekbangsby.ac.id</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-light mb-4">Quick Links</h4>
@@ -32,12 +35,13 @@
                 </form>
                 <h6 class="text-white mt-4 mb-3">Follow Us</h6>
                 <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light me-0" href=""><i
-                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square  btn-outline-light me-1" href="https://x.com/poltekbangsby"><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1"
+                        href="https://www.instagram.com/poltekbangsby?igsh=dzl2a3dveWw3a25q"><i
+                            class="fab fa-instagram"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1"
+                        href="https://www.youtube.com/@PoliteknikPenerbanganSurabaya"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>

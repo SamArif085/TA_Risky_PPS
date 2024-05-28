@@ -8,9 +8,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 mb-4">
-        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
-            Tambah</a>
+    <div class="col-12 mb-4 ">
+        <div>
+            <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
+                Tambah</a>
+        </div>
     </div>
     <div class="col-12">
         <div class="card">

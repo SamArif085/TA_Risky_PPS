@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class VideoProfile extends Model
 {
     use HasFactory;
+    protected $table = 'video_profiles';
 }
