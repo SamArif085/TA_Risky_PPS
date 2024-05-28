@@ -34,6 +34,13 @@
                             </div>
                         </div>
                         <div class="col-6">
+                            <div class="form-group mb-3">
+                                <label for="Keterangan">Keterangan</label>
+                                <input type="text" class="form-control" id="keterangan" placeholder="Keterangan"
+                                    name="keterangan" value="{{ $judulForm == 'Tambah' ? '' : $data->keterangan }}">
+                            </div>
+                        </div>
+                        <div class="col-6">
                             <input type="hidden" name="id" id="id"
                                 value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                             <div class="form-group mb-3">

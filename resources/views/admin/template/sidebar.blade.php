@@ -138,9 +138,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('ketarunaan/prestasi') }}">Prestasi</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Himpunan Taruna</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </li>

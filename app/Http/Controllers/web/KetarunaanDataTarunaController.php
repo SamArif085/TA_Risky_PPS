@@ -83,6 +83,7 @@ class KetarunaanDataTarunaController extends Controller
         try {
             $insert = $data['id'] == '' ? new DataTaruna() : DataTaruna::find($data['id']);
             $insert->id_angkatan = $data['id_angkatan'];
+            $insert->keterangan = $data['keterangan'];
             if (isset($data['file']) && $data['file'] != null) {
                 $insert->file = 'data_taruna/' . $nama_file;
             }

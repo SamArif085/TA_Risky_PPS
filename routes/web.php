@@ -54,6 +54,7 @@ Route::get('staff-pengajar', [LandingPageController::class, 'staffPengajar'])->n
 Route::get('landing-laboratorium', [LandingPageController::class, 'laboratorium'])->name('landing-laboratorium');
 Route::get('landing-kelas', [LandingPageController::class, 'kelas'])->name('landing-kelas');
 Route::get('landing-penunjang', [LandingPageController::class, 'penunjang'])->name('landing-penunjang');
+Route::get('data-taruna', [LandingPageController::class, 'dataTaruna'])->name('data-taruna');
 Route::get('taruna', [LandingPageController::class, 'taruna'])->name('taruna');
 Route::get('himpunan-taruna', [LandingPageController::class, 'himpunanTaruna'])->name('himpunan-taruna');
 Route::get('landing-penelitian', [LandingPageController::class, 'penelitian'])->name('landing-penelitian');

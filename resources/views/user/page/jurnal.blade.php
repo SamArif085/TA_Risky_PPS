@@ -1,12 +1,11 @@
 <div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center">
-        <h1 class="display-4 text-white animated slideInDown mb-4">{{ isset($title) ? $title : '' }}</h1>
+        <h1 class="display-4 text-white animated slideInDown mb-4">{{ $title }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                 <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">{{ isset($title) ? $title : '' }}
-                </li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">{{ $title }}</li>
             </ol>
         </nav>
     </div>
@@ -18,90 +17,102 @@
             <center>
                 <h4>JURNAL DOSEN</h4>
             </center>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTabDosen" role="tablist">
+                @php
+                $uniqueDosen = $link->where('id_jenis_jurnal', '!=', 2)->unique('nama'); // Filter jurnal bukan taruna
+                @endphp
+                @foreach($uniqueDosen as $dosen)
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                        type="button" role="tab" aria-controls="home" aria-selected="true">ARI SANTOSA</button>
+                    <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="dosen-tab-{{ $dosen->id }}"
+                        data-bs-toggle="tab" data-bs-target="#dosen-panel-{{ $dosen->id }}" type="button" role="tab"
+                        aria-controls="dosen-panel-{{ $dosen->id }}"
+                        aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                        {{ $dosen->nama }}
+                    </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">2022</button>
-                </li>
+                @endforeach
             </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="accordion" id="accordionExample">
+            <div class="tab-content" id="myTabDosenContent">
+                @foreach($uniqueDosen as $dosen)
+                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="dosen-panel-{{ $dosen->id }}"
+                    role="tabpanel" aria-labelledby="dosen-tab-{{ $dosen->id }}">
+                    <div class="accordion" id="dosen-accordion-{{ $dosen->id }}">
+                        @foreach($link->where('nama', $dosen->nama)->where('id_jenis_jurnal', '!=', 2) as $jurnal)
+                        <!-- Filter jurnal bukan taruna -->
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Accordion Item #1
+                            <h2 class="accordion-header" id="dosen-heading-{{ $jurnal->id }}">
+                                <button class="accordion-button text-dark" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#dosen-collapse-{{ $jurnal->id }}" aria-expanded="true"
+                                    aria-controls="dosen-collapse-{{ $jurnal->id }}">
+                                    {{ $jurnal->judul_jurnal }}
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="#accordionExample">
+                            <div id="dosen-collapse-{{ $jurnal->id }}" class="accordion-collapse collapse"
+                                aria-labelledby="dosen-heading-{{ $jurnal->id }}"
+                                data-bs-parent="#dosen-accordion-{{ $dosen->id }}">
                                 <div class="accordion-body">
-                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                    until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These
-                                    classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables.
-                                    It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <strong><a href="{{ $jurnal->link_jurnal }}" target="_blank">Open Link</a></strong>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Accordion Item #2
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                    until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These
-                                    classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables.
-                                    It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Accordion Item #3
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                    until the
-                                    collapse plugin adds the appropriate classes that we use to style each element.
-                                    These
-                                    classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables.
-                                    It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                @endforeach
             </div>
-
         </div>
     </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <center>
+                <h4>JURNAL TARUNA</h4>
+            </center>
+            <ul class="nav nav-tabs" id="myTabTaruna" role="tablist">
+                @php
+                $uniqueTaruna = $link->where('id_jenis_jurnal', 2)->unique('nama'); // Filter hanya jurnal taruna
+                @endphp
+                @foreach($uniqueTaruna as $taruna)
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="taruna-tab-{{ $taruna->id }}"
+                        data-bs-toggle="tab" data-bs-target="#taruna-panel-{{ $taruna->id }}" type="button" role="tab"
+                        aria-controls="taruna-panel-{{ $taruna->id }}"
+                        aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                        {{ $taruna->nama }}
+                    </button>
+                </li>
+                @endforeach
+            </ul>
+            <div class="tab-content" id="myTabTarunaContent">
+                @foreach($uniqueTaruna as $taruna)
+                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="taruna-panel-{{ $taruna->id }}"
+                    role="tabpanel" aria-labelledby="taruna-tab-{{ $taruna->id }}">
+                    <div class="accordion" id="taruna-accordion-{{ $taruna->id }}">
+                        @foreach($link->where('nama', $taruna->nama)->where('id_jenis_jurnal', 2) as $jurnal)
+                        <!-- Filter hanya jurnal taruna -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="taruna-heading-{{ $jurnal->id }}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#taruna-collapse-{{ $jurnal->id }}" aria-expanded="true"
+                                    aria-controls="taruna-collapse-{{ $jurnal->id }}">
+                                    {{ $jurnal->judul_jurnal }}
+                                </button>
+                            </h2>
+                            <div id="taruna-collapse-{{ $jurnal->id }}" class="accordion-collapse collapse"
+                                aria-labelledby="taruna-heading-{{ $jurnal->id }}"
+                                data-bs-parent="#taruna-accordion-{{ $taruna->id }}">
+                                <div class="accordion-body">
+                                    <strong><a href="{{ $jurnal->link_jurnal }}" target="_blank">Open Link</a></strong>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>

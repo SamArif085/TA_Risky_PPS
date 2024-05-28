@@ -21,6 +21,7 @@
                             <tr>
                                 <th scope="col" rowspan="2">No</th>
                                 <th scope="col" rowspan="2">Angakatan</th>
+                                <th scope="col" rowspan="2">Keterangan</th>
                                 <th scope="col" rowspan="2">File</th>
                                 <th scope="col" rowspan="2">Action</th>
                         </thead>
@@ -30,6 +31,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['angkatan']['angkatan']}}</td>
+                                <td>{{ $item['keterangan']}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{ $item['id'] }}">

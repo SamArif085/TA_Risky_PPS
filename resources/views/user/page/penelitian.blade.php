@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-12">
             <center>
-                <h4>Penelitian</h4>
+                <h4 class="mb-3">Penelitian</h4>
             </center>
             <div class="card">
                 <div class="card-header">Pengertian</div>
@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-12">
             <center>
-                <h4>Daftar Penelitian</h4>
+                <h4 class="mb-3 mt-4">Daftar Penelitian</h4>
             </center>
             <table class="table table-bordered">
                 <thead class="text-center">
@@ -46,7 +46,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($link as $item)
+                    <tr>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td>{{ $item['dosen']['nama_dosen'] }}</td>
+                        <td>{{ $item['judul'] }}</td>
+                        <td class="text-center">{{ $item['jumlah'] }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+</div>

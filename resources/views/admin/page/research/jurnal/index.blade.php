@@ -32,8 +32,9 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['jenis']['nama'] }}</td>
-                                <td>{{ $item['nama']['nama_dosen'] }}</td>
-                                <td class="truncated-text" title="{{ $item['judul_jurnal'] }}">{{ $item['judul_jurnal'] }}</td>
+                                <td>{{ $item['nama'] }}</td>
+                                <td class="truncated-text" title="{{ $item['judul_jurnal'] }}">{{ $item['judul_jurnal']
+                                    }}</td>
                                 <td>{{ $item['link_jurnal'] }}</td>
                                 <td>
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"

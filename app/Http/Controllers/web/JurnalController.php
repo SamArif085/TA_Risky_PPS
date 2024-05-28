@@ -4,7 +4,8 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
-use App\Models\Penelitian;
+use App\Models\Jurnal;
+use App\Models\JenisJurnal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,30 +14,30 @@ class JurnalController extends Controller
 
     public function title()
     {
-        return 'Halaman Penelitian';
+        return 'Halaman Publikasi Ilmiah';
     }
     public function subtitle()
     {
-        return 'Add Penelitian';
+        return 'Add Publikasi Ilmiah';
     }
     public function js()
     {
-        return asset('controller_js/admin/Penelitian.js');
+        return asset('controller_js/admin/Publikasi Ilmiah.js');
     }
     public function routeName()
     {
-        return 'penelitian';
+        return 'publikasi/ilmiah';
     }
 
     public function index()
     {
-        $data['data'] = Penelitian::with(['dosen'])->get()->toArray();
+        $data['data'] = Jurnal::with(['Jenis'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.penelitian.index', $data);
+        $konten = view('admin.page.research.jurnal.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Penelitian';
+        $put['title'] = 'Halaman Jurnal';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -45,14 +46,14 @@ class JurnalController extends Controller
 
     public function create()
     {
-        $data['dosen'] = Dosen::get()->toArray();
+        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.penelitian.form', $data);
+        $konten = view('admin.page.research.jurnal.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Penelitian';
+        $put['title'] = 'Halaman Publikasi Ilmiah';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -63,13 +64,13 @@ class JurnalController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new Penelitian() : Penelitian::find($data['id']);
-            $insert->id_dosen = $data['id_dosen'];
-            $insert->judul = $data['judul'];
-            $insert->jumlah = $data['jumlah'];
+            $insert = $data['id'] == '' ? new Jurnal() : Jurnal::find($data['id']);
+            $insert->id_jenis_jurnal = $data['kategori'];
+            $insert->nama = $data['nama'];
+            $insert->judul_jurnal = $data['judul'];
+            $insert->link_jurnal = $data['link'];
 
             $insert->save();
             DB::commit();
@@ -82,15 +83,16 @@ class JurnalController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = Penelitian::find($id);
-        $data['dosen'] = Dosen::get()->toArray();
+        $data['data'] = Jurnal::with(['nama', 'Jenis'])->find($id);
+        $data['jenisJurnal'] = JenisJurnal::get()->toArray();
         $data['subtitle'] = $this->subtitle();
+
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.research.penelitian.form', $data);
+        $konten = view('admin.page.research.jurnal.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Penelitian';
+        $put['title'] = 'Halaman Publikasi Ilmiah';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -102,7 +104,7 @@ class JurnalController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Penelitian::find($id);
+            $data = Jurnal::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {

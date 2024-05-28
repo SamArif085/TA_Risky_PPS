@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('data_tarunas', function (Blueprint $table) {
             $table->id();
             $table->integer('id_angkatan');
+            $table->string('keterangan');
             $table->string('file');
             $table->timestamps();
         });

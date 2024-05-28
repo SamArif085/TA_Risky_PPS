@@ -54,10 +54,12 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="{{ asset('file/images/sertifikat.jpg') }}" alt=""
+                    @foreach ($link as $key => $item)
+                    <img class="position-absolute w-100 h-100" src="{{ asset($item['file']) }}" alt=""
                         style="object-fit: cover;">
-                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3"
-                        src="{{ asset('file/images/sertifikat.jpg') }}" alt="" style="width: 200px; height: 200px;">
+                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="{{ asset($item['file']) }}"
+                        alt="" style="width: 200px; height: 200px;">
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">

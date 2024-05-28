@@ -20,82 +20,22 @@
             </center>
         </div>
     </div>
+    @foreach ($tampilan as $data)
     <div class="row">
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
+        @foreach ($data as $fasilitas)
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <img src="{{ asset($fasilitas['foto']) }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-0">{{ $fasilitas['nama'] }}</h5>
+                    <hr class="my-2">
+                    <p class="card-text text-center">
+                        <i class="fa fa-map-marker-alt me-3"></i>{{ $fasilitas['lokasi'] }}
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
+    @endforeach
 </div>

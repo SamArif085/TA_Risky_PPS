@@ -16,86 +16,71 @@
     <div class="row">
         <div class="col-12">
             <center>
-                <h4>Dosen</h4>
+                <h4>Dosen Tetap</h4>
             </center>
         </div>
     </div>
     <div class="row">
+        <?php foreach ($dosenTetap as $dosen) : ?>
         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="team-item position-relative">
                 <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
+                    <?php if ($dosen['foto_dosen']) : ?>
+                    <img class="img-fluid" src="{{ asset($dosen['foto_dosen']) }}" alt="">
+                    <?php else : ?>
+                    <img class="img-fluid" src="{{ asset('template-landing-page/img/placeholder.jpg') }}" alt="">
+                    <?php endif; ?>
                     <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['fb'] }}"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['twitter'] }}"><i
                                 class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['ig'] }}"><i
                                 class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
+                    <h5 class="mt-2">{{ $dosen['nama_dosen'] }}</h5>
+                    <span>{{ $dosen['jabatan'] }}</span>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <?php endforeach; ?>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <center>
+                <h4>Dosen Teknisi</h4>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <?php foreach ($dosenTeknisi as $dosen) : ?>
+        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="team-item position-relative">
                 <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
+                    <?php if ($dosen['foto_dosen']) : ?>
+                    <img class="img-fluid" src="{{ asset($dosen['foto_dosen']) }}" alt="">
+                    <?php else : ?>
+
+                    <img class="img-fluid" src="{{ asset('template-landing-page/img/placeholder.jpg') }}" alt="">
+                    <?php endif; ?>
                     <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['fb'] }}"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['twitter'] }}"><i
                                 class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
+                        <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['ig'] }}"><i
                                 class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
+                    <h5 class="mt-2">{{ $dosen['nama_dosen'] }}</h5>
+                    <span>{{ $dosen['jabatan'] }}</span>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-            <div class="team-item position-relative">
-                <div class="position-relative">
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
-                    <div class="team-social text-center">
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="bg-light text-center p-4">
-                    <h5 class="mt-2">Full Name</h5>
-                    <span>Trainer</span>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>

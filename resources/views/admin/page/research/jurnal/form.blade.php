@@ -29,18 +29,10 @@
                             @endforeach
                         </select>
                     </div>
-
                     <div class="form-group mb-3">
-                        <label for="Nama Dosen">Nama Dosen</label>
-                        <select name="id_dosen" id="id_dosen" class="select2 form-control" data-allow-clear="true">
-                            <option value="">Pilih Dosen</option>
-                            @foreach ($dosen as $item)
-                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($item['id'] ? 'selected'
-                                : '' ) }}>
-                                {{ $item['nama_dosen'] }}
-                            </option>
-                            @endforeach
-                        </select>
+                        <label for="Nama">Nama</label>
+                        <input type="text" class="form-control" id="namas" placeholder="Nama" name="nama"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->nama }}">
                     </div>
                     <div class="form-group mb-3">
                         <label for="judul">Judul Artikel yang Disitasi (Jurnal/Buku, Volume, Tahun, Nomor,

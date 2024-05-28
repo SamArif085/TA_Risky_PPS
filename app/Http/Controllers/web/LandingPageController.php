@@ -4,10 +4,16 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Akreditasi;
+use App\Models\DataTaruna;
 use App\Models\Dosen;
+use App\Models\PrestasiTaruna;
+use App\Models\Fasilitas;
+use App\Models\Jurnal;
+use App\Models\ListKegiatan;
 use App\Models\KalenderAkademik;
 use App\Models\VideoProfile;
 use App\Models\MataKuliah;
+use App\Models\Penelitian;
 use App\Models\Sertifikasi;
 
 
@@ -17,6 +23,7 @@ class LandingPageController extends Controller
     public function home()
     {
         $data = [];
+        $data['link'] = Akreditasi::get();
         $konten = view('user.page.home', $data);
         $js = asset('controller_js/home.js');
 
@@ -143,8 +150,22 @@ class LandingPageController extends Controller
     public function staffPengajar()
     {
         $data = [];
-        $data['data'] = Dosen::get();
+        $data['link'] = Dosen::get();
         $data['title'] = 'Staff Pengajar';
+
+        $dosenTetap = [];
+        $dosenTeknisi = [];
+
+        foreach ($data['link'] as $dosen) {
+            if ($dosen['id_jenis_dosen'] == 1) {
+                $dosenTetap[] = $dosen;
+            } elseif ($dosen['id_jenis_dosen'] == 2) {
+                $dosenTeknisi[] = $dosen;
+            }
+        }
+
+        $data['dosenTetap'] = $dosenTetap;
+        $data['dosenTeknisi'] = $dosenTeknisi;
 
         $konten = view('user.page.staff_pengajar', $data);
         $put['title'] = 'Staff Pengajar';
@@ -155,7 +176,10 @@ class LandingPageController extends Controller
     public function laboratorium()
     {
         $data = [];
-        $data['data'] = [];
+        $fasilitas = Fasilitas::where('nama', 'LIKE', '%Laboratorium%')->get();
+        $tampilan = $fasilitas->chunk(3);
+
+        $data['tampilan'] = $tampilan;
         $data['title'] = 'Fasilitas Laboratorium';
 
         $konten = view('user.page.laboratorium', $data);
@@ -167,7 +191,9 @@ class LandingPageController extends Controller
     public function penunjang()
     {
         $data = [];
-        $data['data'] = [];
+        $fasilitas = Fasilitas::where('nama', 'LIKE', '%Ruang%')->orWhere('nama', 'LIKE', '%Program Studi%')->get();
+        $tampilan = $fasilitas->chunk(3);
+        $data['tampilan'] = $tampilan;
         $data['title'] = 'Fasilitas Penunjang';
 
         $konten = view('user.page.penunjang', $data);
@@ -179,7 +205,9 @@ class LandingPageController extends Controller
     public function kelas()
     {
         $data = [];
-        $data['data'] = [];
+        $fasilitas = Fasilitas::where('nama', 'LIKE', '%Kelas%')->get();
+        $tampilan = $fasilitas->chunk(3);
+        $data['tampilan'] = $tampilan;
         $data['title'] = 'Fasilitas Kelas';
 
         $konten = view('user.page.kelas', $data);
@@ -191,7 +219,26 @@ class LandingPageController extends Controller
     public function taruna()
     {
         $data = [];
-        $data['data'] = [];
+        $Perstasi = PrestasiTaruna::all();
+
+        $AkademiPerstasi = $Perstasi->where('id_master_akademik', 1);
+        $nonAkademiPerstasi = $Perstasi->where('id_master_akademik', 2);
+
+        $totalAkademi = [
+            'lokal' => $AkademiPerstasi->where('lokal', '!=', null)->count(),
+            'nasional' => $AkademiPerstasi->where('nasional', '!=', null)->count(),
+            'internasional' => $AkademiPerstasi->where('internasional', '!=', null)->count(),
+        ];
+        $totalNonAkademi = [
+            'lokal' => $nonAkademiPerstasi->where('lokal', '!=', null)->count(),
+            'nasional' => $nonAkademiPerstasi->where('nasional', '!=', null)->count(),
+            'internasional' => $nonAkademiPerstasi->where('internasional', '!=', null)->count(),
+        ];
+
+        $data['AkademiPerstasi'] = $AkademiPerstasi;
+        $data['nonAkademiPerstasi'] = $nonAkademiPerstasi;
+        $data['totalAkademi'] = $totalAkademi;
+        $data['totalNonAkademi'] = $totalNonAkademi;
         $data['title'] = 'Data Taruna Aktif';
 
         $konten = view('user.page.taruna', $data);
@@ -200,14 +247,21 @@ class LandingPageController extends Controller
 
         return view('user.template.main', $put);
     }
-    public function himpunanTaruna()
+
+    public function dataTaruna()
     {
         $data = [];
-        $data['data'] = [];
-        $data['title'] = 'Himpunan Taruna';
+        $dataTaruna = DataTaruna::with(['Angkatan'])->get();
+        $dataPerAngkatan = [];
+        foreach ($dataTaruna as $taruna) {
+            $dataPerAngkatan[$taruna->id_angkatan][] = $taruna;
+        }
 
-        $konten = view('user.page.himpunan_taruna', $data);
-        $put['title'] = 'Himpunan Taruna';
+        $data['dataPerAngkatan'] = $dataPerAngkatan;
+        $data['title'] = 'Data Taruna Aktif';
+
+        $konten = view('user.page.data_taruna', $data);
+        $put['title'] = 'Data Taruna Aktif';
         $put['konten'] = $konten;
 
         return view('user.template.main', $put);
@@ -215,7 +269,7 @@ class LandingPageController extends Controller
     public function penelitian()
     {
         $data = [];
-        $data['data'] = [];
+        $data['link'] = Penelitian::with(['Dosen'])->get();
         $data['title'] = 'Pengabdian Kepada Masyarakat';
 
         $konten = view('user.page.penelitian', $data);
@@ -227,7 +281,13 @@ class LandingPageController extends Controller
     public function pkm()
     {
         $data = [];
-        $data['data'] = [];
+        $kegiatan = ListKegiatan::with('tahun', 'foto')->get();
+
+        $kegiatanByTahun = $kegiatan->groupBy(function ($item) {
+            return $item->tahun->tahun;
+        });
+
+        $data['kegiatanByTahun'] = $kegiatanByTahun;
         $data['title'] = 'Pengabdian Kepada Masyarakat';
 
         $konten = view('user.page.pkm', $data);
@@ -239,7 +299,7 @@ class LandingPageController extends Controller
     public function jurnal()
     {
         $data = [];
-        $data['data'] = [];
+        $data['link'] = Jurnal::get();
         $data['title'] = 'Publikasi Ilmiah';
 
         $konten = view('user.page.jurnal', $data);

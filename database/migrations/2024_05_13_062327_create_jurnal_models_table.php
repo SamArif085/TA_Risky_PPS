@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jurnal', function (Blueprint $table) {
             $table->id();
             $table->integer('id_jenis_jurnal')->nullable();
-            $table->integer('id_dosen')->nullable();
+            $table->string('nama')->nullable();
             $table->string('judul_jurnal')->nullable();
             $table->string('link_jurnal')->nullable();
             $table->timestamps();

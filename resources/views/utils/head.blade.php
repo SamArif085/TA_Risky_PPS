@@ -26,4 +26,16 @@
         text-overflow: ellipsis;
         max-width: 300px;
     }
+
+    .small-img {
+        width: 300px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .img-konten {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 </style>
