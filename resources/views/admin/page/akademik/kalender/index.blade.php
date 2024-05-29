@@ -25,7 +25,8 @@
                                 <th scope="col" rowspan="2">Angkatan</th>
                                 <th scope="col" rowspan="2">Kegiatan</th>
                                 <th scope="col" colspan="2">jadwal Pelaksanaan</th>
-                                <th scope="col" rowspan="2">Catatan</th>
+                                <th scope="col" rowspan="2">Semester </th>
+                                <th scope="col" rowspan="2">Semester Ganjil atau Genap</th>
                                 <th scope="col" rowspan="2">Action</th>
                             </tr>
                             <tr>
@@ -42,7 +43,16 @@
                                 <td>{{ $item['kegiatan']}}</td>
                                 <td>{{ $item['tgl_jadwal_awal']}}</td>
                                 <td>{{ $item['tgl_jadwal_akhir']}}</td>
-                                <td>{{ $item['catatan']}}</td>
+                                <td>{{ $item['semester']['semester']}}</td>
+                                <td>
+                                    @if($item['ganjil_genap'] == 1)
+                                    Ganjil
+                                    @elseif($item['ganjil_genap'] == 2)
+                                    Genap
+                                    @else
+                                    -
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route($routeName. '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>

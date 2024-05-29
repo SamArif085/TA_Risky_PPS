@@ -65,6 +65,7 @@ class SemesterController extends Controller
         try {
             $insert = $data['id'] == '' ? new Semester() : Semester::find($data['id']);
             $insert->semester = $data['semester'];
+            $insert->catatan = $data['catatan'];
 
             $insert->save();
             DB::commit();

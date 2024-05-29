@@ -59,9 +59,30 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <label for="catatan">Catatan</label>
-                                <textarea name="catatan" id="catatan" cols="30" rows="10"
-                                    class="form-control">{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
+                                <label for="Ganjul atau Genap">Semester Ganjil atau Genap</label>
+                                <select name="ganjil_genap" id="ganjil_genap" class="select2 form-control"
+                                    data-allow-clear="true">
+                                    <option value="">Pilih</option>
+                                    <option value="1" {{ isset($data['ganjil_genap']) && $data['ganjil_genap']==1
+                                        ? 'selected' : '' }}>Ganjil</option>
+                                    <option value="2" {{ isset($data['ganjil_genap']) && $data['ganjil_genap']==2
+                                        ? 'selected' : '' }}>Genap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mb-3">
+                                <label for="catatan">Semester</label>
+                                <select name="semester" id="semester" class="select2 form-control"
+                                    data-allow-clear="true">
+                                    <option value="">Pilih</option>
+                                    @foreach ($semester as $item)
+                                    <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($item['id']
+                                        ? 'selected' : '' ) }}>
+                                        {{ $item['semester'] }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

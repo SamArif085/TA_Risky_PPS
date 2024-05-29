@@ -24,6 +24,10 @@ class LandingPageController extends Controller
     {
         $data = [];
         $data['link'] = Akreditasi::get();
+        $data['kegiatan'] = ListKegiatan::with('Foto')->get();
+        $data['dataDosen'] = Dosen::get();
+        $data['fasilitas'] = Fasilitas::get();
+
         $konten = view('user.page.home', $data);
         $js = asset('controller_js/home.js');
 
@@ -137,9 +141,58 @@ class LandingPageController extends Controller
     }
     public function kalender()
     {
-        $data = [];
-        $data['data'] = KalenderAkademik::get();
+        $kalenderAkademik = KalenderAkademik::with(['Angkatan', 'Semester'])->get();
+        $dataGroupedByAngkatan = [];
+        $firstSemesterGanjil = null;
+        $firstSemesterGenap = null;
+
+        foreach ($kalenderAkademik as $item) {
+
+            $angkatanName = $item->angkatan->angkatan ?? 'kosong';
+            $AngkatanTahun = $item->angkatan->tahun ?? 'kosong';
+            $NamaSemester = $item->Semester->semester ?? 'kosong';
+            $catatanSemester = $item->Semester->catatan ?? 'kosong';
+
+            $dataGroupedByAngkatan[$item->id_angkatan]['name'] = $angkatanName;
+            $dataGroupedByAngkatan[$item->id_angkatan]['tahun'] = $AngkatanTahun;
+            $dataGroupedByAngkatan[$item->id_angkatan]['items'][] =
+                [
+                    'item' => $item,
+                    'semester' => $NamaSemester,
+                    'catatan' => $catatanSemester,
+                ];
+
+            if ($item->ganjil_genap == 1 && is_null($firstSemesterGanjil)) {
+                $firstSemesterGanjil = $item->semester;
+            }
+            if ($item->ganjil_genap == 2 && is_null($firstSemesterGenap)) {
+                $firstSemesterGenap = $item->semester;
+            }
+
+            if ($item->ganjil_genap == 1) {
+                $dataGroupedByAngkatan[$item->id_angkatan]['semesterGanjil'] = $NamaSemester;
+                $dataGroupedByAngkatan[$item->id_angkatan]['catatansemesterGanjil'] = $catatanSemester;
+            }
+
+            if ($item->ganjil_genap == 2) {
+                $dataGroupedByAngkatan[$item->id_angkatan]['semesterGenap'] = $NamaSemester;
+            }
+            $dataGroupedByAngkatan[$item->id_angkatan]['catatansemesterGenap'] = $catatanSemester;
+        }
+
+        foreach ($dataGroupedByAngkatan as &$angkatan) {
+            if (!isset($angkatan['semesterGanjil'])) {
+                $angkatan['semesterGanjil'] = 'Semester Ganjil';
+            }
+            if (!isset($angkatan['semesterGenap'])) {
+                $angkatan['semesterGenap'] = 'Semester Genap';
+            }
+        }
+
+        $data['link'] = $dataGroupedByAngkatan;
         $data['title'] = 'Kalender';
+        $data['firstSemesterGanjil'] = $firstSemesterGanjil;
+        $data['firstSemesterGenap'] = $firstSemesterGenap;
 
         $konten = view('user.page.kalender', $data);
         $put['title'] = 'Kalender';
@@ -147,6 +200,7 @@ class LandingPageController extends Controller
 
         return view('user.template.main', $put);
     }
+
     public function staffPengajar()
     {
         $data = [];

@@ -14,4 +14,8 @@ class KalenderAkademik extends Model
     {
         return $this->belongsTo(Angkatan::class, 'id_angkatan', 'id');
     }
+    public function Semester()
+    {
+        return $this->belongsTo(Semester::class, 'semester', 'id');
+    }
 }

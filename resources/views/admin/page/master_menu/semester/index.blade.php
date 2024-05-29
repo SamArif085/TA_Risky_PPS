@@ -21,6 +21,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Semester</th>
+                                <th>Catatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -29,6 +30,12 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['semester'] }}</td>
+                                <td>
+                                    {{ \Illuminate\Support\Str::limit($item['catatan'], 50) }}
+                                    @if(strlen($item['catatan']) > 50)
+                                    <a href="#" data-toggle="tooltip" title="{{ $item['catatan'] }}">...</a>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>

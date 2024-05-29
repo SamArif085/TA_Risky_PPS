@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
 use App\Models\KalenderAkademik;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,8 @@ class AkademikKalenderController extends Controller
 
     public function index()
     {
-        $data['data'] = KalenderAkademik::with(['Angkatan'])->get()->toArray();
+        $data['data'] = KalenderAkademik::with(['Angkatan', 'Semester'])->get()->toArray();
+        $data['semester'] = Semester::get();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.akademik.kalender.index', $data);
@@ -46,6 +48,7 @@ class AkademikKalenderController extends Controller
     public function create()
     {
         $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['semester'] = Semester::get();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $data['judulForm'] = 'Tambah';
@@ -62,7 +65,6 @@ class AkademikKalenderController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         DB::beginTransaction();
         try {
             $insert = $data['id'] == '' ? new KalenderAkademik() : KalenderAkademik::find($data['id']);
@@ -70,7 +72,8 @@ class AkademikKalenderController extends Controller
             $insert->kegiatan = $data['kegiatan'];
             $insert->tgl_jadwal_awal = $data['tgl_jadwal_awal'];
             $insert->tgl_jadwal_akhir = $data['tgl_jadwal_akhir'];
-            $insert->catatan = $data['catatan'];
+            $insert->ganjil_genap = $data['ganjil_genap'];
+            $insert->semester = $data['semester'];
             $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
@@ -84,6 +87,7 @@ class AkademikKalenderController extends Controller
     {
         $data['data'] = KalenderAkademik::with(['Angkatan'])->find($id);
         $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['semester'] = Semester::get();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();

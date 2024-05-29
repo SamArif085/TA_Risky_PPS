@@ -47,7 +47,6 @@
 </div>
 <!-- Carousel End -->
 
-
 <!-- About Start -->
 <div class="container-xxl py-6">
     <div class="container">
@@ -91,13 +90,12 @@
 </div>
 <!-- About End -->
 
-
 <!-- Courses Start -->
 <div class="container-xxl courses my-6 py-6 pb-0">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h6 class="text-primary text-uppercase mb-2">About Us</h6>
-            <h1 class="display-6 mb-4">Profile Teknik Navigasi Udara</h1>
+            <h5 class="text-primary text-uppercase mb-2">About Us</h5>
+            <h2 class="display-6 mb-4">Profile Teknik Navigasi Udara</h2>
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -126,66 +124,23 @@
 <div class="container-xxl py-6">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h6 class="text-primary text-uppercase mb-2">Galery</h6>
-            <h1 class="display-6 mb-4">Kegiatan Prodi TNU</h1>
+            <h5 class="text-primary text-uppercase mb-2">Gallery</h5>
+            <h2 class="display-6 mb-4">Kegiatan Prodi TNU</h2>
         </div>
         <div class="row g-0 team-items">
+            @foreach ($kegiatan->sortByDesc('created_at')->take(4) as $key => $item)
             <div class="col-lg-auto col-md-auto wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item position-relative">
-                    <div class="position-relative">
-                        <img class="img-fluid" src="{{ asset('file/images/g1.jpg') }}" alt="">
-                        <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                    class="fa fa-eye"></i></a>
-                        </div>
-                    </div>
+                    @if ($item->Foto->count() > 0)
+                    <img class="img-fluid rounded" src="{{ asset($item->Foto[0]->gambar) }}" alt="{{ $item->nama }} "
+                        style="max-height: 300px;">
+                    @endif
                     <div class="bg-light text-center p-4">
-                        <h5 class="mt-2">Acara Malam Keakraban TNU 2022</h5>
+                        <h5 class="mt-2">{{ $item->nama }}</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-auto col-md-auto wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative">
-                    <div class="position-relative">
-                        <img class="img-fluid" src="{{ asset('file/images/g2.jpg') }}" alt="">
-                        <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                    class="fa fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mt-2">Praktikum VHF A/G</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-auto col-md-auto wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative">
-                    <div class="position-relative">
-                        <img class="img-fluid" src="{{ asset('file/images/g3.jpg') }}" alt="">
-                        <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                    class="fa fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mt-2">Pengabdian Kepada Masyarakat</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-auto col-md-auto wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative">
-                    <div class="position-relative">
-                        <img class="img-fluid" src="{{ asset('file/images/g4.jpg') }}" alt="">
-                        <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                    class="fa fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mt-2">Fasilitas Laboratorium DVOR</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -195,228 +150,63 @@
 <div class="container-xxl py-6">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h6 class="text-primary text-uppercase mb-2">STAF PENGAJAR</h6>
-            <h1 class="display-6 mb-4">Dosen Program Studi Teknik Navigasi Udara</h1>
+            <h5 class="text-primary text-uppercase mb-2">STAF PENGAJAR</h5>
+            <h2 class="display-6 mb-4">Dosen Program Studi Teknik Navigasi Udara</h2>
         </div>
         <div class="row g-0 team-items">
-            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item text-center">
-                        <div class="position-relative mb-5">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
+            <div class="owl-carousel owl-theme">
+                @foreach ($dataDosen as $key => $dosen)
+                <div class="item">
+                    <div class="col-lg-10 col-md-10 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item position-relative">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded" src="{{ asset($dosen->foto_dosen) }}"
+                                    alt="{{ $dosen->nama_dosen }}" style="width: 100%; height: auto;">
+                                <div class="team-social text-center">
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1"
+                                        href="{{ $dosen->fb }}"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1"
+                                        href="{{ $dosen->twitter }}"><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1"
+                                        href="{{ $dosen->ig }}"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center">
-                        <div class="position-relative mb-5">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-1.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-2.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-3.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                                    <div class="team-item position-relative">
-                                        <div class="position-relative">
-                                            <img class="img-fluid"
-                                                src="{{ asset('template-landing-page/img/team-4.jpg') }}" alt="">
-                                            <div class="team-social text-center">
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="bg-light text-center p-4">
-                                            <h5 class="mt-2">Full Name</h5>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="bg-light text-center p-4">
+                                <h5 class="mt-2">{{ $dosen->nama_dosen }}</h5>
+                                <span>{{ $dosen->jabatan }}</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
+                @endforeach
             </div>
-
         </div>
     </div>
 </div>
 <!-- Team End -->
 
-
 <!-- Testimonial Start -->
 <div class="container-xxl py-6">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h6 class="text-primary text-uppercase mb-2">FASILITAS PRODI TNU</h6>
-            <h1 class="display-6 mb-4">Beberapa Fasilitas Sarana dan Prasarana Penunjang</h1>
+            <h5 class="text-primary text-uppercase mb-2">FASILITAS PRODI TNU</h5>
+            <h2 class="display-6 mb-4">Beberapa Fasilitas Sarana dan Prasarana Penunjang</h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="owl-carousel testimonial-carousel">
+                    @foreach ($fasilitas as $item)
                     <div class="testimonial-item text-center">
                         <div class="position-relative mb-5">
-                            <img class="img-fluid  mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}" alt="">
+                            <img class="img-fluid mx-auto" src="{{ asset($item->foto) }}" alt="{{ $item->nama }}">
                             <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                 style="width: 60px; height: 60px;">
-
                             </div>
                         </div>
-                        <p class="fs-4">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                            lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
-                        </p>
+                        <p class="fs-4">{{ $item->nama }}</p>
+                        <p class="fs-5">{{ $item->lokasi }}</p>
                     </div>
-                    <div class="testimonial-item text-center">
-                        <div class="position-relative mb-5">
-                            <img class="img-fluid mx-auto" src="{{ asset('file/images/lab_basic.jpg') }}" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
-                                style="width: 60px; height: 60px;">
-                                <i class="fa fa-quote-left fa-2x text-primary"></i>
-                            </div>
-                        </div>
-                        <p class="fs-4">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                            lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
-                        </p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@
                 <div class="dropdown-menu bg-light m-0">
                     <a href="{{ route('sejarah') }}" class="dropdown-item">Sejarah</a>
                     <a href="{{ route('visimisi') }}" class="dropdown-item">Visi Misi</a>
-                    <a href="{{ route('profile-lulusan') }}" class="dropdown-item">Profile Lulusan</a>
+                    {{-- <a href="{{ route('profile-lulusan') }}" class="dropdown-item">Profile Lulusan</a> --}}
                     <a href="{{ route('video-profile-lulusan') }}" class="dropdown-item">Video Profile</a>
                     <a href="{{ route('landing-akreditasi') }}" class="dropdown-item">Akreditasi</a>
                     <a href="{{ route('landing-sertifikasi') }}" class="dropdown-item">Serifikasi</a>

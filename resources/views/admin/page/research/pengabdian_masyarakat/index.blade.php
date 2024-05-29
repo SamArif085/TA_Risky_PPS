@@ -34,7 +34,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['tahun']['tahun'] }}</td>
                                 <td>{{ $item['nama'] }}</td>
-                                <td>{{ $item['rincian_kegiatan'] }}</td>
+                                <td>
+                                    {{ \Illuminate\Support\Str::limit($item['rincian_kegiatan'], 50) }}
+                                    @if(strlen($item['rincian_kegiatan']) > 50)
+                                    <a href="#" data-toggle="tooltip" title="{{  $item['rincian_kegiatan'] }}">...</a>
+                                    @endif
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{ $item['id'] }}">

@@ -18,9 +18,14 @@
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                     <div class="form-group mb-3">
-                        <label for="semester">Semester</label>
-                        <input type="text" class="form-control" id="semester" placeholder="semester" name="semester"
+                        <label for="Semester">Semester</label>
+                        <input type="text" class="form-control" id="semester" placeholder="Semester" name="semester"
                             value="{{ $judulForm == 'Tambah' ? '' : $data->semester }}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="Catatan">Catatan</label>
+                        <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" rows="6"
+                            required>{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <a href="{{ route($routeName . '') }}" class="btn btn-light">Cancel</a>
