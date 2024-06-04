@@ -10,6 +10,7 @@ use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
 use App\Http\Controllers\web\JurnalController;
+use App\Http\Controllers\web\KegiatanProdiController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
@@ -81,3 +82,5 @@ Route::post('penelitian.delete', [PenelitianController::class, 'destroy'])->name
 Route::post('pengabdian/masyarakat.delete', [PengabdianMasyarakatController::class, 'destroy'])->name('pengabdian/masyarakat.delete');
 // PUBLIKASI ILMIAH
 Route::post('publikasi/ilmiah.delete', [JurnalController::class, 'destroy'])->name('publikasi/ilmiah.delete');
+// KEGIATAN PRODI
+Route::post('kegiatan-prodi.delete', [KegiatanProdiController::class, 'destroy'])->name('kegiatan-prodi.delete');

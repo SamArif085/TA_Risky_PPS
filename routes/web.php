@@ -14,6 +14,7 @@ use App\Http\Controllers\web\FasilitasController;
 use App\Http\Controllers\web\JenisDosenController;
 use App\Http\Controllers\web\JenisJurnalController;
 use App\Http\Controllers\web\JurnalController;
+use App\Http\Controllers\web\KegiatanProdiController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\SemesterController;
+use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
 use App\Http\Controllers\web\VideoProfileController;
 use Illuminate\Support\Facades\Route;
@@ -202,3 +204,14 @@ Route::get('ketarunaan/data-taruna', [KetarunaanDataTarunaController::class, 'in
 Route::get('ketarunaan/data-taruna/add', [KetarunaanDataTarunaController::class, 'create'])->name('ketarunaan/data-taruna.add');
 Route::get('ketarunaan/data-taruna/edit/{id}', [KetarunaanDataTarunaController::class, 'edit'])->name('ketarunaan/data-taruna.edit');
 Route::post('ketarunaan/data-taruna/submit', [KetarunaanDataTarunaController::class, 'store'])->name('ketarunaan/data-taruna.submit');
+
+// SETTING USER
+Route::get('settingUser', [SettingUserController::class, 'index'])->name('settingUser');
+Route::post('settingUser/submit', [SettingUserController::class, 'store'])->name('settingUser.submit');
+
+// KEGIATAN PRODI
+Route::get('kegiatan-prodi', [KegiatanProdiController::class, 'index'])->name('kegiatan-prodi');
+Route::get('kegiatan-prodi/add', [KegiatanProdiController::class, 'create'])->name('kegiatan-prodi.add');
+Route::get('kegiatan-prodi/edit/{id}', [KegiatanProdiController::class, 'edit'])->name('kegiatan-prodi.edit');
+Route::post('kegiatan-prodi/submit', [KegiatanProdiController::class, 'store'])->name('kegiatan-prodi.submit');
+

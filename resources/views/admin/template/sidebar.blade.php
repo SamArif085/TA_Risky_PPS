@@ -16,11 +16,11 @@
             </a>
             <div class="collapse" id="menu-master">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('master.kurikulum') }}">
                             <span class="menu-title">Kurikulum</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('semester') }}">
                             <span class="menu-title">Semester</span>
@@ -54,6 +54,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jenisJurnal') }}">
                             <span class="menu-title">Jenis Jurnal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kegiatan-prodi') }}">
+                            <span class="menu-title">Kegiatan Prodi</span>
                         </a>
                     </li>
                 </ul>

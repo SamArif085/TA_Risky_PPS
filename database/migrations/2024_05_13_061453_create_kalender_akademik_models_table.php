@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_angkatan')->nullable();
             $table->string('kegiatan')->nullable();
-            $table->data('tgl_jadwal_awal')->nullable();
+            $table->date('tgl_jadwal_awal')->nullable();
             $table->date('tgl_jadwal_akhir')->nullable();
             $table->string('semester')->nullable();
             $table->string('ganjil_genap')->nullable();

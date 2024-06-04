@@ -128,13 +128,16 @@
             <h2 class="display-6 mb-4">Kegiatan Prodi TNU</h2>
         </div>
         <div class="row g-0 team-items">
-            @foreach ($kegiatan->sortByDesc('created_at')->take(4) as $key => $item)
+            @foreach ($kegiatan as $key => $item)
             <div class="col-lg-auto col-md-auto wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item position-relative">
-                    @if ($item->Foto->count() > 0)
-                    <img class="img-fluid rounded" src="{{ asset($item->Foto[0]->gambar) }}" alt="{{ $item->nama }} "
-                        style="max-height: 300px;">
+                    @if ($item->foto)
+                    <div class="a">
+                        <img class="img-fluid rounded" src="{{ asset($item->foto) }}" alt="{{ $item->nama }}"
+                            style="max-height: 300px;">
+                    </div>
                     @endif
+
                     <div class="bg-light text-center p-4">
                         <h5 class="mt-2">{{ $item->nama }}</h5>
                     </div>
@@ -160,8 +163,13 @@
                     <div class="col-lg-10 col-md-10 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item position-relative">
                             <div class="position-relative">
+                                @if ($dosen->foto_dosen)
                                 <img class="img-fluid rounded" src="{{ asset($dosen->foto_dosen) }}"
                                     alt="{{ $dosen->nama_dosen }}" style="width: 100%; height: auto;">
+                                @else
+                                <img class="img-fluid rounded" src="{{ asset('file-dosen/default-profile.png') }}"
+                                    alt="{{ $dosen->nama_dosen }}" style="width: 100%; height: auto;">
+                                @endif
                                 <div class="team-social text-center">
                                     <a class="btn btn-square btn-outline-primary border-2 m-1"
                                         href="{{ $dosen->fb }}"><i class="fab fa-facebook-f"></i></a>

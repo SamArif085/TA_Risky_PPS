@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ isset($title) ? $title : '' }}</title>
 
-
     <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,3 +43,36 @@
 <script src="{{ asset('template-landing-page/js/main.js') }}"></script>
 <script src="{{ isset($js) ? $js : '' }}"></script>
 @yield('script')
+<script>
+    $(document).ready(function () {
+    $('#kegiatanCarousel').carousel({
+        interval: 3000,
+        pause: 'hover',
+        wrap: true
+    });
+});
+
+$(document).ready(function () {
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 30,
+        nav: false,
+        dots: false,
+        autoplay: false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            576: {
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 4
+            }
+        }
+    });
+});
+</script>

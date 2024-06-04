@@ -20,7 +20,7 @@
                         <div class="col-6">
                             <div class="form-group mb-3">
                                 <label for="angkatan">Angkatan</label>
-                                <select name="angkatan" id="angkatan" class="select2 form-control"
+                                <select name="angkatan" id="angkatan" class="select2 form-control" required
                                     data-allow-clear="true">
                                     <option value="">Pilih Angkatan</option>
                                     @foreach ($dataAngkatan as $item)
@@ -38,7 +38,8 @@
                             <div class="form-group mb-3">
                                 <label for="kegiatan">Kegiatan</label>
                                 <input type="text" class="form-control" id="kegiatan" placeholder="Kegiatan"
-                                    name="kegiatan" value="{{ $judulForm == 'Tambah' ? '' : $data->kegiatan }}">
+                                    name="kegiatan" value="{{ $judulForm == 'Tambah' ? '' : $data->kegiatan }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-6">
@@ -46,7 +47,7 @@
                                 <label for="tgl_jadwal_awal">Tanggal Awal</label>
                                 <input type="date" class="form-control" id="tgl_jadwal_awal" placeholder="Tanggal Awal"
                                     name="tgl_jadwal_awal"
-                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_awal }}">
+                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_awal }}" required>
                             </div>
                         </div>
                         <div class="col-6">
@@ -54,14 +55,14 @@
                                 <label for="tgl_jadwal_akhir">Tanggal Akhir</label>
                                 <input type="date" class="form-control" id="tgl_jadwal_akhir"
                                     placeholder="Tanggal Akhir" name="tgl_jadwal_akhir"
-                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_akhir }}">
+                                    value="{{ $judulForm == 'Tambah' ? '' : $data->tgl_jadwal_akhir }}" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
                                 <label for="Ganjul atau Genap">Semester Ganjil atau Genap</label>
                                 <select name="ganjil_genap" id="ganjil_genap" class="select2 form-control"
-                                    data-allow-clear="true">
+                                    data-allow-clear="true" required>
                                     <option value="">Pilih</option>
                                     <option value="1" {{ isset($data['ganjil_genap']) && $data['ganjil_genap']==1
                                         ? 'selected' : '' }}>Ganjil</option>
@@ -74,7 +75,7 @@
                             <div class="form-group mb-3">
                                 <label for="catatan">Semester</label>
                                 <select name="semester" id="semester" class="select2 form-control"
-                                    data-allow-clear="true">
+                                    data-allow-clear="true" required>
                                     <option value="">Pilih</option>
                                     @foreach ($semester as $item)
                                     <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($item['id']

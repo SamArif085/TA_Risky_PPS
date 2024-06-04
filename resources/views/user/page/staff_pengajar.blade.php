@@ -28,7 +28,7 @@
                     <?php if ($dosen['foto_dosen']) : ?>
                     <img class="img-fluid" src="{{ asset($dosen['foto_dosen']) }}" alt="">
                     <?php else : ?>
-                    <img class="img-fluid" src="{{ asset('template-landing-page/img/placeholder.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('file-dosen/default-profile.png') }}" alt="">
                     <?php endif; ?>
                     <div class="team-social text-center">
                         <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ $dosen['fb'] }}"><i

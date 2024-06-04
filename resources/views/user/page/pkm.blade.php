@@ -23,9 +23,9 @@
                 <div class="card-body">
                     <p>
                         Pengabdian Masyarakat merupakan suatu media yang menghubungkan dunia pendidikan dengan
-                        Masyarakat sekitar. Politeknik Penerbangan Indonesia Curug akan memberikan kegiatan berupa
+                        Masyarakat sekitar. Politeknik Penerbangan Surabaya akan memberikan kegiatan berupa
                         pelatihan kepada masyarakat sebagai bentuk hilirisasi pengajaran beberapa matakuliah yang dapat
-                        dirasakan manfaatnya oleh Masyarakat disekitar kampus PPI Curug.
+                        dirasakan manfaatnya oleh Masyarakat disekitar kampus.
                     </p>
                 </div>
             </div>

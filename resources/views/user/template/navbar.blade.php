@@ -64,7 +64,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Akademik</a>
                 <div class="dropdown-menu bg-light m-0">
                     <a href="{{ url('landing-kurikulum') }}" class="dropdown-item">Kurikulum</a>
-                    <a href="{{ route('kalender') }}" class="dropdown-item">Kalender</a>
+                    <a href="{{ route('kalender') }}" class="dropdown-item">Kalender Akademik</a>
                     <a href="{{ route('staff-pengajar') }}" class="dropdown-item">Staff Pengajar</a>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                     <a href="{{ route('jurnal') }}" class="dropdown-item">Publikasi Ilmiah</a>
                 </div>
             </div>
-            <a href="#" class="nav-item nav-link"><i class="fas fa-download"></i> Unduh</a>
+            {{-- <a href="#" class="nav-item nav-link"><i class="fas fa-download"></i> Unduh</a> --}}
         </div>
         <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get Started<i
                 class="fa fa-arrow-right ms-3"></i></a>

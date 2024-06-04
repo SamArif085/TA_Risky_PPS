@@ -3,39 +3,39 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Semester;
+use App\Models\KegiatanProdi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-class SemesterController extends Controller
+class KegiatanProdiController extends Controller
 {
-
     public function title()
     {
-        return 'Halaman Semester';
+        return 'Halaman Kegiatan Prodi';
     }
     public function subtitle()
     {
-        return 'Add Semester';
+        return 'Add Kegiatan Prodi';
     }
     public function js()
     {
-        return asset('controller_js/admin/Semester.js');
+        // return asset('controller_js/admin/PengabdianMasyarakat.js');
     }
     public function routeName()
     {
-        return 'semester';
+        return 'kegiatan-prodi';
     }
 
     public function index()
     {
-        $data['data'] = Semester::get()->toArray();
+        $data['data'] = KegiatanProdi::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.semester.index', $data);
+        $konten = view('admin.page.master_menu.kegiatan_prodi.index', $data);
         $js = $this->js();
 
-        $put['title'] = $this->title();
+        $put['title'] = 'Halaman Kegiatan Prodi';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -44,14 +44,14 @@ class SemesterController extends Controller
 
     public function create()
     {
-        $data = [];
+        $data['data'] = KegiatanProdi::get()->toArray();
         $data['subtitle'] = $this->subtitle();
-        $data['routeName'] = $this->routeName();
         $data['judulForm'] = 'Tambah';
-        $konten = view('admin.page.master_menu.semester.form', $data);
+        $data['routeName'] = $this->routeName();
+        $konten = view('admin.page.master_menu.kegiatan_prodi.form', $data);
         $js = $this->js();
 
-        $put['title'] = $this->title();
+        $put['title'] = 'Halaman Kegiatan Prodi';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -61,11 +61,29 @@ class SemesterController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        if (isset($data['file']) && $data['file'] != null) {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $dokumen = $request->file('file');
+            $nama_file = $dokumen->getClientOriginalName();
+            $dokumen->move('file-kegiatan-prodi/', $nama_file);
+        }
+
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new Semester() : Semester::find($data['id']);
-            $insert->semester = $data['semester'];
-            $insert->catatan = $data['catatan'];
+            $insert = $data['id'] == '' ? new KegiatanProdi() : KegiatanProdi::find($data['id']);
+            $insert->nama = $data['nama'];
+
+            if (isset($data['file']) && $data['file'] != null) {
+                $insert->foto = 'file-kegiatan-prodi/' . $nama_file;
+            }
 
             $insert->save();
             DB::commit();
@@ -76,29 +94,33 @@ class SemesterController extends Controller
         }
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
-        $data['data'] = Semester::find($id);
+        $data['data'] = KegiatanProdi::get()->find($id);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.semester.form', $data);
+        $konten = view('admin.page.master_menu.kegiatan_prodi.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Semester';
+        $put['title'] = 'Halaman Kegiatan Prodi';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
         return view('admin.template.main', $put);
     }
 
-    function destroy(Request $request)
+    public function destroy(Request $request)
     {
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Semester::find($id);
+            $data = KegiatanProdi::find($id);
             $data->delete();
+
+            if (isset($data->file) && $data->file != null) {
+                unlink($data->file);
+            }
 
             DB::commit();
             return response()->json([

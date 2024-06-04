@@ -11,6 +11,7 @@ use App\Models\Fasilitas;
 use App\Models\Jurnal;
 use App\Models\ListKegiatan;
 use App\Models\KalenderAkademik;
+use App\Models\KegiatanProdi;
 use App\Models\VideoProfile;
 use App\Models\MataKuliah;
 use App\Models\Penelitian;
@@ -24,7 +25,7 @@ class LandingPageController extends Controller
     {
         $data = [];
         $data['link'] = Akreditasi::get();
-        $data['kegiatan'] = ListKegiatan::with('Foto')->get();
+        $data['kegiatan'] = KegiatanProdi::orderBy('created_at', 'desc')->take(6)->get();
         $data['dataDosen'] = Dosen::get();
         $data['fasilitas'] = Fasilitas::get();
 
