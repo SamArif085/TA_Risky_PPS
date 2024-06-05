@@ -12,6 +12,7 @@ use App\Models\Jurnal;
 use App\Models\ListKegiatan;
 use App\Models\KalenderAkademik;
 use App\Models\KegiatanProdi;
+use App\Models\LaporanTaOjt;
 use App\Models\VideoProfile;
 use App\Models\MataKuliah;
 use App\Models\Penelitian;
@@ -358,6 +359,19 @@ class LandingPageController extends Controller
         $data['title'] = 'Publikasi Ilmiah';
 
         $konten = view('user.page.jurnal', $data);
+        $put['title'] = 'Publikasi Ilmiah';
+        $put['konten'] = $konten;
+
+        return view('user.template.main', $put);
+    }
+    public function ta_ojt()
+    {
+        $data = [];
+        $data['link'] = LaporanTaOjt::with('Angkatan')->get();
+        // dd(  $data['link']);
+        $data['title'] = 'Publikasi Ilmiah';
+
+        $konten = view('user.page.laporan_ta_ojt', $data);
         $put['title'] = 'Publikasi Ilmiah';
         $put['konten'] = $konten;
 

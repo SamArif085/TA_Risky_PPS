@@ -18,6 +18,7 @@ use App\Http\Controllers\web\KegiatanProdiController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
+use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
@@ -62,6 +63,7 @@ Route::get('himpunan-taruna', [LandingPageController::class, 'himpunanTaruna'])-
 Route::get('landing-penelitian', [LandingPageController::class, 'penelitian'])->name('landing-penelitian');
 Route::get('pkm', [LandingPageController::class, 'pkm'])->name('pkm');
 Route::get('jurnal', [LandingPageController::class, 'jurnal'])->name('jurnal');
+Route::get('landing-TA-OJT', [LandingPageController::class, 'ta_ojt'])->name('landing-TA-OJT');
 
 // ?ADMIN
 // DASHBOARD
@@ -214,4 +216,11 @@ Route::get('kegiatan-prodi', [KegiatanProdiController::class, 'index'])->name('k
 Route::get('kegiatan-prodi/add', [KegiatanProdiController::class, 'create'])->name('kegiatan-prodi.add');
 Route::get('kegiatan-prodi/edit/{id}', [KegiatanProdiController::class, 'edit'])->name('kegiatan-prodi.edit');
 Route::post('kegiatan-prodi/submit', [KegiatanProdiController::class, 'store'])->name('kegiatan-prodi.submit');
+
+// LAPORAN TA & OJT
+Route::get('laporan/TA-OJT', [LaporanTAOJTController::class, 'index'])->name('laporan/TA-OJT');
+Route::get('laporan/TA-OJT/add', [LaporanTAOJTController::class, 'create'])->name('laporan/TA-OJT.add');
+Route::get('laporan/TA-OJT/edit/{id}', [LaporanTAOJTController::class, 'edit'])->name('laporan/TA-OJT.edit');
+Route::post('laporan/TA-OJT/submit', [LaporanTAOJTController::class, 'store'])->name('laporan/TA-OJT.submit');
+Route::get('/download/{filename}', [LaporanTAOJTController::class, 'download'])->name('file.download');
 

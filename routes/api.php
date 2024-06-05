@@ -14,6 +14,7 @@ use App\Http\Controllers\web\KegiatanProdiController;
 use App\Http\Controllers\web\KetarunaanDataTarunaController;
 use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
+use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
@@ -84,3 +85,5 @@ Route::post('pengabdian/masyarakat.delete', [PengabdianMasyarakatController::cla
 Route::post('publikasi/ilmiah.delete', [JurnalController::class, 'destroy'])->name('publikasi/ilmiah.delete');
 // KEGIATAN PRODI
 Route::post('kegiatan-prodi.delete', [KegiatanProdiController::class, 'destroy'])->name('kegiatan-prodi.delete');
+// LAPORAN TA & OJT
+Route::post('laporan/TA-OJT.delete', [LaporanTAOJTController::class, 'destroy'])->name('laporan/TA-OJT.delete');

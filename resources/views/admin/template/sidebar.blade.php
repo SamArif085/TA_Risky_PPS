@@ -157,8 +157,11 @@
             </a>
             <div class="collapse" id="menu5">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('penelitian') }}">Penelitian</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('laporan/TA-OJT') }}">Laporan Tugas Akhir <br> & OJT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pengabdian/masyarakat') }}">Pengabdian Kepada <br>
