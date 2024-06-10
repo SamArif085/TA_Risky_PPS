@@ -75,4 +75,55 @@ $(document).ready(function () {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var teamItems = document.querySelectorAll('.team-item .a img');
+
+    teamItems.forEach(function(img) {
+        img.addEventListener('load', function() {
+            if (this.naturalWidth > this.naturalHeight) {
+                this.classList.add('landscape');
+                this.classList.remove('portrait');
+            } else {
+                this.classList.add('portrait');
+                this.classList.remove('landscape');
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var teamItems = document.querySelectorAll('.team-item .bg-light.b');
+
+    teamItems.forEach(function(item) {
+        var textContainer = item.querySelector('h5');
+        var text = textContainer.textContent.trim();
+        var maxWidth = 20;
+        var words = text.split(' ');
+        var lines = [];
+        var currentLine = '';
+
+        words.forEach(function(word, index) {
+            if (currentLine.length + word.length <= maxWidth || index === 0) {
+                currentLine += (currentLine ? ' ' : '') + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
+        });
+
+        lines.push(currentLine);
+
+        textContainer.innerHTML = lines.join('<br>');
+    });
+});
+
+function getTextWidth(text, font) {
+    var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
+    var context = canvas.getContext('2d');
+    context.font = font;
+    var metrics = context.measureText(text);
+    return metrics.width;
+}
+
 </script>

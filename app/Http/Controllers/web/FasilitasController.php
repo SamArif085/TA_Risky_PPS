@@ -49,7 +49,7 @@ class FasilitasController extends Controller
     {
         $query = Fasilitas::query();
         if ($type == 'laboratorium') {
-            $query->where('nama', 'LIKE', '%Laboratorium%');
+            $query->where('nama', 'LIKE', '%Labolatorium%')->orWhere('nama', 'LIKE', '%Laboratorium%');
         } elseif ($type == 'kelas') {
             $query->where('nama', 'LIKE', '%Kelas%');
         } elseif ($type == 'penunjang') {

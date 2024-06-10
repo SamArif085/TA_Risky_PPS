@@ -232,7 +232,9 @@ class LandingPageController extends Controller
     public function laboratorium()
     {
         $data = [];
-        $fasilitas = Fasilitas::where('nama', 'LIKE', '%Laboratorium%')->get();
+        $fasilitas = Fasilitas::where('nama', 'LIKE', '%Labolatorium%')
+            ->orWhere('nama', 'LIKE', '%Laboratorium%')
+            ->get();
         $tampilan = $fasilitas->chunk(3);
 
         $data['tampilan'] = $tampilan;

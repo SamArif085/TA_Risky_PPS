@@ -133,12 +133,11 @@
                 <div class="team-item position-relative">
                     @if ($item->foto)
                     <div class="a">
-                        <img class="img-fluid rounded" src="{{ asset($item->foto) }}" alt="{{ $item->nama }}"
-                            style="max-height: 300px;">
+                        <img class="img-fluid rounded dynamic-img" src="{{ asset($item->foto) }}"
+                            alt="{{ $item->nama }}">
                     </div>
                     @endif
-
-                    <div class="bg-light text-center p-4">
+                    <div class="bg-light text-center p-4 b">
                         <h5 class="mt-2">{{ $item->nama }}</h5>
                     </div>
                 </div>
@@ -193,29 +192,34 @@
 </div>
 <!-- Team End -->
 
-<!-- Testimonial Start -->
+<!-- Team Start -->
 <div class="container-xxl py-6">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <h5 class="text-primary text-uppercase mb-2">FASILITAS PRODI TNU</h5>
             <h2 class="display-6 mb-4">Beberapa Fasilitas Sarana dan Prasarana Penunjang</h2>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="owl-carousel testimonial-carousel">
-                    @foreach ($fasilitas as $item)
-                    <div class="testimonial-item text-center">
-                        <div class="position-relative mb-5">
-                            <img class="img-fluid mx-auto" src="{{ asset($item->foto) }}" alt="{{ $item->nama }}">
-                            <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
-                                style="width: 60px; height: 60px;">
-                            </div>
+        <div class="row g-0 team-items">
+            <div class="owl-carousel owl-theme custom-owl-grid">
+                @foreach ($fasilitas as $key => $dosen)
+                <div class="item wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item position-relative">
+                        <div class="position-relative">
+                            @if ($dosen->foto)
+                            <img class="img-fluid rounded custom-img" src="{{ asset($dosen->foto) }}"
+                                alt="{{ $dosen->nama }}">
+                            @else
+                            <img class="img-fluid rounded custom-img"
+                                src="{{ asset('file-dosen/default-profile.png') }}" alt="{{ $dosen->nama }}">
+                            @endif
                         </div>
-                        <p class="fs-4">{{ $item->nama }}</p>
-                        <p class="fs-5">{{ $item->lokasi }}</p>
+                        <div class="bg-light text-center p-4">
+                            <h5 class="mt-2">{{ $dosen->nama }}</h5>
+                            <span>{{ $dosen->lokasi }}</span>
+                        </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

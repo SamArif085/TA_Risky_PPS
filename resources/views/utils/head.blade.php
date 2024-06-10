@@ -46,9 +46,29 @@
 
     .team-item .a img {
         width: 100%;
-        height: 200px;
         object-fit: cover;
-        border-radius: 8px;
+        max-height: 250px;
+    }
+
+    .landscape {
+        aspect-ratio: 329 / 210;
+        max-height: 200px;
+    }
+
+    .portrait {
+        aspect-ratio: 3 / 4;
+        max-height: 200px;
+    }
+
+    .team-item .bg-light.text-center.b {
+        max-height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .team-item .bg-light.text-center.b h5 {
+        margin: 0;
     }
 
     .image-container {
@@ -93,5 +113,48 @@
     .welcome-text .btn {
         font-size: 1em;
         padding: 0.75em 1.5em;
+    }
+
+    .custom-owl-grid .owl-stage {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .custom-owl-grid .owl-item {
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+    }
+
+    .custom-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 329 / 210;
+        object-fit: cover;
+        max-height: calc((210mm / 329mm) * 100%);
+    }
+
+    @media (max-width: 768px) {
+        .custom-owl-grid .owl-item {
+            width: calc(50% - 20px);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .custom-owl-grid .owl-item {
+            width: 100%;
+        }
+    }
+
+    @media print {
+        @page {
+            size: 329mm 210mm;
+            margin: 10mm;
+        }
+
+        .custom-img {
+            width: 100%;
+            height: auto;
+        }
     }
 </style>

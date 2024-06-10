@@ -34,10 +34,10 @@
                         <label for="Kategori">Kategori</label>
                         <select class="form-control" name="kategori" id="kategori" required>
                             <option value="" {{ empty($data) ? 'selected' : '' }}>Pilih</option>
-                            <option value="1" {{ (!empty($data) && $data->kategori == 1) ? 'selected' : '' }}>Laporan
-                                Tugas Akhir</option>
-                            <option value="2" {{ (!empty($data) && $data->kategori == 2) ? 'selected' : '' }}>Laporan
-                                OJT</option>
+                            <option value="1" {{ (!empty($data) && isset($data['kategori']) && $data['kategori']==1)
+                                ? 'selected' : '' }}>Laporan Tugas Akhir</option>
+                            <option value="2" {{ (!empty($data) && isset($data['kategori']) && $data['kategori']==2)
+                                ? 'selected' : '' }}>Laporan OJT</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
@@ -51,10 +51,9 @@
                             required>{{ $judulForm == 'Tambah' ? '' : $data->judul }}</textarea>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="Tahun">Tahun</label>
-                        <select class="form-control" id="year" name="year" required>
-                            <option value="" selected>Pilih</option>
-                        </select>
+                        <label for="judul">Tahun</label>
+                        <input type="text" class="form-control" id="year" placeholder="Nama" name="year"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->tahun }}" required>
                     </div>
                     <div class="form-group mb-3">
                         <label>File upload</label>
@@ -73,7 +72,7 @@
 </div>
 
 @section('script')
-<script>
+{{-- <script>
     const yearDropdown = document.getElementById('year');
     const currentYear = new Date().getFullYear();
     for (let year = 2000; year <= currentYear; year++) {
@@ -87,5 +86,5 @@
     if (selectedYear !== '') {
         yearDropdown.value = selectedYear;
     }
-</script>
+</script> --}}
 @endsection
