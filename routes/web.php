@@ -22,10 +22,13 @@ use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
+use App\Http\Controllers\web\PengambilanMkDosController;
+use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
 use App\Http\Controllers\web\VideoProfileController;
+use App\Models\Presensi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -217,10 +220,27 @@ Route::get('kegiatan-prodi/add', [KegiatanProdiController::class, 'create'])->na
 Route::get('kegiatan-prodi/edit/{id}', [KegiatanProdiController::class, 'edit'])->name('kegiatan-prodi.edit');
 Route::post('kegiatan-prodi/submit', [KegiatanProdiController::class, 'store'])->name('kegiatan-prodi.submit');
 
-// LAPORAN TA & OJT
+// LAPORAN TA & OJT`
 Route::get('laporan/TA-OJT', [LaporanTAOJTController::class, 'index'])->name('laporan/TA-OJT');
 Route::get('laporan/TA-OJT/add', [LaporanTAOJTController::class, 'create'])->name('laporan/TA-OJT.add');
 Route::get('laporan/TA-OJT/edit/{id}', [LaporanTAOJTController::class, 'edit'])->name('laporan/TA-OJT.edit');
 Route::post('laporan/TA-OJT/submit', [LaporanTAOJTController::class, 'store'])->name('laporan/TA-OJT.submit');
 Route::get('/download/{filename}', [LaporanTAOJTController::class, 'download'])->name('file.download');
 
+// pengambilan_mata_kuliah_mhs
+Route::get('pengambilan_mata_kuliah_mhs', [PengambilanMkMhsController::class, 'index'])->name('pengambilan_mata_kuliah_mhs');
+Route::get('pengambilan_mata_kuliah_mhs/add', [PengambilanMkMhsController::class, 'create'])->name('pengambilan_mata_kuliah_mhs.add');
+Route::get('pengambilan_mata_kuliah_mhs/edit/{id}', [PengambilanMkMhsController::class, 'edit'])->name('pengambilan_mata_kuliah_mhs.edit');
+Route::post('pengambilan_mata_kuliah_mhs/submit', [PengambilanMkMhsController::class, 'store'])->name('pengambilan_mata_kuliah_mhs.submit');
+
+// pengambilan_mata_kuliah_dos
+Route::get('pengambilan_mata_kuliah_dos', [PengambilanMkDosController::class, 'index'])->name('pengambilan_mata_kuliah_dos');
+Route::get('pengambilan_mata_kuliah_dos/add', [PengambilanMkDosController::class, 'create'])->name('pengambilan_mata_kuliah_dos.add');
+Route::get('pengambilan_mata_kuliah_dos/edit/{id}', [PengambilanMkDosController::class, 'edit'])->name('pengambilan_mata_kuliah_dos.edit');
+Route::post('pengambilan_mata_kuliah_dos/submit', [PengambilanMkDosController::class, 'store'])->name('pengambilan_mata_kuliah_dos.submit');
+
+// presensi
+Route::get('presensi', [Presensi::class, 'index'])->name('presensi');
+Route::get('presensi/add', [Presensi::class, 'create'])->name('presensi.add');
+Route::get('presensi/edit/{id}', [Presensi::class, 'edit'])->name('presensi.edit');
+Route::post('presensi/submit', [Presensi::class, 'store'])->name('presensi.submit');
