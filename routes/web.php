@@ -20,10 +20,12 @@ use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\MatkulMhsController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
+use App\Http\Controllers\web\PresensiController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -240,7 +242,17 @@ Route::get('pengambilan_mata_kuliah_dos/edit/{id}', [PengambilanMkDosController:
 Route::post('pengambilan_mata_kuliah_dos/submit', [PengambilanMkDosController::class, 'store'])->name('pengambilan_mata_kuliah_dos.submit');
 
 // presensi
-Route::get('presensi', [Presensi::class, 'index'])->name('presensi');
-Route::get('presensi/add', [Presensi::class, 'create'])->name('presensi.add');
-Route::get('presensi/edit/{id}', [Presensi::class, 'edit'])->name('presensi.edit');
-Route::post('presensi/submit', [Presensi::class, 'store'])->name('presensi.submit');
+Route::get('presensi', [PresensiController::class, 'index'])->name('presensi');
+Route::get('presensi/add', [PresensiController::class, 'create'])->name('presensi.add');
+Route::get('presensi/edit/{id}', [PresensiController::class, 'edit'])->name('presensi.edit');
+Route::post('presensi/submit', [PresensiController::class, 'store'])->name('presensi.submit');
+
+// MATKUL MHS
+Route::get('matkul_mhs/{id_user}', [MatkulMhsController::class, 'index'])->name('matkul_mhs');
+
+// presensi Mhs
+Route::get('presensi_mhs/{kode_matkul}/{angkatan}/{semester}', [PresensiController::class, 'presensi_mhs'])->name('presensi_mhs');
+
+Route::get('download-barcode/{id}', [SettingUserController::class, 'printBarcode'])->middleware('auth');
+// riwayat-presensi
+Route::get('riwayat-presensi/{id_user}', [PresensiController::class, 'riwayatpresensi'])->name('riwayat-presensi');

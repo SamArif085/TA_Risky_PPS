@@ -19,27 +19,13 @@
                     <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                     <div class="form-group mb-3">
                         <label for="Semester">Semester</label>
-                        <select class="form-control" name="id_semester" id="id_semester">
-                            <option value="">Pilih semester</option>
-                            @foreach ($semester as $item)
-                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->id_semester ==
-                                $item['id']? 'selected' : '' ) }}>
-                                {{ $item['semester'] }}
-                            </option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control" id="semester" placeholder="Semester" name="semester"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->semester }}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="Angkatan">Angkatan</label>
-                        <select class="form-control" name="angkatan" id="angkatan">
-                            <option value="">Pilih angkatan</option>
-                            @foreach ($angkatan as $item)
-                            <option value="{{ $item['angkatan'] }}" {{ $judulForm=='Tambah' ? '' : ($data->angkatan ==
-                                $item['angkatan']? 'selected' : '' ) }}>
-                                {{ $item['angkatan'] }}
-                            </option>
-                            @endforeach
-                        </select>
+                        <label for="Catatan">Catatan</label>
+                        <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" rows="6"
+                            required>{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <a href="{{ route($routeName . '') }}" class="btn btn-light">Cancel</a>

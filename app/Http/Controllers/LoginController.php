@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Angkatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,7 @@ class LoginController extends Controller
     public function registrasi()
     {
         $data = [];
+        $data['angkatan'] = Angkatan::get();
         $konten = view('admin.page.auth.registrasi', $data);
         return $konten;
     }
@@ -69,6 +71,8 @@ class LoginController extends Controller
         $request->validate([
             'username' => 'required',
             'password' => 'required',
+            'angkatan' => 'required',
+            'nama_lengkap' => 'required',
         ]);
 
         // jika ada data username / password yang sama di table user maka kembalikan url dan berikan alert
@@ -77,13 +81,16 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'Username sudah ada');
         }
 
-
+        $kode = mt_rand(100000, 999999);
         DB::beginTransaction();
         try {
             $push =  new User();
+            $push->nama_lengkap = $data['nama_lengkap'];
+            $push->kode_user = $kode;
+            $push->angkatan = $data['angkatan'];
             $push->username = $data['username'];
             $push->password = bcrypt($data['password']);
-            $push->role = 1;
+            $push->role = 3;
             $push->save();
             DB::commit();
 

@@ -6,6 +6,32 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        @if (Auth::user()->role == 3)
+        <p class="mx-2">List Menu</p>
+        <li class="nav-item mb-3">
+            <a class="nav-link" data-toggle="collapse" href="#menu-master" aria-expanded="false"
+                aria-controls="menu-master">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Akses</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu-master">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('matkul_mhs',Auth::user()->id) }}">
+                            <span class="menu-title">Matkul</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('riwayat-presensi', Auth::user()->id) }}">
+                            <span class="menu-title">Riwayat Presensi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        @endif
+        @if (Auth::user()->role == 1)
         <p class="mx-2">Master</p>
         <li class="nav-item mb-3">
             <a class="nav-link" data-toggle="collapse" href="#menu-master" aria-expanded="false"
@@ -173,5 +199,47 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu5" aria-expanded="false" aria-controls="menu5">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Research</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu5">
+                <ul class="nav flex-column sub-menu">
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('penelitian') }}">Penelitian</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('laporan/TA-OJT') }}">Laporan Tugas Akhir <br> & OJT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengabdian/masyarakat') }}">Pengabdian Kepada <br>
+                            Masyarakat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('publikasi/ilmiah') }}">Publikasi Ilmiah</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#menu6" aria-expanded="false" aria-controls="menu6">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Setting Matkul</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu6">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengambilan_mata_kuliah_mhs') }}">Untuk Mahasiswa </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengambilan_mata_kuliah_dos') }}">Untuk Dosen</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        @endif
     </ul>
 </nav>

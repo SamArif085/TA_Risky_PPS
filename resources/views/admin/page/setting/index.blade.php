@@ -34,6 +34,8 @@
                             </div>
                             <div class="mt-3">
                                 <button type="submit" class="btn btn-primary mr-2">Update</button>
+                                <a href="{{ url('download-barcode/'.Auth::user()->id) }}" class="btn btn-success">Cetak
+                                    Barcode</a>
                             </div>
                         </form>
                     </div>

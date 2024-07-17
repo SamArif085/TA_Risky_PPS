@@ -5,41 +5,44 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
 use App\Models\LaporanTaOjt;
+use App\Models\Matkul;
 use App\Models\PengambilanMkMhs;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PengambilanMkDosController extends Controller
+class MatkulMhsController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Pengambilan Matakuliah Dosen';
+        return 'Halaman Matkul';
     }
     public function subtitle()
     {
-        return 'Add Pengambilan Matakuliah Dosen';
+        return 'Add Matkul';
     }
     public function js()
     {
-        // return asset('controller_js/admin/Pengambilan Matakuliah Dosen.js');
+        // return asset('controller_js/admin/Matkul.js');
     }
     public function routeName()
     {
-        return 'pengambilan_mata_kuliah_mhs';
+        return 'matkul_mhs';
     }
 
-    public function index()
+    public function index($id_user)
     {
-        $data['data'] = PengambilanMkMhs::get();
-        // dd($data['data']);
+        $data['data'] = PengambilanMkMhs::with(['matkul', 'semester'])->get()->toArray();
+        $tanggal = date('Y-m-d');
+        $data['riwayat_absen'] =  Presensi::with(['matkul', 'user'])->where('id_user', $id_user)->where('tanggal',$tanggal)->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.pengambilan_mk_dos.index', $data);
+        $konten = view('admin.page.matkul_mhs.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Matkul';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -59,10 +62,10 @@ class PengambilanMkDosController extends Controller
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.pengambilan_mk_dos.form', $data);
+        $konten = view('admin.page.matkul_mhs.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Matkul';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -115,10 +118,10 @@ class PengambilanMkDosController extends Controller
 
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.pengambilan_mk_dos.form', $data);
+        $konten = view('admin.page.matkul_mhs.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Matkul';
         $put['konten'] = $konten;
         $put['js'] = $js;
 

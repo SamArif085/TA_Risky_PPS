@@ -30,6 +30,21 @@
                             <form class="pt-3" action="{{ url('registrasiStore') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="nama_lengkap"
+                                        placeholder="Nama lengkap" name="nama_lengkap">
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" name="angkatan" id="angkatan">
+                                        <option value="">Pilih Angkatan</option>
+                                        @foreach ($angkatan as $item)
+                                        <option value="{{ $item->angkatan }}">{{ $item->angkatan . ' / '. $item->tahun}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1"
                                         placeholder="Username" name="username">
                                 </div>
@@ -62,22 +77,22 @@
 
 
 
-@if (session()->has('success'))
+    @if (session()->has('success'))
     <script>
         toastr.success(`{{ session('success') }}`);
     </script>
-@endif
-@if (session()->has('error'))
+    @endif
+    @if (session()->has('error'))
     <script>
         toastr.error(`{{ session('error') }}`);
         console.log(`{{ session('error') }}`);
     </script>
-@endif
-@if (count($errors) > 0)
+    @endif
+    @if (count($errors) > 0)
     <script>
         toastr.error(`{{ $errors->first() }}`);
     </script>
-@endif
+    @endif
     <!-- endinject -->
 </body>
 

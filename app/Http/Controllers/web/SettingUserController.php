@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
+use Milon\Barcode\DNS2D;
 
 class SettingUserController extends Controller
 {
@@ -61,5 +63,36 @@ class SettingUserController extends Controller
             DB::rollBack();
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
+    }
+
+    public function printBarcode(String $id)
+    {
+        // Membuat objek barcode
+        $barcode = new DNS2D();
+
+        // Mendapatkan user berdasarkan ID
+        $user = User::find($id);
+        if (!$user) {
+            // Handle jika user tidak ditemukan
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
+        }
+
+        // Mendapatkan data barcode dalam format PNG base64
+        $barcodeData = $barcode->getBarcodePNG($user->kode_user, "QRCODE");
+
+        // Directory path
+        $directory = public_path('barcode');
+
+        // Check if the directory exists, if not create it
+        if (!File::isDirectory($directory)) {
+            File::makeDirectory($directory, 0755, true, true);
+        }
+
+        // Simpan gambar barcode sebagai file PNG
+        $fileName = $directory . '/QR-' . $user->kode_user . '.png';
+        file_put_contents($fileName, base64_decode($barcodeData));
+
+        // Mengembalikan response untuk mendownload gambar PNG
+        return response()->download($fileName);
     }
 }

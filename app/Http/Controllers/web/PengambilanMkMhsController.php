@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
 use App\Models\LaporanTaOjt;
 use App\Models\PengambilanMkMhs;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -15,15 +16,15 @@ class PengambilanMkMhsController extends Controller
 
     public function title()
     {
-        return 'Halaman Pengambilan Matakuliah';
+        return 'Halaman Pengambilan Matakuliah Mahasiswa';
     }
     public function subtitle()
     {
-        return 'Add Pengambilan Matakuliah';
+        return 'Add Pengambilan Matakuliah Mahasiswa';
     }
     public function js()
     {
-        // return asset('controller_js/admin/Pengambilan Matakuliah.js');
+        // return asset('controller_js/admin/Pengambilan Matakuliah Mahasiswa.js');
     }
     public function routeName()
     {
@@ -32,37 +33,31 @@ class PengambilanMkMhsController extends Controller
 
     public function index()
     {
-        $data['data'] = PengambilanMkMhs::get();
+        $data['data'] = PengambilanMkMhs::with(['Semester'])->get();
         // dd($data['data']);
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.pengambilan_mk_mhs.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Mahasiswa';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
         return view('admin.template.main', $put);
     }
 
-    public function download($filename)
-    {
-        $filePath = 'file-laporan-ta-ojt/' . $filename;
-        return response()->download(public_path($filePath));
-    }
-
     public function create()
     {
-        $data['data'] = LaporanTaOjt::get()->toArray();
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
+        $data['angkatan'] = Angkatan::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.pengambilan_mk_mhs.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Mahasiswa';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -72,32 +67,13 @@ class PengambilanMkMhsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        if (isset($data['file']) && $data['file'] != null) {
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|mimes:doc,docx,pdf|max:3048',
-            ]);
+        // dd($data);
 
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $dokumen = $request->file('file');
-            $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-laporan-ta-ojt/', $nama_file);
-        }
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new LaporanTaOjt() : LaporanTaOjt::find($data['id']);
+            $insert = $data['id'] == null ? new PengambilanMkMhs() : PengambilanMkMhs::find($data['id']);
+            $insert->id_semester = $data['id_semester'];
             $insert->angkatan = $data['angkatan'];
-            $insert->kategori = $data['kategori'];
-            $insert->nama = $data['nama'];
-            $insert->judul = $data['judul'];
-            $insert->tahun = $data['year'];
-
-            if (isset($data['file']) && $data['file'] != null) {
-                $insert->file = 'file-laporan-ta-ojt/' . $nama_file;
-            }
-
             $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
@@ -109,8 +85,9 @@ class PengambilanMkMhsController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = LaporanTaOjt::get()->find($id);
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['data'] = PengambilanMkMhs::get()->find($id);
+        $data['semester'] = Semester::get()->toArray();
+        $data['angkatan'] = Angkatan::get()->toArray();
         $data['subtitle'] = $this->subtitle();
 
         $data['judulForm'] = 'Edit';
@@ -118,7 +95,7 @@ class PengambilanMkMhsController extends Controller
         $konten = view('admin.page.pengambilan_mk_mhs.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Mahasiswa';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
