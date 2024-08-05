@@ -186,10 +186,7 @@ class PresensiController extends Controller
             'Alfa'
         ];
 
-
-
-
-        $konten = view('admin.page.presensi.form', $data);
+        $konten = view('admin.page.presensi.mhs.form', $data);
 
         $js = $this->js();
 

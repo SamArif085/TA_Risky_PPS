@@ -33,7 +33,10 @@
                                     <input type="text" class="form-control form-control-lg" id="nama_lengkap"
                                         placeholder="Nama lengkap" name="nama_lengkap">
                                 </div>
-
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="no_induk"
+                                        placeholder="Nomer Induk Taruna" name="no_induk">
+                                </div>
                                 <div class="form-group">
                                     <select class="form-control" name="angkatan" id="angkatan">
                                         <option value="">Pilih Angkatan</option>

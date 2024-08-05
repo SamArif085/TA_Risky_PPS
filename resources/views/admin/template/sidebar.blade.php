@@ -31,6 +31,31 @@
             </div>
         </li>
         @endif
+        @if (Auth::user()->role == 2)
+        <p class="mx-2">List Menu</p>
+        <li class="nav-item mb-3">
+            <a class="nav-link" data-toggle="collapse" href="#menu-master" aria-expanded="false"
+                aria-controls="menu-master">
+                <i class="ti-palette menu-icon"></i>
+                <span class="menu-title">Akses</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="menu-master">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('presensi-dos') }}">
+                            <span class="menu-title">Matkul</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('riwayat-presensi', Auth::user()->id) }}">
+                            <span class="menu-title">Riwayat Presensi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        @endif
         @if (Auth::user()->role == 1)
         <p class="mx-2">Master</p>
         <li class="nav-item mb-3">
@@ -172,30 +197,6 @@
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Himpunan Taruna</a>
                     </li> --}}
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#menu5" aria-expanded="false" aria-controls="menu5">
-                <i class="ti-palette menu-icon"></i>
-                <span class="menu-title">Research</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="menu5">
-                <ul class="nav flex-column sub-menu">
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('penelitian') }}">Penelitian</a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('laporan/TA-OJT') }}">Laporan Tugas Akhir <br> & OJT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pengabdian/masyarakat') }}">Pengabdian Kepada <br>
-                            Masyarakat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('publikasi/ilmiah') }}">Publikasi Ilmiah</a>
-                    </li>
                 </ul>
             </div>
         </li>

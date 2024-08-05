@@ -126,4 +126,15 @@ function getTextWidth(text, font) {
     return metrics.width;
 }
 
+    document.getElementById("readMoreBtn").addEventListener("click", function() {
+        var moreText = document.getElementById("moreText");
+        if (moreText.style.display === "none") {
+            moreText.style.display = "block";
+            this.textContent = "Show Less";
+        } else {
+            moreText.style.display = "none";
+            this.textContent = "Read More";
+        }
+    });
+
 </script>

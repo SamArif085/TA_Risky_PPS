@@ -22,9 +22,17 @@
                         <input type="text" class="form-control" id="nama_dosen" placeholder="Nama Dosen"
                             name="nama_dosen" value="{{ $judulForm == 'Tambah' ? '' : $data->nama_dosen }}">
                     </div>
+                    @if ($judulForm == 'Tambah')
+                    <div class="form-group mb-3">
+                        <label for="NIP Dosen">NIP Dosen</label>
+                        <input type="text" class="form-control" id="no_induk" placeholder="NIP Dosen" name="no_induk"
+                            value="{{ $judulForm == 'Tambah' ? '' : $data->no_induk }}">
+                    </div>
+                    @endif
                     <div class="form-group mb-3">
                         <label for="Instagram">Jenis Dosen</label>
-                        <select name="jenis_dosen" id="jenis_dosen" class="select2 form-control" data-allow-clear="true">
+                        <select name="jenis_dosen" id="jenis_dosen" class="select2 form-control"
+                            data-allow-clear="true">
                             <option value="">Pilih Jenis</option>
                             @foreach ($jenisDosen as $item)
                             <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' :

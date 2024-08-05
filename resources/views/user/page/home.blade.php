@@ -111,7 +111,14 @@
                             menjadi program studi vokasi penerbangan yang unggul dan berdaya saing global dibidang
                             teknologi rekayasa navigasi udara yang diakui secara nasional dan internasional pada tahun
                             2027.</p>
-                        <a class="btn btn-primary py-3 px-5" href="">Read More</a>
+                        <div id="moreText" style="display: none;">
+                            <h5 class="mb-3">Profil lulusan</h5>
+                            <p>Perekayasa Teknologi Navigasi Udara (Air Navigation Technology Engineers)</p>
+                            <p>Manajer</p>
+                            <p>Inspektur Navigasi Penerbangan</p>
+                            <p>Pengajar/Instruktur Penerbangan</p>
+                        </div>
+                        <a id="readMoreBtn" class="btn btn-primary py-3 px-5">Read More</a>
                     </div>
                 </div>
             </div>

@@ -26,6 +26,7 @@ use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\PresensiController;
+use App\Http\Controllers\web\PresensiDosenController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -256,3 +257,10 @@ Route::get('presensi_mhs/{kode_matkul}/{angkatan}/{semester}', [PresensiControll
 Route::get('download-barcode/{id}', [SettingUserController::class, 'printBarcode'])->middleware('auth');
 // riwayat-presensi
 Route::get('riwayat-presensi/{id_user}', [PresensiController::class, 'riwayatpresensi'])->name('riwayat-presensi');
+
+
+// presensi
+Route::get('presensi-dos/', [PresensiDosenController::class, 'index'])->name('presensi-dos');
+Route::get('presensi-dos/add', [PresensiDosenController::class, 'create'])->name('presensi-dos.add');
+Route::get('presensi-dos/edit/{id}', [PresensiDosenController::class, 'edit'])->name('presensi-dos.edit');
+Route::post('presensi-dos/submit', [PresensiDosenController::class, 'store'])->name('presensi-dos.submit');

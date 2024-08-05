@@ -4,22 +4,22 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
-use App\Models\LaporanTaOjt;
-use App\Models\PengambilanMkMhs;
+use App\Models\MataKuliah;
+use App\Models\PengambilanMkDos;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class PengambilanMkDosController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Pengambilan Matakuliah Dosen';
+        return 'Halaman Pengambilan Matakuliah Dosen Pengajar';
     }
     public function subtitle()
     {
-        return 'Add Pengambilan Matakuliah Dosen';
+        return 'Add Pengambilan Matakuliah Dosen Pengajar';
     }
     public function js()
     {
@@ -27,19 +27,19 @@ class PengambilanMkDosController extends Controller
     }
     public function routeName()
     {
-        return 'pengambilan_mata_kuliah_mhs';
+        return 'pengambilan_mata_kuliah_dos';
     }
 
     public function index()
     {
-        $data['data'] = PengambilanMkMhs::get();
-        // dd($data['data']);
+        $data['data'] = PengambilanMkDos::with('Dosen', 'KodeMatkul')->get();
+        // dd($data);
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.pengambilan_mk_dos.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen Pengajar';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -54,15 +54,15 @@ class PengambilanMkDosController extends Controller
 
     public function create()
     {
-        $data['data'] = LaporanTaOjt::get()->toArray();
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['dosen'] = User::where('role', 2)->get()->toArray();
+        $data['matakuliah'] = Matakuliah::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.pengambilan_mk_dos.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen Pengajar';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -72,32 +72,13 @@ class PengambilanMkDosController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        if (isset($data['file']) && $data['file'] != null) {
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|mimes:doc,docx,pdf|max:3048',
-            ]);
+        // dd($data);
 
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $dokumen = $request->file('file');
-            $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-laporan-ta-ojt/', $nama_file);
-        }
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new LaporanTaOjt() : LaporanTaOjt::find($data['id']);
-            $insert->angkatan = $data['angkatan'];
-            $insert->kategori = $data['kategori'];
-            $insert->nama = $data['nama'];
-            $insert->judul = $data['judul'];
-            $insert->tahun = $data['year'];
-
-            if (isset($data['file']) && $data['file'] != null) {
-                $insert->file = 'file-laporan-ta-ojt/' . $nama_file;
-            }
-
+            $insert = $data['id'] == null ? new PengambilanMkDos() : PengambilanMkDos::find($data['id']);
+            $insert->id_user = $data['id_user'];
+            $insert->kode_matkul = $data['kode_matkul'];
             $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
@@ -118,7 +99,7 @@ class PengambilanMkDosController extends Controller
         $konten = view('admin.page.pengambilan_mk_dos.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen';
+        $put['title'] = 'Halaman Pengambilan Matakuliah Dosen Pengajar';
         $put['konten'] = $konten;
         $put['js'] = $js;
 

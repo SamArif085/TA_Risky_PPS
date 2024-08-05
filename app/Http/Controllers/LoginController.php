@@ -73,6 +73,7 @@ class LoginController extends Controller
             'password' => 'required',
             'angkatan' => 'required',
             'nama_lengkap' => 'required',
+            'no_induk' => 'required',
         ]);
 
         // jika ada data username / password yang sama di table user maka kembalikan url dan berikan alert
@@ -86,6 +87,7 @@ class LoginController extends Controller
         try {
             $push =  new User();
             $push->nama_lengkap = $data['nama_lengkap'];
+            $push->no_induk = $data['no_induk'];
             $push->kode_user = $kode;
             $push->angkatan = $data['angkatan'];
             $push->username = $data['username'];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use App\Models\JenisDosen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -90,12 +91,24 @@ class DosenController extends Controller
             $insert->fb = $data['fb'];
             $insert->twitter = $data['twitter'];
             $insert->ig = $data['ig'];
-
             if (isset($data['file']) && $data['file'] != null) {
                 $insert->foto_dosen = 'file-dosen/' . $nama_file;
             }
-
+            if (isset($data['no_induk'])) {
+                $insert->no_induk = $data['no_induk'];
+            }
             $insert->save();
+            if (isset($data['no_induk'])) {
+                $user = User::updateOrCreate(
+                    ['no_induk' => $data['no_induk']],
+                    [
+                        'username' => $data['no_induk'],
+                        'role' => '2',
+                        'nama_lengkap' => $data['nama_dosen'],
+                        'password' => bcrypt($data['no_induk']),
+                    ]
+                );
+            }
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {

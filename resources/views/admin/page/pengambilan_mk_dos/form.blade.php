@@ -18,14 +18,28 @@
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                     <div class="form-group mb-3">
-                        <label for="Semester">Semester</label>
-                        <input type="text" class="form-control" id="semester" placeholder="Semester" name="semester"
-                            value="{{ $judulForm == 'Tambah' ? '' : $data->semester }}">
+                        <label for="Angkatan">Dosen Pengajar</label>
+                        <select class="form-control" name="id_user" id="id_user">
+                            <option value="">Pilih Dosen</option>
+                            @foreach ($dosen as $item)
+                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->id_user ==
+                                $item['id']? 'selected' : '' ) }}>
+                                {{ $item['nama_lengkap'] }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="Catatan">Catatan</label>
-                        <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" rows="6"
-                            required>{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
+                        <label for="Semester">Mata Kuliah</label>
+                        <select class="form-control" name="kode_matkul" id="kode_matkul">
+                            <option value="">Pilih Mata Kuliah</option>
+                            @foreach ($matakuliah as $item)
+                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->kode_matkul ==
+                                $item['id']? 'selected' : '' ) }}>
+                                {{ $item['kode'] }} - {{ $item['mata_kuliah'] }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <a href="{{ route($routeName . '') }}" class="btn btn-light">Cancel</a>
