@@ -4,6 +4,8 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
+use App\Models\MataKuliah;
+use App\Models\Semester;
 use App\Models\UploadPenilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ class UploadPenilaianController extends Controller
 
     public function index()
     {
-        $data['data'] = UploadPenilaian::with(['AngkatanMhs'])->get()->toArray();
+        $data['data'] = UploadPenilaian::with(['AngkatanMhs', 'Semester', 'KodeMatkul'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.upload_penilaian.index', $data);
@@ -48,6 +50,8 @@ class UploadPenilaianController extends Controller
     {
         $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
         $data['angkatan'] = Angkatan::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
+        $data['matkul'] = MataKuliah::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
@@ -86,6 +90,8 @@ class UploadPenilaianController extends Controller
         try {
             $insert = $data['id'] == '' ? new UploadPenilaian() : UploadPenilaian::find($data['id']);
             $insert->angkatan = $data['angkatan'];
+            $insert->semester = $data['semester'];
+            $insert->kode_matkul = $data['matkul'];
             $insert->tipe = $data['tipe'];
             if (isset($data['file']) && $data['file'] != null) {
                 $insert->file = 'file-penilaian/' . $nama_file;
@@ -107,11 +113,13 @@ class UploadPenilaianController extends Controller
     {
         $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
         $data['angkatan'] = Angkatan::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
+        $data['matkul'] = MataKuliah::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
 
-        $data['data'] = UploadPenilaian::with(['AngkatanMhs'])->find($id);
+        $data['data'] = UploadPenilaian::with(['AngkatanMhs', 'KodeMatkul', 'KodeMatkul'])->find($id);
 
         $konten = view('admin.page.upload_penilaian.form', $data);
         $js = $this->js();

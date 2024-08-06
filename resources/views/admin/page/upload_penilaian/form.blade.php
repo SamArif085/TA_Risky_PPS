@@ -18,6 +18,35 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group mb-3">
+                                <label for="semester">Semester</label>
+                                <select class="form-control" name="semester" id="semester">
+                                    <option value="">Pilih </option>
+                                    @foreach ($semester as $item)
+                                    <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->semester ==
+                                        $item['id']? 'selected' : '' ) }}>
+                                        {{ $item['semester'] }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mb-3">
+                                <label for="matkul">Matkul</label>
+                                <select class="form-control" name="matkul" id="matkul">
+                                    <option value="">Pilih </option>
+                                    @foreach ($matkul as $item)
+                                    <option value="{{ $item['kode'] }}" {{ $judulForm=='Tambah' ? '' : ($data->kode_matkul
+                                        ==
+                                        $item['kode']? 'selected' : '' ) }}>
+                                        {{ $item['kode'] }} - {{ $item['mata_kuliah'] }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mb-3">
                                 <input type="hidden" name="id" id="id"
                                     value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                                 <label for="angkatan">Angkatan</label>
