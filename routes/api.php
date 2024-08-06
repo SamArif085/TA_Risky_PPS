@@ -16,6 +16,7 @@ use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\ModulMateriDosenController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\PengambilanMkDosController;
@@ -24,7 +25,9 @@ use App\Http\Controllers\web\PresensiController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\TahunKegiatanController;
+use App\Http\Controllers\web\UploadPenilaianController;
 use App\Http\Controllers\web\VideoProfileController;
+use App\Models\ModulMateriDosen;
 use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -99,3 +102,7 @@ Route::post('pengambilan_mata_kuliah_dos.delete', [PengambilanMkDosController::c
 Route::post('presensi.delete', [PresensiController::class, 'destroy'])->name('presensi.delete');
 // search_data_mhs
 Route::post('search_data_mhs.cari', [PresensiController::class, 'search_data_mhs'])->name('search_data_mhs.cari');
+// modul_materi_dosen
+Route::post('modul_materi.delete', [ModulMateriDosenController::class, 'destroy'])->name('modul_materi.delete');
+// upload_penilaian_dosen
+Route::post('upload_penilaian.delete', [UploadPenilaianController::class, 'destroy'])->name('upload_penilaian.delete');

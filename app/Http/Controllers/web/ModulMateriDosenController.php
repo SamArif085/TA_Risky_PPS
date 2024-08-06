@@ -3,42 +3,42 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dosen;
-use App\Models\JenisDosen;
-use App\Models\User;
+use App\Models\MataKuliah;
+use App\Models\ModulMateriDosen;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class DosenController extends Controller
+class ModulMateriDosenController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Dosen';
+        return 'Halaman Modul Materi ';
     }
     public function subtitle()
     {
-        return 'Add Dosen';
+        return 'Add Modul Materi ';
     }
     public function js()
     {
-        return asset('controller_js/admin/Dosen.js');
+        // return asset('controller_js/admin/Dosen.js');
     }
     public function routeName()
     {
-        return 'dosen';
+        return 'modul_materi';
     }
 
     public function index()
     {
-        $data['data'] = Dosen::with(['JenisDosen'])->get()->toArray();
+        $data['data'] = ModulMateriDosen::with(['KodeMatkulDosen'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.index', $data);
+        $konten = view('admin.page.modul_materi.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Modul Materi ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -47,14 +47,15 @@ class DosenController extends Controller
 
     public function create()
     {
-        $data['jenisDosen'] = JenisDosen::get()->toArray();
+        $data['dataMatkul'] = MataKuliah::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.form', $data);
+        $konten = view('admin.page.modul_materi.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Modul Materi ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -66,10 +67,10 @@ class DosenController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        if (isset($data['file']) && $data['file'] != null) {
+        if (isset($data['file_materi']) && $data['file_materi'] != null) {
             // Validasi request
             $validator = Validator::make($request->all(), [
-                'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar JPEG, PNG, JPG maksimum 2MB
+                'file_materi' => 'required',
             ]);
 
             // Jika validasi gagal, kembalikan respon dengan pesan error
@@ -77,38 +78,25 @@ class DosenController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $dokumen = $request->file('file');
+            $dokumen = $request->file('file_materi');
             $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-dosen/', $nama_file);
+            $dokumen->move('file-materi/', $nama_file);
         }
 
+
+
+        $nama_materi = explode('-', $data['kode_matkul'])[1];
+        $kode_matkul = explode('-', $data['kode_matkul'])[0];
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new Dosen() : Dosen::find($data['id']);
-            $insert->nama_dosen = $data['nama_dosen'];
-            $insert->id_jenis_dosen = $data['jenis_dosen'];
-            $insert->jabatan = $data['jabatan'];
-            $insert->fb = $data['fb'];
-            $insert->twitter = $data['twitter'];
-            $insert->ig = $data['ig'];
-            if (isset($data['file']) && $data['file'] != null) {
-                $insert->foto_dosen = 'file-dosen/' . $nama_file;
+            $insert = $data['id'] == '' ? new ModulMateriDosen() : ModulMateriDosen::find($data['id']);
+            $insert->semester = $data['semester'];
+            $insert->kode_matkul = $kode_matkul;
+            $insert->nama_materi = $nama_materi;
+            if (isset($data['file_materi']) && $data['file_materi'] != null) {
+                $insert->file_materi = 'file-materi/' . $nama_file;
             }
-            // if (isset($data['no_induk'])) {
-            //     $insert->no_induk = $data['no_induk'];
-            // }
             $insert->save();
-            if (isset($data['no_induk'])) {
-                $user = User::updateOrCreate(
-                    ['no_induk' => $data['no_induk']],
-                    [
-                        'username' => $data['no_induk'],
-                        'role' => '2',
-                        'nama_lengkap' => $data['nama_dosen'],
-                        'password' => bcrypt($data['no_induk']),
-                    ]
-                );
-            }
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
         } catch (\Throwable $th) {
@@ -123,15 +111,18 @@ class DosenController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = Dosen::find($id);
-        $data['jenisDosen'] = JenisDosen::get()->toArray();
+        $data['dataMatkul'] = MataKuliah::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.master_menu.dosen.form', $data);
+
+        $data['data'] = ModulMateriDosen::with(['KodeMatkulDosen'])->find($id);
+
+        $konten = view('admin.page.modul_materi.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Dosen';
+        $put['title'] = 'Halaman Modul Materi ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -143,7 +134,7 @@ class DosenController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = Dosen::find($id);
+            $data = ModulMateriDosen::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {

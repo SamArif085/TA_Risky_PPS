@@ -23,8 +23,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('riwayat-presensi', Auth::user()->id) }}">
-                            <span class="menu-title">Riwayat Presensi</span>
+                        <a class="nav-link" href="{{ route('modul_materi') }}">
+                            <span class="menu-title">Modul Materi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('upload_penilaian') }}">
+                            <span class="menu-title">Upload Penilaian</span>
                         </a>
                     </li>
                 </ul>
@@ -48,8 +53,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('riwayat-presensi', Auth::user()->id) }}">
-                            <span class="menu-title">Riwayat Presensi</span>
+                        <a class="nav-link" href="{{ route('modul_materi') }}">
+                            <span class="menu-title">Modul Materi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('upload_penilaian') }}">
+                            <span class="menu-title">Upload Penilaian</span>
                         </a>
                     </li>
                 </ul>
