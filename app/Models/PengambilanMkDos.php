@@ -18,4 +18,16 @@ class PengambilanMkDos extends Model
     {
         return $this->belongsTo(MataKuliah::class, 'kode_matkul', 'id');
     }
+    public function RelasiPengambilanMKMhs()
+    {
+        return $this->belongsTo(PengambilanMkMhs::class, 'id_pengambilan_mata_kuliah_mhs', 'id');
+    }
+    public function ModulMateri()
+    {
+        return $this->hasMany(ModulMateriDosen::class, 'id_pengambilan_mk_dos', 'id');
+    }
+    public function Semester()
+    {
+        return $this->belongsTo(Semester::class, 'semester', 'id');
+    }
 }

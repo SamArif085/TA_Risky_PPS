@@ -15,4 +15,8 @@ class ModulMateriDosen extends Model
     {
         return $this->belongsTo(MataKuliah::class, 'kode', 'kode_matkul');
     }
+    public function pengambilan_mata_kuliah_mhs()
+    {
+        return $this->belongsTo(PengambilanMkMhs::class, 'id', 'id_pengambilan_mata_kuliah_mhs');
+    }
 }

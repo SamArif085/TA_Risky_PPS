@@ -27,7 +27,7 @@ use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\PresensiController;
-use App\Http\Controllers\web\PresensiDosenController;
+use App\Http\Controllers\web\MateriController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -252,6 +252,7 @@ Route::post('presensi/submit', [PresensiController::class, 'store'])->name('pres
 
 // MATKUL MHS
 Route::get('matkul_mhs/{id_user}', [MatkulMhsController::class, 'index'])->name('matkul_mhs');
+Route::get('matkul_mhs/show/{id}', [MatkulMhsController::class, 'show'])->name('matkul_mhs.show');
 
 // presensi Mhs
 Route::get('presensi_mhs/{kode_matkul}/{angkatan}/{semester}', [PresensiController::class, 'presensi_mhs'])->name('presensi_mhs');
@@ -262,10 +263,11 @@ Route::get('riwayat-presensi/{id_user}', [PresensiController::class, 'riwayatpre
 
 
 // presensi
-Route::get('presensi-dos/', [PresensiDosenController::class, 'index'])->name('presensi-dos');
-Route::get('presensi-dos/add', [PresensiDosenController::class, 'create'])->name('presensi-dos.add');
-Route::get('presensi-dos/edit/{id}', [PresensiDosenController::class, 'edit'])->name('presensi-dos.edit');
-Route::post('presensi-dos/submit', [PresensiDosenController::class, 'store'])->name('presensi-dos.submit');
+Route::get('materi/', [MateriController::class, 'index'])->name('materi');
+Route::get('materi/add', [MateriController::class, 'create'])->name('materi.add');
+Route::get('materi/edit/{id}', [MateriController::class, 'edit'])->name('materi.edit');
+Route::get('materi/show/{id}', [MateriController::class, 'show'])->name('materi.show');
+Route::post('materi/submit', [MateriController::class, 'store'])->name('materi.submit');
 
 // modul_materi
 Route::get('modul_materi/', [ModulMateriDosenController::class, 'index'])->name('modul_materi');

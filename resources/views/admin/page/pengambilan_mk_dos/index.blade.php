@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="d-flex justify-content-between align-items-center">
@@ -22,6 +23,8 @@
                                 <th>No</th>
                                 <th>Nama Dosen Pengajar</th>
                                 <th>Mata Kuliah</th>
+                                <th>Semester</th>
+                                {{-- <th>Agkatan</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,6 +34,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item['Dosen']['nama_lengkap'] }}</td>
                                 <td>{{ $item['KodeMatkul']['kode'] }}</td>
+                                <td>{{ $item['Semester']['semester'] }}</td>
+                                {{-- <td>{{ $item['RelasiPengambilanMKMhs']['angkatan'] }}</td> --}}
                                 <td>
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"
                                         class="btn btn-sm btn-primary"><i class="ti-pencil"></i>

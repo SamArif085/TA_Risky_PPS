@@ -16,6 +16,7 @@ use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\MateriController;
 use App\Http\Controllers\web\ModulMateriDosenController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
@@ -106,3 +107,5 @@ Route::post('search_data_mhs.cari', [PresensiController::class, 'search_data_mhs
 Route::post('modul_materi.delete', [ModulMateriDosenController::class, 'destroy'])->name('modul_materi.delete');
 // upload_penilaian_dosen
 Route::post('upload_penilaian.delete', [UploadPenilaianController::class, 'destroy'])->name('upload_penilaian.delete');
+// materi
+Route::post('materi.delete', [MateriController::class, 'destroy'])->name('materi.delete');
