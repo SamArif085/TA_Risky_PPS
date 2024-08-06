@@ -4,8 +4,12 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
+use App\Models\Dosen;
+use App\Models\LaporanTaOjt;
 use App\Models\MataKuliah;
 use App\Models\PengambilanMkDos;
+use App\Models\PengambilanMkMhs;
+use App\Models\Semester;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,8 +36,7 @@ class PengambilanMkDosController extends Controller
 
     public function index()
     {
-        $data['data'] = PengambilanMkDos::with('Dosen', 'KodeMatkul')->get();
-        // dd($data);
+        $data['data'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'Semester', 'RelasiPengambilanMKMhs', 'RelasiPengambilanMKMhs.semester')->get();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
         $konten = view('admin.page.pengambilan_mk_dos.index', $data);
@@ -56,6 +59,8 @@ class PengambilanMkDosController extends Controller
     {
         $data['dosen'] = User::where('role', 2)->get()->toArray();
         $data['matakuliah'] = Matakuliah::get()->toArray();
+        $data['semester'] = Semester::get()->toArray();
+        $data['dataPengambilanMKMhs'] = PengambilanMkMhs::with(['semester'])->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
@@ -79,6 +84,8 @@ class PengambilanMkDosController extends Controller
             $insert = $data['id'] == null ? new PengambilanMkDos() : PengambilanMkDos::find($data['id']);
             $insert->id_user = $data['id_user'];
             $insert->kode_matkul = $data['kode_matkul'];
+            $insert->semester = $data['semester'];
+            // $insert->id_pengambilan_mata_kuliah_mhs = $data['id_pengambilan_mata_kuliah_mhs'];
             $insert->save();
             DB::commit();
             return redirect($this->routeName())->with('success', 'Data berhasil disubmit!');
@@ -90,8 +97,11 @@ class PengambilanMkDosController extends Controller
 
     public function edit(string $id)
     {
-        $data['data'] = LaporanTaOjt::get()->find($id);
-        $data['dataAngkatan'] = Angkatan::get()->toArray();
+        $data['data'] = PengambilanMkDos::get()->find($id);
+        $data['semester'] = Semester::get()->toArray();
+        $data['dosen'] = User::get()->where('role', '2')->toArray();
+        $data['dataPengambilanMKMhs'] = PengambilanMkMhs::with(['semester'])->get()->toArray();
+        $data['matakuliah'] = MataKuliah::get()->toArray();
         $data['subtitle'] = $this->subtitle();
 
         $data['judulForm'] = 'Edit';

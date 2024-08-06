@@ -19,6 +19,7 @@
                     <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
                     <div class="form-group mb-3">
                         <label for="Angkatan">Dosen Pengajar</label>
+                        {{-- {{ dd($dosen); }} --}}
                         <select class="form-control" name="id_user" id="id_user">
                             <option value="">Pilih Dosen</option>
                             @foreach ($dosen as $item)
@@ -37,6 +38,32 @@
                             <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->kode_matkul ==
                                 $item['id']? 'selected' : '' ) }}>
                                 {{ $item['kode'] }} - {{ $item['mata_kuliah'] }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    {{-- <div class="form-group mb-3">
+                        <label for="id_pengambilan_mata_kuliah_mhs">Untuk Mahasiswa ?</label>
+                        <select class="form-control" name="id_pengambilan_mata_kuliah_mhs"
+                            id="id_pengambilan_mata_kuliah_mhs">
+                            <option value="">Pilih </option>
+                            @foreach ($dataPengambilanMKMhs as $item)
+                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->
+                                id_pengambilan_mata_kuliah_mhs ==
+                                $item['id']? 'selected' : '' ) }}>
+                                {{ $item['semester']['semester'] }} - {{ $item['angkatan'] }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+                    <div class="form-group mb-3">
+                        <label for="semester">Semester</label>
+                        <select class="form-control" name="semester" id="semester">
+                            <option value="">Pilih </option>
+                            @foreach ($semester as $item)
+                            <option value="{{ $item['id'] }}" {{ $judulForm=='Tambah' ? '' : ($data->semester ==
+                                $item['id']? 'selected' : '' ) }}>
+                                {{ $item['semester'] }}
                             </option>
                             @endforeach
                         </select>

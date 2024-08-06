@@ -16,6 +16,7 @@ use App\Http\Controllers\web\KetarunaanPrestasiController;
 use App\Http\Controllers\web\KurikulumController;
 use App\Http\Controllers\web\LaporanTAOJTController;
 use App\Http\Controllers\web\MasterAkademikController;
+use App\Http\Controllers\web\MateriController;
 use App\Http\Controllers\web\ModulMateriDosenController;
 use App\Http\Controllers\web\PenelitianController;
 use App\Http\Controllers\web\PengabdianMasyarakatController;
@@ -111,3 +112,6 @@ Route::post('upload_penilaian.delete', [UploadPenilaianController::class, 'destr
 Route::post('prestasi.delete', [PrestasiController::class, 'destroy'])->name('prestasi.delete');
 Route::post('prestasi/approve', [PrestasiController::class, 'update'])->name('prestasi.approve');
 Route::post('prestasi/reject', [PrestasiController::class, 'update'])->name('prestasi.reject');
+
+// materi
+Route::post('materi.delete', [MateriController::class, 'destroy'])->name('materi.delete');

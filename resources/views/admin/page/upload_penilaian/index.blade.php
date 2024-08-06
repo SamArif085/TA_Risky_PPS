@@ -24,23 +24,30 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Semester</th>
                                 <th>Angkatan</th>
+                                <th>Kode Matkul</th>
                                 <th>Tipe</th>
                                 <th>File Penilaian</th>
+                                @if (Auth::user()->role == '2')
                                 <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item['semester'] != null ? $item['semester']['semester'] : '-' }}</td>
                                 <td>{{ $item['angkatan'] }}</td>
+                                <td>{{ $item['kode_matkul'] != null ? $item['kode_matkul']['mata_kuliah'] : '-' }} </td>
                                 <td>{{ $item['tipe'] }}</td>
                                 <td>
                                     @if (isset($item['file']) && $item['file'] != null)
                                     <a href="{{ asset($item['file']) }}" target="_blank">Download File</a>
                                     @endif
                                 </td>
+                                @if (Auth::user()->role == '2')
                                 <td>
                                     @if (Auth::user()->role == '2')
                                     <a href="{{ route($routeName . '.edit', $item['id']) }}"
@@ -51,6 +58,7 @@
                                             class="ti-trash"></i></button>
                                     @endif
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

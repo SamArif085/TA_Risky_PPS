@@ -15,4 +15,12 @@ class UploadPenilaian extends Model
     {
         return $this->hasMany(User::class, 'angkatan', 'angkatan');
     }
+    public function Semester()
+    {
+        return $this->belongsTo(Semester::class, 'semester', 'id');
+    }
+    public function KodeMatkul()
+    {
+        return $this->belongsTo(MataKuliah::class, 'kode_matkul', 'kode');
+    }
 }

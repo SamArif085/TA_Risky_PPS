@@ -22,11 +22,11 @@
                             <span class="menu-title">Matkul</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('modul_materi') }}">
                             <span class="menu-title">Modul Materi</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('upload_penilaian') }}">
                             <span class="menu-title">Penilaian</span>
@@ -58,15 +58,15 @@
             <div class="collapse" id="menu-master">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('presensi-dos') }}">
-                            <span class="menu-title">Matkul</span>
+                        <a class="nav-link" href="{{ route('materi') }}">
+                            <span class="menu-title">Materi</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('modul_materi') }}">
                             <span class="menu-title">Modul Materi</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('upload_penilaian') }}">
                             <span class="menu-title">Upload Penilaian</span>

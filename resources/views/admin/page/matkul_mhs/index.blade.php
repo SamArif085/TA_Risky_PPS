@@ -17,46 +17,30 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Kode Matkul</th>
+                                <th>Nama Matkul</th>
                                 <th>Semester</th>
-                                <th>Matkul</th>
+                                {{-- <th>Angkatan</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                            @if ($item['angkatan'] == Auth::user()->angkatan)
-                            @foreach ($item['matkul'] as $items)
-                            @php
-                            $isDisabled = false;
-                            foreach ($riwayat_absen as $item1) {
-                            if ($item1['matkul']['mata_kuliah'] == $items['mata_kuliah']) {
-                            $isDisabled = true;
-                            break;
-                            }
-                            }
-                            @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item['kode_matkul']['kode'] }}</td>
+                                <td>{{ $item['kode_matkul']['mata_kuliah'] }}</td>
                                 <td>{{ $item['semester']['semester'] }}</td>
-                                <td>{{ $items['mata_kuliah'] }}</td>
-                                <td>
-                                    @if ($isDisabled)
-                                    <button class="btn btn-sm btn-primary" disabled>
-                                        <i class="ti-pencil"></i> Presensi
-                                    </button>
-                                    @else
-                                    <a href="{{ route('presensi_mhs', ['kode_matkul' => $items['kode'], 'angkatan' => $item['angkatan'], 'semester' => $item['semester']['semester']]) }}"
-                                        class="btn btn-sm btn-primary"><i class="ti-pencil"></i> Presensi
+                                {{-- <td>{{ $item['relasi_pengambilan_m_k_mhs']['angkatan'] }}</td> --}}
+                                <td class="text-center">
+                                    <a href="{{ route($routeName . '.show', $item['id']) }}"
+                                        class="btn btn-sm btn-primary"><i class="ti-eye"></i>
                                     </a>
-                                    @endif
                                 </td>
                             </tr>
                             @endforeach
-                            @endif
-                            @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -64,5 +48,9 @@
 </div>
 
 @section('script')
-
+<script>
+    $(document).ready(function() {
+            $('#data-table').DataTable();
+        });s
+</script>
 @endsection

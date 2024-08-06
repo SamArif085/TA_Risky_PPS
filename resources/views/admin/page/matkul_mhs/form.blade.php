@@ -9,31 +9,59 @@
 </div>
 <div class="row">
     <div class="col-12">
+        <a href="{{ route($routeName,Auth::user()->id) }}" class="btn btn-light text-right mb-2">Back</a>
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Form {{ $judulForm }}</h4>
-                <form class="forms-sample"
-                    action="{{ $judulForm == 'Tambah' ? route($routeName . '.submit') : route($routeName . '.submit', $data->id) }}"
-                    method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="id" id="id" value="{{ $judulForm == 'Tambah' ? '' : $data->id }}">
-                    <div class="form-group mb-3">
-                        <label for="Semester">Semester</label>
-                        <input type="text" class="form-control" id="semester" placeholder="Semester" name="semester"
-                            value="{{ $judulForm == 'Tambah' ? '' : $data->semester }}">
+                <ul>
+                    @foreach ($data as $item)
+                    <li><b>Kode Matkul</b> : {{ $item['kode_matkul']['kode'] }}</li>
+                    <li><b>Nama Matkul</b> : {{ $item['kode_matkul']['mata_kuliah'] }}</li>
+                    <li><b>Semester</b> : {{ $item['semester']['semester'] }}</li>
+                    @endforeach
+                </ul>
+                <br>
+                <div class="row">
+                    <div class="col-12 ">
+                        <h4>File Materi</h4>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="Catatan">Catatan</label>
-                        <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" rows="6"
-                            required>{{ $judulForm == 'Tambah' ? '' : $data->catatan }}</textarea>
+                </div>
+                <br>
+                <ul>
+                    <div class="row">
+                        @foreach ($data as $item)
+                        <div class="table-responsive pt-3">
+                            <table class="table table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Matkul</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($item['modul_materi'] as $items)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <a href="{{ asset($items['file_materi']) }}">
+                                                <i class="ti-download"></i>
+                                                {{ $items['nama_materi'] }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endforeach
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{ route($routeName . '') }}" class="btn btn-light">Cancel</a>
-                </form>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
+
+
 @section('script')
+
 @endsection
