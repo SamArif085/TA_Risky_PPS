@@ -22,6 +22,7 @@ use App\Http\Controllers\web\PengabdianMasyarakatController;
 use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\PresensiController;
+use App\Http\Controllers\web\PrestasiController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -106,3 +107,7 @@ Route::post('search_data_mhs.cari', [PresensiController::class, 'search_data_mhs
 Route::post('modul_materi.delete', [ModulMateriDosenController::class, 'destroy'])->name('modul_materi.delete');
 // upload_penilaian_dosen
 Route::post('upload_penilaian.delete', [UploadPenilaianController::class, 'destroy'])->name('upload_penilaian.delete');
+// PRESTASI
+Route::post('prestasi.delete', [PrestasiController::class, 'destroy'])->name('prestasi.delete');
+Route::post('prestasi/approve', [PrestasiController::class, 'update'])->name('prestasi.approve');
+Route::post('prestasi/reject', [PrestasiController::class, 'update'])->name('prestasi.reject');

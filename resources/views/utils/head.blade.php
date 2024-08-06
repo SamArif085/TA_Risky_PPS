@@ -27,6 +27,13 @@
         max-width: 300px;
     }
 
+    .modal-content .modal-image {
+        max-width: 500px;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
     .small-img {
         width: 300px;
         height: auto;

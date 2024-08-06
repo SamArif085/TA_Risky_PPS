@@ -28,6 +28,8 @@ use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\PresensiController;
 use App\Http\Controllers\web\PresensiDosenController;
+use App\Http\Controllers\web\PrestasiController;
+use App\Http\Controllers\web\SaranMasukanController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -260,6 +262,17 @@ Route::get('download-barcode/{id}', [SettingUserController::class, 'printBarcode
 // riwayat-presensi
 Route::get('riwayat-presensi/{id_user}', [PresensiController::class, 'riwayatpresensi'])->name('riwayat-presensi');
 
+// SARAN & MASUKAN PRODI
+Route::get('saran-masukan/', [SaranMasukanController::class, 'index'])->name('saran-masukan');
+Route::get('saran-masukan/add', [SaranMasukanController::class, 'create'])->name('saran-masukan.add');
+Route::get('saran-masukan/edit/{id}', [SaranMasukanController::class, 'edit'])->name('saran-masukan.edit');
+Route::post('saran-masukan/submit', [SaranMasukanController::class, 'store'])->name('saran-masukan.submit');
+
+// PRESTASI
+Route::get('prestasi/', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('prestasi/add', [PrestasiController::class, 'create'])->name('prestasi.add');
+Route::get('prestasi/edit/{id}', [PrestasiController::class, 'edit'])->name('prestasi.edit');
+Route::post('prestasi/submit', [PrestasiController::class, 'store'])->name('prestasi.submit');
 
 // presensi
 Route::get('presensi-dos/', [PresensiDosenController::class, 'index'])->name('presensi-dos');

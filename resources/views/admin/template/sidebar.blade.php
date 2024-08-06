@@ -29,7 +29,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('upload_penilaian') }}">
-                            <span class="menu-title">Upload Penilaian</span>
+                            <span class="menu-title">Penilaian</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('prestasi') }}">
+                            <span class="menu-title">Prestasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('saran-masukan.add') }}">
+                            <span class="menu-title">Saran & Masukan</span>
                         </a>
                     </li>
                 </ul>
@@ -122,6 +132,11 @@
                             <span class="menu-title">Kegiatan Prodi</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('saran-masukan') }}">
+                            <span class="menu-title">Saran & Masukan</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -166,6 +181,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('akademik/staff-pengajar') }}">Staff Pengajar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('prestasi') }}">
+                            <span class="menu-title">Prestasi</span>
+                        </a>
                     </li>
                 </ul>
             </div>
