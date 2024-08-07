@@ -43,6 +43,12 @@
                                     <option value="2">Non Akademik</option>
                                 </select>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group mb-3">
+                                    <label for="file">File Sertifikat</label>
+                                    <input type="file" class="form-control-file" id="file" name="file" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
@@ -51,7 +57,7 @@
                                     <option value="">Pilih tingkat</option>
                                     <option value="1">Kota</option>
                                     <option value="2">Provinsi</option>
-                                    <option value="3">Nasinal</option>
+                                    <option value="3">Nasional</option>
                                     <option value="4">Internasional</option>
                                 </select>
                             </div>
@@ -65,11 +71,10 @@
                                 <input type="date" placeholder="Pelaksanaan Lomba" class="form-control" id="pelaksanaan"
                                     name="pelaksanaan" required>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group mb-3">
-                                    <label for="file">File Sertifikat</label>
-                                    <input type="file" class="form-control-file" id="file" name="file" required>
-                                </div>
+                            <div class="form-group mb-3">
+                                <label for="restasi yang dicapai">Prestasi yang dicapai</label>
+                                <input type="text" placeholder="Prestasi yang dicapai" class="form-control" id="juara"
+                                    name="juara" required>
                             </div>
                         </div>
                     </div>

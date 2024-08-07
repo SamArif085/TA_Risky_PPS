@@ -8,10 +8,9 @@
     </div>
 </div>
 <div class="row">
-    @if (Auth::user()->role == 3)
+    @if (Auth::user()->role == 2)
     <div class="col-12 mb-4">
-        <a href="{{ route($routeName . '.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i>
-            Tambah</a>
+        <a href="{{ route($routeName.'.add') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Tambah</a>
     </div>
     @endif
     <div class="col-12">
@@ -22,17 +21,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>NIT</th>
-                                <th>Angkatan</th>
-                                <th>Jenis Perstasi</th>
-                                <th>Tingkat Lomba</th>
-                                <th>Nama Lomba</th>
-                                <th>Pelaksanaan Lomba</th>
-                                <th>Prestasi yang dicapai</th>
-                                <th>Sertifikat</th>
-                                <th>Approve</th>
-                                @if (Auth::user()->role == 3)
+                                <th>RPS</th>
+                                <th>File</th>
+                                <th>Status</th>
+                                @if (Auth::user()->role == 2)
                                 <th>Aksi</th>
                                 @endif
                             </tr>
@@ -41,69 +33,21 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item['user']['nama_lengkap'] }}</td>
-                                <td>{{ $item['user']['no_induk'] }}</td>
-                                <td>{{ $item['user']['angkatan'] }}</td>
+                                <td>{{ $item['nama'] }}</td>
                                 <td>
-                                    @if($item['jenis_prestasi'] == 1)
-                                    Akademik
-                                    @elseif($item['jenis_prestasi'] == 2)
-                                    Non Akademik
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($item['tingkat_lomba'] == 1)
-                                    Kota
-                                    @elseif($item['tingkat_lomba'] == 2)
-                                    Provinsi
-                                    @elseif($item['tingkat_lomba'] == 3)
-                                    Nasional
-                                    @elseif($item['tingkat_lomba'] == 4)
-                                    Internasional
-                                    @endif
-                                </td>
-                                <td>{{ $item['nama_lomba'] }}</td>
-                                <td>{{ $item['pelaksanaan_lomba'] }}</td>
-                                <td>{{ $item['juara'] }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal{{ $item['id'] }}">
-                                        <i class="ti-eye"></i>
-                                    </button>
-                                    <div class="modal fade" id="exampleModal{{ $item['id'] }}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Detail Sertifikat
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img class="modal-image" src="{{ asset($item['sertifikat']) }}"
-                                                        alt=""
-                                                        style="max-width: 500px; width: 100%; height: auto; border-radius: 0;">
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="{{ asset($item['file']) }}">
+                                        <i class="ti-download"></i>
+                                        {{ $item['file'] }}
+                                    </a>
                                 </td>
                                 <td>
                                     @if (Auth::user()->role == 1)
                                     @if ($item['status'] == 0)
-                                    <button class="btn btn-sm btn-danger"
-                                        onclick="Prestasi.reject({{ $item['id'] }})"><i class="ti-close"></i>
+                                    <button class="btn btn-sm btn-danger" onclick="RPS.reject({{ $item['id'] }})"><i
+                                            class="ti-close"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary"
-                                        onclick="Prestasi.approve({{ $item['id'] }})"> <i class="ti-check"></i>
+                                    <button class="btn btn-sm btn-primary" onclick="RPS.approve({{ $item['id'] }})"> <i
+                                            class="ti-check"></i>
                                     </button>
                                     @elseif ($item['status'] == 1)
                                     <span class="badge badge-success">Disetujui</span>
@@ -115,7 +59,7 @@
                                     {{-- diacc oleh : <b>{{ $item['user_acc']['name'] }}</b> --}}
                                     @endif
                                     @endif
-                                    @if (Auth::user()->role == 3)
+                                    @if (Auth::user()->role == 2)
                                     @if ($item['status'] == 0)
                                     <span class="badge badge-warning">Menunggu</span>
                                     @elseif ($item['status'] == 1)
@@ -129,10 +73,14 @@
                                     @endif
                                     @endif
                                 </td>
-                                @if (Auth::user()->role == 3)
+                                @if (Auth::user()->role == 2)
                                 <td>
-                                    <button class="btn btn-sm btn-danger" onclick="Prestasi.delete({{ $item['id'] }})"
-                                        {{ in_array($item['status'], [1, 2]) ? 'disabled' : '' }}>
+                                    <a href="{{ route($routeName . '.edit', $item['id']) }}"
+                                        class="btn btn-sm btn-primary {{ in_array($item['status'], [1, 2]) ? 'disabled' : '' }}"><i
+                                            class="ti-pencil"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger" onclick="RPS.delete({{ $item['id'] }})" {{
+                                        in_array($item['status'], [1, 2]) ? 'disabled' : '' }}>
                                         <i class="ti-trash"></i>
                                     </button>
                                 </td>
@@ -147,9 +95,55 @@
     </div>
 </div>
 
+
 @section('script')
 <script>
-    let Prestasi = {
+    let RPS = {
+            delete: (id) => {
+                let url = '{{ route($routeName . '.delete') }}';
+                Swal.fire({
+                    title: "Konfirmasi Hapus ?",
+                    text: `Apakah Anda yakin akan menghapus data ini ?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: {
+                                id: id,
+                            },
+                            success: function(response) {
+                                if (response.code == 200) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Berhasil",
+                                        text: response.message,
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Gagal",
+                                        text: response.message,
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            },
+                        });
+                    }
+                });
+            },
             reject: (id) => {
                 let url = '{{ route($routeName . '.reject') }}';
                 Swal.fire({
@@ -215,51 +209,6 @@
                                 id: id,
                                 status: 1,
                                 id_acc: `{{ Auth::user()->id }}`,
-                            },
-                            success: function(response) {
-                                if (response.code == 200) {
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "Berhasil",
-                                        text: response.message,
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            location.reload();
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Gagal",
-                                        text: response.message,
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            location.reload();
-                                        }
-                                    });
-                                }
-                            },
-                        });
-                    }
-                });
-            },
-            delete: (id) => {
-                let url = '{{ route($routeName . '.delete') }}';
-                Swal.fire({
-                    title: "Konfirmasi Hapus ?",
-                    text: `Apakah Anda yakin akan menghapus data ini ?`,
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: {
-                                id: id,
                             },
                             success: function(response) {
                                 if (response.code == 200) {

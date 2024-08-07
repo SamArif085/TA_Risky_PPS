@@ -24,6 +24,7 @@ use App\Http\Controllers\web\PengambilanMkDosController;
 use App\Http\Controllers\web\PengambilanMkMhsController;
 use App\Http\Controllers\web\PresensiController;
 use App\Http\Controllers\web\PrestasiController;
+use App\Http\Controllers\web\RPSController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SertifikasiController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -116,3 +117,8 @@ Route::post('prestasi/reject', [PrestasiController::class, 'update'])->name('pre
 
 // materi
 Route::post('materi.delete', [MateriController::class, 'destroy'])->name('materi.delete');
+
+// RPS
+Route::post('rps.delete', [RPSController::class, 'destroy'])->name('rps.delete');
+Route::post('rps/approve', [RPSController::class, 'update'])->name('rps.approve');
+Route::post('rps/reject', [RPSController::class, 'update'])->name('rps.reject');

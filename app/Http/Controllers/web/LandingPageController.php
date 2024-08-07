@@ -16,6 +16,7 @@ use App\Models\LaporanTaOjt;
 use App\Models\VideoProfile;
 use App\Models\MataKuliah;
 use App\Models\Penelitian;
+use App\Models\Prestasi;
 use App\Models\Sertifikasi;
 
 
@@ -277,30 +278,35 @@ class LandingPageController extends Controller
     public function taruna()
     {
         $data = [];
-        $Perstasi = PrestasiTaruna::all();
+        $Perstasi = Prestasi::where('status', 1)->get();
 
-        $AkademiPerstasi = $Perstasi->where('id_master_akademik', 1);
-        $nonAkademiPerstasi = $Perstasi->where('id_master_akademik', 2);
+        $AkademiPerstasi = $Perstasi->where('jenis_prestasi', 1);
+        $nonAkademiPerstasi = $Perstasi->where('jenis_prestasi', 2);
 
+        // Total Akademi
         $totalAkademi = [
-            'lokal' => $AkademiPerstasi->where('lokal', '!=', null)->count(),
-            'nasional' => $AkademiPerstasi->where('nasional', '!=', null)->count(),
-            'internasional' => $AkademiPerstasi->where('internasional', '!=', null)->count(),
+            'kota' => $AkademiPerstasi->where('tingkat_lomba', 1)->count(),
+            'provinsi' => $AkademiPerstasi->where('tingkat_lomba', 2)->count(),
+            'nasional' => $AkademiPerstasi->where('tingkat_lomba', 3)->count(),
+            'internasional' => $AkademiPerstasi->where('tingkat_lomba', 4)->count(),
         ];
+
+        // Total Non-Akademi
         $totalNonAkademi = [
-            'lokal' => $nonAkademiPerstasi->where('lokal', '!=', null)->count(),
-            'nasional' => $nonAkademiPerstasi->where('nasional', '!=', null)->count(),
-            'internasional' => $nonAkademiPerstasi->where('internasional', '!=', null)->count(),
+            'kota' => $nonAkademiPerstasi->where('tingkat_lomba', 1)->count(),
+            'provinsi' => $nonAkademiPerstasi->where('tingkat_lomba', 2)->count(),
+            'nasional' => $nonAkademiPerstasi->where('tingkat_lomba', 3)->count(),
+            'internasional' => $nonAkademiPerstasi->where('tingkat_lomba', 4)->count(),
         ];
 
         $data['AkademiPerstasi'] = $AkademiPerstasi;
         $data['nonAkademiPerstasi'] = $nonAkademiPerstasi;
         $data['totalAkademi'] = $totalAkademi;
         $data['totalNonAkademi'] = $totalNonAkademi;
-        $data['title'] = 'Data Taruna Aktif';
+        $data['title'] = 'Data Prestasi';
 
         $konten = view('user.page.taruna', $data);
-        $put['title'] = 'Data Taruna Aktif';
+        $put['title'] = 'Data Prestasi';
         $put['konten'] = $konten;
 
         return view('user.template.main', $put);

@@ -33,7 +33,7 @@ use App\Http\Controllers\web\PrestasiController;
 use App\Http\Controllers\web\SaranMasukanController;
 
 use App\Http\Controllers\web\MateriController;
-
+use App\Http\Controllers\web\RPSController;
 use App\Http\Controllers\web\SemesterController;
 use App\Http\Controllers\web\SettingUserController;
 use App\Http\Controllers\web\TahunKegiatanController;
@@ -296,3 +296,9 @@ Route::get('upload_penilaian/', [UploadPenilaianController::class, 'index'])->na
 Route::get('upload_penilaian/add', [UploadPenilaianController::class, 'create'])->name('upload_penilaian.add');
 Route::get('upload_penilaian/edit/{id}', [UploadPenilaianController::class, 'edit'])->name('upload_penilaian.edit');
 Route::post('upload_penilaian/submit', [UploadPenilaianController::class, 'store'])->name('upload_penilaian.submit');
+
+// RPS
+Route::get('rps/', [RPSController::class, 'index'])->name('rps');
+Route::get('rps/add', [RPSController::class, 'create'])->name('rps.add');
+Route::get('rps/edit/{id}', [RPSController::class, 'edit'])->name('rps.edit');
+Route::post('rps/submit', [RPSController::class, 'store'])->name('rps.submit');

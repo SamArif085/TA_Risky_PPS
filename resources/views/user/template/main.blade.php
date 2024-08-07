@@ -18,6 +18,8 @@
     <link href="{{ asset('template-landing-page/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template-landing-page/css/style.css') }}" rel="stylesheet">
 
+    {{-- <link href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap4.css" rel="stylesheet"> --}}
+
     @include('utils.head')
 </head>
 
@@ -38,6 +40,10 @@
 <script src="{{ asset('template-landing-page/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('template-landing-page/lib/waypoints/waypoints.min.js') }}"></script>
 <script src="{{ asset('template-landing-page/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap4.js"></script>
 
 <!-- Template Javascript -->
 <script src="{{ asset('template-landing-page/js/main.js') }}"></script>

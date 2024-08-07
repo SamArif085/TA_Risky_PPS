@@ -72,13 +72,15 @@ class PrestasiController extends Controller
     public function update(Request $request)
     {
         $status = $request->status;
-
+        $id_acc = $request->id_acc;
         $id = $request->id;
+
         DB::beginTransaction();
         try {
             $data = Prestasi::find($id);
 
             $data->status = $status;
+            $data->id_acc = $id_acc;
             $data->save();
             DB::commit();
             return response()->json([
@@ -122,6 +124,7 @@ class PrestasiController extends Controller
             $insert->tingkat_lomba = $data['tingkat'];
             $insert->nama_lomba = $data['nama'];
             $insert->pelaksanaan_lomba = $data['pelaksanaan'];
+            $insert->juara = $data['juara'];
             $insert->status = isset($data['status']) ? $data['status'] : 0;
             if (isset($data['file']) && $data['file'] != null) {
                 $insert->sertifikat = 'file-prestasi/' . $nama_file;
@@ -158,7 +161,10 @@ class PrestasiController extends Controller
         try {
             $data = Prestasi::find($id);
             $data->delete();
-
+            // jika $data->file itu ada isinya maka unlink();
+            if (isset($data->sertifikat) && $data->sertifikat != null) {
+                unlink($data->sertifikat);
+            }
             DB::commit();
             return response()->json([
                 'code' => 200,

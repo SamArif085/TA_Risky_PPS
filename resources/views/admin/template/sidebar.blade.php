@@ -72,6 +72,11 @@
                             <span class="menu-title">Upload Penilaian</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rps') }}">
+                            <span class="menu-title">Upload RPS</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -132,11 +137,6 @@
                             <span class="menu-title">Kegiatan Prodi</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('saran-masukan') }}">
-                            <span class="menu-title">Saran & Masukan</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </li>
@@ -183,8 +183,8 @@
                         <a class="nav-link" href="{{ route('akademik/staff-pengajar') }}">Staff Pengajar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('prestasi') }}">
-                            <span class="menu-title">Prestasi</span>
+                        <a class="nav-link" href="{{ route('rps') }}">
+                            <span class="menu-title">RPS</span>
                         </a>
                     </li>
                 </ul>
@@ -222,8 +222,18 @@
                         <a class="nav-link" href="{{ route('ketarunaan/data-taruna') }}">Data Taruna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ketarunaan/prestasi') }}">Prestasi</a>
+                        <a class="nav-link" href="{{ route('prestasi') }}">
+                            <span class="menu-title">Prestasi</span>
+                        </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('saran-masukan') }}">
+                            <span class="menu-title">Saran & Masukan</span>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ketarunaan/prestasi') }}">Prestasi</a>
+                    </li> --}}
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Himpunan Taruna</a>
                     </li> --}}

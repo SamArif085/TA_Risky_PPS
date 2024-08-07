@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('template-admin/vendors/base/vendor.bundle.base.css') }}" />
     <link rel="stylesheet" href="{{ asset('template-admin/css/style.css') }}" />
     <link rel="shortcut icon" href="{{ asset('template-admin/images/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('utils/datatable/dataTables.bootstrap4.css') }}">
     @include('utils.head')
 </head>
 

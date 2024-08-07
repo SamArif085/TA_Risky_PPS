@@ -3,26 +3,22 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Angkatan;
-use App\Models\MataKuliah;
-use App\Models\PengambilanMkDos;
-use App\Models\Semester;
-use App\Models\UploadPenilaian;
+use App\Models\RPS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class UploadPenilaianController extends Controller
+class RPSController extends Controller
 {
 
     public function title()
     {
-        return 'Halaman Upload Penilaian ';
+        return 'Halaman RPS ';
     }
     public function subtitle()
     {
-        return 'Add Upload Penilaian ';
+        return 'Add RPS ';
     }
     public function js()
     {
@@ -30,18 +26,18 @@ class UploadPenilaianController extends Controller
     }
     public function routeName()
     {
-        return 'upload_penilaian';
+        return 'rps';
     }
 
     public function index()
     {
-        $data['data'] = UploadPenilaian::with(['AngkatanMhs', 'Semester', 'KodeMatkul'])->get()->toArray();
+        $data['data'] = RPS::get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.upload_penilaian.index', $data);
+        $konten = view('admin.page.rps.index', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Upload Penilaian ';
+        $put['title'] = 'Halaman RPS ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -50,18 +46,13 @@ class UploadPenilaianController extends Controller
 
     public function create()
     {
-        $userId = Auth::user()->id;
-        $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS HARIAN'];
-        $data['angkatan'] = Angkatan::get()->toArray();
-        $data['matkul'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $userId)->get()->toArray();
-        // dd($data['matkul']);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
-        $konten = view('admin.page.upload_penilaian.form', $data);
+        $konten = view('admin.page.rps.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Upload Penilaian ';
+        $put['title'] = 'Halaman RPS ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
@@ -86,18 +77,16 @@ class UploadPenilaianController extends Controller
 
             $dokumen = $request->file('file');
             $nama_file = $dokumen->getClientOriginalName();
-            $dokumen->move('file-penilaian/', $nama_file);
+            $dokumen->move('file-rps/', $nama_file);
         }
 
         DB::beginTransaction();
         try {
-            $insert = $data['id'] == '' ? new UploadPenilaian() : UploadPenilaian::find($data['id']);
-            $insert->angkatan = $data['angkatan'];
-            $insert->semester = $data['semester'];
-            $insert->kode_matkul = $data['matkul'];
-            $insert->tipe = $data['tipe'];
+            $insert = $data['id'] == '' ? new RPS() : RPS::find($data['id']);
+            $insert->nama = $data['nama'];
+            $insert->status = isset($data['status']) ? $data['status'] : 0;
             if (isset($data['file']) && $data['file'] != null) {
-                $insert->file = 'file-penilaian/' . $nama_file;
+                $insert->file = 'file-rps/' . $nama_file;
             }
             $insert->save();
             DB::commit();
@@ -114,24 +103,45 @@ class UploadPenilaianController extends Controller
 
     public function edit(string $id)
     {
-        $userId = Auth::user()->id;
-        $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
-        $data['angkatan'] = Angkatan::get()->toArray();
-        $data['matkul'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $userId)->get()->toArray();
+        $data['data'] = RPS::find($id);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();
-
-        $data['data'] = UploadPenilaian::with(['AngkatanMhs', 'KodeMatkul', 'KodeMatkul'])->find($id);
-
-        $konten = view('admin.page.upload_penilaian.form', $data);
+        $konten = view('admin.page.rps.form', $data);
         $js = $this->js();
 
-        $put['title'] = 'Halaman Upload Penilaian ';
+        $put['title'] = 'Halaman RPS ';
         $put['konten'] = $konten;
         $put['js'] = $js;
 
         return view('admin.template.main', $put);
+    }
+
+    public function update(Request $request)
+    {
+        $status = $request->status;
+        $id_acc = $request->id_acc;
+        $id = $request->id;
+
+        DB::beginTransaction();
+        try {
+            $data = RPS::find($id);
+
+            $data->status = $status;
+            $data->id_acc = $id_acc;
+            $data->save();
+            DB::commit();
+            return response()->json([
+                'code' => 200,
+                'message' => 'Data berhasil diupdate',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'code' => 500,
+                'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
+            ]);
+        }
     }
 
     public function destroy(Request $request)
@@ -139,7 +149,7 @@ class UploadPenilaianController extends Controller
         $id = $request->id;
         DB::beginTransaction();
         try {
-            $data = UploadPenilaian::find($id);
+            $data = RPS::find($id);
             $data->delete();
             // jika $data->file itu ada isinya maka unlink();
             if (isset($data->file) && $data->file != null) {
@@ -157,19 +167,5 @@ class UploadPenilaianController extends Controller
                 'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
             ]);
         }
-    }
-
-    public function cariSemester(Request $request)
-    {
-
-        $data = $request->all();
-        $data_kode_matkul = MataKuliah::where('kode', $data['matkul'])->first();
-        $respone = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $data['id_user'])->where('kode_matkul', $data_kode_matkul->id)->get()->first();
-        return response()->json([
-            'code' => 200,
-            'data' => $respone,
-            'id_semester' => $respone->semester,
-            'semester' => $respone->Semester->semester,
-        ]);
     }
 }

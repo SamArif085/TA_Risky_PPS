@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<link rel="stylesheet" href="{{ asset('utils/datatable/dataTables.bootstrap4.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('utils/datatable/dataTables.bootstrap4.css') }}"> --}}
 
 <style>
     body {

@@ -22,17 +22,19 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <table class="table table-bordered">
+            <table id="example" class="table table-bordered">
                 <thead class="text-center">
                     <tr>
                         <th scope="col" rowspan="2">No</th>
                         <th scope="col" rowspan="2">Nama Kegiatan</th>
                         <th scope="col" rowspan="2">Waktu Perolehan</th>
-                        <th scope="col" colspan="3">Tingkat</th>
+                        <th scope="col" colspan="4">Tingkat</th>
+                        <!-- Menambahkan satu kolom lagi untuk "Internasional" -->
                         <th scope="col" rowspan="2">Prestasi yang dicapai</th>
                     </tr>
                     <tr>
-                        <th scope="col">Lokal</th>
+                        <th scope="col">Kota</th>
+                        <th scope="col">Provinsi</th>
                         <th scope="col">Nasional</th>
                         <th scope="col">Internasional</th>
                     </tr>
@@ -41,30 +43,55 @@
                     @foreach($AkademiPerstasi as $achievement)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $achievement->kegiatan }}</td>
-                        <td class="text-center">{{ $achievement->waktu_perolehan }}</td>
+                        <td>{{ $achievement->nama_lomba }}</td>
+                        <!-- Mengganti 'kegiatan' dengan 'nama_lomba' sesuai data -->
+                        <td class="text-center">{{ $achievement->pelaksanaan_lomba }}</td>
+                        <!-- Mengganti 'waktu_perolehan' dengan 'pelaksanaan_lomba' -->
                         <td class="text-center">
-                            {!! $achievement->lokal ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 1)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
-                            {!! $achievement->nasional ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 2)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
-                            {!! $achievement->internasional ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 3)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
-                        <td class="text-center">{{ $achievement->perstasi_yg_dicapai }}</td>
+                        <td class="text-center">
+                            @if($achievement->tingkat_lomba == 4)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
+                        </td>
+                        <td class="text-center">{{ $achievement->juara }}</td>
+                        <!-- Mengganti 'perstasi_yg_dicapai' dengan 'juara' sesuai data -->
                     </tr>
                     @endforeach
+                </tbody>
+                <tfoot>
                     <tr>
                         <th colspan="3" class="text-center">Total</th>
-                        <th class="text-center">{{ $totalAkademi['lokal'] }}</th>
-                        <th class="text-center">{{ $totalAkademi['nasional'] }}</th>
-                        <th class="text-center">{{ $totalAkademi['internasional'] }}</th>
-                        <th></th>
+                        <th class="text-center">{{ $totalAkademi['kota'] ?? 0 }}</th>
+                        <th class="text-center">{{ $totalAkademi['provinsi'] ?? 0 }}</th>
+                        <th class="text-center">{{ $totalAkademi['nasional'] ?? 0 }}</th>
+                        <th class="text-center">{{ $totalAkademi['internasional'] ?? 0 }}</th>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
         </div>
+
     </div>
 
     <div class="row">
@@ -76,17 +103,18 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <table class="table table-bordered">
+            <table id="example1" class="table table-bordered">
                 <thead class="text-center">
                     <tr>
                         <th scope="col" rowspan="2">No</th>
                         <th scope="col" rowspan="2">Nama Kegiatan</th>
                         <th scope="col" rowspan="2">Waktu Perolehan</th>
-                        <th scope="col" colspan="3">Tingkat</th>
+                        <th scope="col" colspan="4">Tingkat</th>
                         <th scope="col" rowspan="2">Prestasi yang dicapai</th>
                     </tr>
                     <tr>
-                        <th scope="col">Lokal</th>
+                        <th scope="col">Kota</th>
+                        <th scope="col">Provinsi</th>
                         <th scope="col">Nasional</th>
                         <th scope="col">Internasional</th>
                     </tr>
@@ -95,29 +123,77 @@
                     @foreach($nonAkademiPerstasi as $achievement)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $achievement->kegiatan }}</td>
-                        <td class="text-center">{{ $achievement->waktu_perolehan }}</td>
+                        <td>{{ $achievement->nama_lomba }}</td>
+                        <td class="text-center">{{ $achievement->pelaksanaan_lomba }}</td>
                         <td class="text-center">
-                            {!! $achievement->lokal ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 1)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
-                            {!! $achievement->nasional ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 2)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
-                            {!! $achievement->internasional ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @if($achievement->tingkat_lomba == 3)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
                         </td>
-                        <td class="text-center">{{ $achievement->perstasi_yg_dicapai }}</td>
+                        <td class="text-center">
+                            @if($achievement->tingkat_lomba == 4)
+                            {!! $achievement->juara ? '<i class="fas fa-check"></i>' : '-' !!}
+                            @else
+                            -
+                            @endif
+                        </td>
+                        <td class="text-center">{{ $achievement->juara }}</td>
+                        <!-- Mengganti 'perstasi_yg_dicapai' dengan 'juara' sesuai data -->
                     </tr>
                     @endforeach
+                </tbody>
+                <tfoot>
                     <tr>
                         <th colspan="3" class="text-center">Total</th>
-                        <th class="text-center">{{ $totalNonAkademi['lokal'] }}</th>
-                        <th class="text-center">{{ $totalNonAkademi['nasional'] }}</th>
-                        <th class="text-center">{{ $totalNonAkademi['internasional'] }}</th>
-                        <th></th>
+                        <th class="text-center">{{ $nonAkademiPerstasi['kota'] ?? 0 }}</th>
+                        <th class="text-center">{{ $nonAkademiPerstasi['provinsi'] ?? 0 }}</th>
+                        <th class="text-center">{{ $nonAkademiPerstasi['nasional'] ?? 0 }}</th>
+                        <th class="text-center">{{ $nonAkademiPerstasi['internasional'] ?? 0 }}</th>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
+
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+    $(document).ready(function() {
+        $('#example1').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+@endsection
