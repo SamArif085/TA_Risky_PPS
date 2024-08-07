@@ -15,7 +15,7 @@
                 <ul>
                     @foreach ($data as $item)
                     <li><b>Kode Matkul</b> : {{ $item['kode_matkul']['kode'] }}</li>
-                    <li><b>Nama Matkul</b> : {{ $item['kode_matkul']['mata_kuliah'] }}</li>
+                    <li><b>Nama Materi</b> : {{ $item['kode_matkul']['mata_kuliah'] }}</li>
                     <li><b>Semester</b> : {{ $item['semester']['semester'] }}</li>
                     @endforeach
                 </ul>

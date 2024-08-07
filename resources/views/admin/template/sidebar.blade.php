@@ -19,7 +19,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('matkul_mhs',Auth::user()->id) }}">
-                            <span class="menu-title">Matkul</span>
+                            <span class="menu-title">Materi</span>
                         </a>
                     </li>
                     {{-- <li class="nav-item">
@@ -213,7 +213,7 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#menu4" aria-expanded="false" aria-controls="menu4">
                 <i class="ti-palette menu-icon"></i>
-                <span class="menu-title">Ketarunaan</span>
+                <span class="menu-title">Taruna</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="menu4">

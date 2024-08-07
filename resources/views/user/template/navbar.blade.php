@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Ketarunaan</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Taruna</a>
                 <div class="dropdown-menu bg-light m-0">
                     <a href="{{ route('data-taruna') }}" class="dropdown-item">Data Taruna</a>
                     <a href="{{ route('taruna') }}" class="dropdown-item">Prestasi</a>
