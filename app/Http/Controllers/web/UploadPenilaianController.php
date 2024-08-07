@@ -5,9 +5,11 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Angkatan;
 use App\Models\MataKuliah;
+use App\Models\PengambilanMkDos;
 use App\Models\Semester;
 use App\Models\UploadPenilaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,10 +50,13 @@ class UploadPenilaianController extends Controller
 
     public function create()
     {
+        $userId = Auth::user()->id;
         $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
         $data['angkatan'] = Angkatan::get()->toArray();
         $data['semester'] = Semester::get()->toArray();
-        $data['matkul'] = MataKuliah::get()->toArray();
+        // $data['matkul'] = MataKuliah::get()->toArray();
+        $data['matkul'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $userId)->get()->toArray();
+        // dd($data['matkul']);
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Tambah';
         $data['routeName'] = $this->routeName();
@@ -154,5 +159,19 @@ class UploadPenilaianController extends Controller
                 'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
             ]);
         }
+    }
+
+    public function cariSemester(Request $request)
+    {
+
+        $data = $request->all();
+        $data_kode_matkul = MataKuliah::where('kode', $data['matkul'])->first();
+        $respone = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $data['id_user'])->where('kode_matkul', $data_kode_matkul->id)->get()->first();
+        return response()->json([
+            'code' => 200,
+            'data' => $respone,
+            'id_semester' => $respone->semester,
+            'semester' => $respone->Semester->semester,
+        ]);
     }
 }
