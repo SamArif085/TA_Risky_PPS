@@ -53,8 +53,6 @@ class UploadPenilaianController extends Controller
         $userId = Auth::user()->id;
         $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
         $data['angkatan'] = Angkatan::get()->toArray();
-        $data['semester'] = Semester::get()->toArray();
-        // $data['matkul'] = MataKuliah::get()->toArray();
         $data['matkul'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $userId)->get()->toArray();
         // dd($data['matkul']);
         $data['subtitle'] = $this->subtitle();
@@ -116,10 +114,10 @@ class UploadPenilaianController extends Controller
 
     public function edit(string $id)
     {
+        $userId = Auth::user()->id;
         $data['dataTugas'] = ['UAS', 'UTS', 'TUGAS AKHIR'];
         $data['angkatan'] = Angkatan::get()->toArray();
-        $data['semester'] = Semester::get()->toArray();
-        $data['matkul'] = MataKuliah::get()->toArray();
+        $data['matkul'] = PengambilanMkDos::with('Dosen', 'KodeMatkul', 'RelasiPengambilanMKMhs', 'Semester', 'RelasiPengambilanMKMhs.semester')->where('id_user', $userId)->get()->toArray();
         $data['subtitle'] = $this->subtitle();
         $data['judulForm'] = 'Edit';
         $data['routeName'] = $this->routeName();

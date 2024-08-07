@@ -19,9 +19,9 @@
                         <div class="col-6">
                             <div class="form-group mb-3">
                                 <label for="semester">Semester</label>
-                                <input type="text" class="form-control" name="_semester" id="_semester" value=""
+                                <input type="text" class="form-control" name="_semester" id="_semester" value="{{ $judulForm=='Edit' ? $data->Semester->semester : '' }}"
                                     readonly>
-                                <input type="hidden" class="form-control" name="semester" id="semester" value=""
+                                <input type="hidden" class="form-control" name="semester" id="semester" value="{{ $judulForm=='Edit' ? $data->semester : '' }}"
                                     readonly>
                             </div>
                         </div>
